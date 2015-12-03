@@ -139,6 +139,6 @@
         /// <summary>
         /// 请求第N段文件
         /// </summary>
-        RequestNthFile = 0x1101
+        RequestNthSegmentFile = 0x1101
     }
 }
