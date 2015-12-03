@@ -63,7 +63,7 @@ namespace ThisCoder.CSA018
 
             if (this.Value != null && this.Value.Length > 0)
             {
-                List<byte> byteValueList = new List<byte>(Encoding.UTF8.Getbytes(this.Value));
+                List<byte> byteValueList = new List<byte>(Encoding.UTF8.GetBytes(this.Value));
                 pmt.AddRange(byteValueList);
             }
 
