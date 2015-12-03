@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crc32.cs" />
+    <Compile Include="ErrorCode.cs" />
     <Compile Include="MessageBody.cs" />
     <Compile Include="Datagram.cs" />
     <Compile Include="MessageHead.cs" />

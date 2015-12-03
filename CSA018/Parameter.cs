@@ -11,7 +11,7 @@ namespace ThisCoder.CSA018
     {
         /// <summary>
         /// 参数类型
-        ///     <para>UInt16类型，长度为2个字节</para>
+        ///     <para>ushort类型，长度为2个字节</para>
         /// </summary>
         public ParameterType Type { get; set; }
 
@@ -19,14 +19,14 @@ namespace ThisCoder.CSA018
         /// 参数值
         ///     <para>字符串类型，长度可变</para>
         /// </summary>
-        public String Value { get; set; }
+        public string Value { get; set; }
 
         /// <summary>
         /// 参数值结束符
         ///     <para>只读属性</para>
         ///     <para>值为0x00</para>
         /// </summary>
-        public Byte End
+        public byte End
         {
             get
             {
@@ -40,7 +40,7 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="type">
         /// 参数类型
-        ///     <para>UInt16类型，长度为2个字节</para>
+        ///     <para>ushort类型，长度为2个字节</para>
         /// </param>
         /// <param name="value">参数值</param>
         public Parameter(ParameterType type, string value)
@@ -54,16 +54,16 @@ namespace ThisCoder.CSA018
         /// 获取参数字节数组
         /// </summary>
         /// <returns></returns>
-        public Byte[] GetParameter()
+        public byte[] GetParameter()
         {
-            List<Byte> pmt = new List<byte> {
-                (Byte)((UInt16)(this.Type) >> 8),
-                (Byte)(this.Type)
+            List<byte> pmt = new List<byte> {
+                (byte)((ushort)(this.Type) >> 8),
+                (byte)(this.Type)
             };
 
             if (this.Value != null && this.Value.Length > 0)
             {
-                List<Byte> byteValueList = new List<byte>(Encoding.UTF8.GetBytes(this.Value));
+                List<byte> byteValueList = new List<byte>(Encoding.UTF8.Getbytes(this.Value));
                 pmt.AddRange(byteValueList);
             }
 

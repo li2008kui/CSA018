@@ -11,54 +11,54 @@ namespace ThisCoder.CSA018
     {
         /// <summary>
         /// 消息类型
-        ///     <para>Byte类型，长度为1个字节</para>
+        ///     <para>byte类型，长度为1个字节</para>
         /// </summary>
         public MessageType Type { get; set; }
 
         /// <summary>
         /// 消息序号
-        ///     <para>UInt32类型，长度为4个字节</para>
+        ///     <para>uint类型，长度为4个字节</para>
         /// </summary>
-        public UInt32 SeqNumber { get; set; }
+        public uint SeqNumber { get; set; }
 
         /// <summary>
         /// 消息体长度
-        ///     <para>UInt16类型，长度为2个字节</para>
+        ///     <para>ushort类型，长度为2个字节</para>
         /// </summary>
-        public UInt16 Length { get; set; }
+        public ushort Length { get; set; }
 
         /// <summary>
         /// 预留字段
-        ///     <para>UInt64类型，长度为5字节</para>
+        ///     <para>ulong类型，长度为5字节</para>
         /// </summary>
-        public UInt64 Reserved { get; set; }
+        public ulong Reserved { get; set; }
 
         /// <summary>
         /// 消息体CRC32校验
-        ///     <para>UInt32类型，长度为4个字节</para>
+        ///     <para>uint类型，长度为4个字节</para>
         /// </summary>
-        public UInt32 Crc32 { get; set; }
+        public uint Crc32 { get; set; }
 
         /// <summary>
         /// 通过“消息类型”、“消息序号”、“消息体长度”和“消息体CRC32校验”初始化消息头对象实例
         /// </summary>
         /// <param name="type">
         /// 消息类型
-        ///     <para>Byte类型，长度为1个字节</para>
+        ///     <para>byte类型，长度为1个字节</para>
         /// </param>
         /// <param name="seqNumber">
         /// 消息序号
-        ///     <para>UInt32类型，长度为4个字节</para>
+        ///     <para>uint类型，长度为4个字节</para>
         /// </param>
         /// <param name="length">
         /// 消息体长度
-        ///     <para>UInt16类型，长度为2个字节</para>
+        ///     <para>ushort类型，长度为2个字节</para>
         /// </param>
         /// <param name="crc32">
         /// 消息体CRC32校验
-        ///     <para>UInt32类型，长度为4个字节</para>
+        ///     <para>uint类型，长度为4个字节</para>
         /// </param>
-        public MessageHead(MessageType type, UInt16 length, UInt32 seqNumber, UInt32 crc32)
+        public MessageHead(MessageType type, ushort length, uint seqNumber, uint crc32)
                 : this()
         {
             Type = type;
@@ -71,18 +71,18 @@ namespace ThisCoder.CSA018
         /// 获取消息头字节数组
         /// </summary>
         /// <returns></returns>
-        public Byte[] GetHead()
+        public byte[] GetHead()
         {
-            List<Byte> mh = new List<byte>();
-            mh.Add((Byte)(this.Type));
+            List<byte> mh = new List<byte>();
+            mh.Add((byte)(this.Type));
 
             for (int i = 24; i >= 0; i -= 8)
             {
-                mh.Add((Byte)(this.SeqNumber >> i));
+                mh.Add((byte)(this.SeqNumber >> i));
             }
 
-            mh.Add((Byte)(this.Length >> 8));
-            mh.Add((Byte)(this.Length));
+            mh.Add((byte)(this.Length >> 8));
+            mh.Add((byte)(this.Length));
 
             for (int j = 0; j < 5; j++)
             {
@@ -91,7 +91,7 @@ namespace ThisCoder.CSA018
 
             for (int k = 24; k >= 0; k -= 8)
             {
-                mh.Add((Byte)(this.Crc32 >> k));
+                mh.Add((byte)(this.Crc32 >> k));
             }
 
             return mh.ToArray();

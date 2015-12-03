@@ -16,7 +16,7 @@ namespace ThisCoder.CSA018
         ///     <para>只读属性</para>
         ///     <para>值为0x02</para>
         /// </summary>
-        public Byte Stx
+        public byte Stx
         {
             get
             {
@@ -42,7 +42,7 @@ namespace ThisCoder.CSA018
         ///     <para>只读属性</para>
         ///     <para>值为0x03</para>
         /// </summary>
-        public Byte Etx
+        public byte Etx
         {
             get
             {
@@ -73,12 +73,12 @@ namespace ThisCoder.CSA018
         /// 获取消息报文字节数组
         /// </summary>
         /// <returns></returns>
-        public Byte[] GetDatagram()
+        public byte[] GetDatagram()
         {
-            List<Byte> dg = new List<byte> { this.Stx };
+            List<byte> dg = new List<byte> { this.Stx };
 
-            Byte[] head = this.Head.GetHead();
-            Byte[] body = this.Body.GetBody();
+            byte[] head = this.Head.GetHead();
+            byte[] body = this.Body.GetBody();
 
             dg.AddRange(Escaping(head));
             dg.AddRange(Escaping(body));
@@ -96,9 +96,9 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="byteArray">消息报文字节数组</param>
         /// <returns></returns>
-        private static Byte[] Escaping(Byte[] byteArray)
+        private static byte[] Escaping(byte[] byteArray)
         {
-            List<Byte> byteList = new List<byte>();
+            List<byte> byteList = new List<byte>();
 
             foreach (var item in byteArray)
             {
@@ -130,14 +130,14 @@ namespace ThisCoder.CSA018
         /// 去除转义特殊字符
         /// </summary>
         /// <param name="byteArrayList">原消息报文字节数组列表</param>
-        /// <param name="newByteArrayList">新消息报文字节数组列表</param>
-        private static void Descaping(List<Byte[]> byteArrayList, ref List<Byte[]> newByteArrayList)
+        /// <param name="newbyteArrayList">新消息报文字节数组列表</param>
+        private static void Descaping(List<byte[]> byteArrayList, ref List<byte[]> newByteArrayList)
         {
-            List<Byte> byteList;
+            List<byte> byteList;
 
             foreach (var item in byteArrayList)
             {
-                byteList = new List<Byte>();
+                byteList = new List<byte>();
 
                 for (int i = 0; i < item.Length; i++)
                 {

@@ -11,21 +11,21 @@ namespace ThisCoder.CSA018
     {
         /// <summary>
         /// 消息ID
-        ///     <para>UInt16类型，长度为2个字节</para>
+        ///     <para>ushort类型，长度为2个字节</para>
         /// </summary>
         public MessageId MessageId { get; set; }
 
         /// <summary>
         /// 网关ID
-        ///     <para>UInt32类型，长度为4个字节</para>
+        ///     <para>uint类型，长度为4个字节</para>
         /// </summary>
-        public UInt32 GatewayId { get; set; }
+        public uint GatewayId { get; set; }
 
         /// <summary>
         /// 灯具ID
-        ///     <para>UInt32类型，长度为4个字节</para>
+        ///     <para>uint类型，长度为4个字节</para>
         /// </summary>
-        public UInt32 LampId { get; set; }
+        public uint LampId { get; set; }
 
         /// <summary>
         /// 参数列表
@@ -38,21 +38,21 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="messageId">
         /// 消息ID
-        ///     <para>UInt16类型，长度为2个字节</para>
+        ///     <para>ushort类型，长度为2个字节</para>
         /// </param>
         /// <param name="gatewayId">
         /// 设备ID
-        ///     <para>UInt32类型，长度为4个字节</para>
+        ///     <para>uint类型，长度为4个字节</para>
         /// </param>
         /// <param name="lampId">
         /// 设备ID
-        ///     <para>UInt32类型，长度为4个字节</para>
+        ///     <para>uint类型，长度为4个字节</para>
         /// </param>
         /// <param name="parameterList">
         /// 参数列表
         ///     <para>长度可变</para>
         /// </param>
-        public MessageBody(MessageId messageId, UInt32 gatewayId, UInt32 lampId, List<Parameter> parameterList)
+        public MessageBody(MessageId messageId, uint gatewayId, uint lampId, List<Parameter> parameterList)
             : this()
         {
             MessageId = messageId;
@@ -65,21 +65,21 @@ namespace ThisCoder.CSA018
         /// 获取消息体字节数组
         /// </summary>
         /// <returns></returns>
-        public Byte[] GetBody()
+        public byte[] GetBody()
         {
-            List<Byte> mb = new List<byte>{
-                (Byte)((UInt16)(this.MessageId) >> 8),
-                (Byte)(this.MessageId)
+            List<byte> mb = new List<byte>{
+                (byte)((ushort)(this.MessageId) >> 8),
+                (byte)(this.MessageId)
             };
 
             for (int i = 24; i >= 0; i -= 8)
             {
-                mb.Add((Byte)(this.GatewayId >> i));
+                mb.Add((byte)(this.GatewayId >> i));
             }
 
             for (int j = 24; j >= 0; j -= 8)
             {
-                mb.Add((Byte)(this.LampId >> j));
+                mb.Add((byte)(this.LampId >> j));
             }
 
             foreach (var pmt in this.ParameterList ?? new List<Parameter>())

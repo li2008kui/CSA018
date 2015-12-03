@@ -10,16 +10,16 @@ namespace ThisCoder.CSA018
         /// <summary>
         /// CRC32表
         /// </summary>
-        private static UInt32[] Crc32Table
+        private static uint[] Crc32Table
         {
             get
             {
-                UInt32 item;
-                UInt32[] crc32Table = new UInt32[256];
+                uint item;
+                uint[] crc32Table = new uint[256];
 
                 for (int i = 0; i < 256; i++)
                 {
-                    item = (UInt32)i;
+                    item = (uint)i;
 
                     for (int j = 8; j > 0; j--)
                     {
@@ -46,9 +46,9 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="data">需要校验的字节数组</param>
         /// <returns></returns>
-        public static UInt32 GetCrc32(Byte[] data)
+        public static uint GetCrc32(byte[] data)
         {
-            UInt32 crc32 = 0xFFFFFFFF;
+            uint crc32 = 0xFFFFFFFF;
 
             foreach (var item in data)
             {
