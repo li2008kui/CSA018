@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ThisCoder.CSA018
+﻿namespace ThisCoder.CSA018
 {
     /// <summary>
     /// CRC32校验类
