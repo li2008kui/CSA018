@@ -57,7 +57,7 @@
         /// <summary>
         /// 命令重试次数
         ///     <para>参数值最大字节数：2</para>
-        ///     <para>接收不到命令响应或者命令发送失败以后重发的次数`</para>
+        ///     <para>接收不到命令响应或者命令发送失败以后重发的次数</para>
         /// </summary>
         CommandRetryTimes = 0x0008,
 
