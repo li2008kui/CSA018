@@ -127,9 +127,9 @@ namespace ThisCoder.CSA018
         /// 去除转义特殊字符
         /// </summary>
         /// <param name="byteArrayList">原消息报文字节数组列表</param>
-        /// <param name="newbyteArrayList">新消息报文字节数组列表</param>
-        private static void Descaping(List<byte[]> byteArrayList, ref List<byte[]> newByteArrayList)
+        private static List<byte[]> Descaping(List<byte[]> byteArrayList)
         {
+            List<byte[]> newByteArrayList = new List<byte[]>();
             List<byte> byteList;
 
             foreach (var item in byteArrayList)
@@ -173,6 +173,8 @@ namespace ThisCoder.CSA018
 
                 newByteArrayList.Add(byteList.ToArray());
             }
+
+            return newByteArrayList;
         }
 
         /// <summary>
