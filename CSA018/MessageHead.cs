@@ -73,15 +73,15 @@ namespace ThisCoder.CSA018
         public byte[] GetHead()
         {
             List<byte> mh = new List<byte>();
-            mh.Add((byte)(this.Type));
+            mh.Add((byte)(Type));
 
             for (int i = 24; i >= 0; i -= 8)
             {
-                mh.Add((byte)(this.SeqNumber >> i));
+                mh.Add((byte)(SeqNumber >> i));
             }
 
-            mh.Add((byte)(this.Length >> 8));
-            mh.Add((byte)(this.Length));
+            mh.Add((byte)(Length >> 8));
+            mh.Add((byte)(Length));
 
             for (int j = 0; j < 5; j++)
             {
@@ -90,7 +90,7 @@ namespace ThisCoder.CSA018
 
             for (int k = 24; k >= 0; k -= 8)
             {
-                mh.Add((byte)(this.Crc32 >> k));
+                mh.Add((byte)(Crc32 >> k));
             }
 
             return mh.ToArray();
@@ -108,7 +108,7 @@ namespace ThisCoder.CSA018
         {
             StringBuilder sb = new StringBuilder();
 
-            foreach (var item in this.GetHead())
+            foreach (var item in GetHead())
             {
                 sb.Append(item.ToString("X2") + separator);
             }
@@ -122,7 +122,7 @@ namespace ThisCoder.CSA018
         /// <returns></returns>
         public override string ToString()
         {
-            return Encoding.UTF8.GetString(this.GetHead());
+            return Encoding.UTF8.GetString(GetHead());
         }
     }
 }

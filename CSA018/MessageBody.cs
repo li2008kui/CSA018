@@ -67,21 +67,21 @@ namespace ThisCoder.CSA018
         public byte[] GetBody()
         {
             List<byte> mb = new List<byte>{
-                (byte)((ushort)(this.MessageId) >> 8),
-                (byte)(this.MessageId)
+                (byte)((ushort)(MessageId) >> 8),
+                (byte)(MessageId)
             };
 
             for (int i = 24; i >= 0; i -= 8)
             {
-                mb.Add((byte)(this.GatewayId >> i));
+                mb.Add((byte)(GatewayId >> i));
             }
 
             for (int j = 24; j >= 0; j -= 8)
             {
-                mb.Add((byte)(this.LampId >> j));
+                mb.Add((byte)(LampId >> j));
             }
 
-            foreach (var pmt in this.ParameterList ?? new List<Parameter>())
+            foreach (var pmt in ParameterList ?? new List<Parameter>())
             {
                 mb.AddRange(pmt.GetParameter());
             }
@@ -101,7 +101,7 @@ namespace ThisCoder.CSA018
         {
             StringBuilder sb = new StringBuilder();
 
-            foreach (var item in this.GetBody())
+            foreach (var item in GetBody())
             {
                 sb.Append(item.ToString("X2") + separator);
             }
@@ -115,7 +115,7 @@ namespace ThisCoder.CSA018
         /// <returns></returns>
         public override string ToString()
         {
-            return Encoding.UTF8.GetString(this.GetBody());
+            return Encoding.UTF8.GetString(GetBody());
         }
     }
 }
