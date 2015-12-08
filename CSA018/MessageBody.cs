@@ -23,6 +23,12 @@ namespace ThisCoder.CSA018
         /// <summary>
         /// 灯具ID
         ///     <para>uint类型，长度为4个字节</para>
+        ///     <para>0x00000000为保留地址，对于只需下发到网关的命令可以使用该地址，</para>
+        ///     <para>0x00000001~0xFFFFFF00分别对应入网的单灯的具体地址，</para>
+        ///     <para>0xFFFFFF01~0xFFFFFF20分别对应回路地址1～32路的地址，</para>
+        ///     <para>0xFFFFFF21~0xFFFFFF40分别对应组地址(组号)1～32，</para>
+        ///     <para>0xFFFFFF41~0xFFFFFFFE为保留地址，</para>
+        ///     <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
         /// </summary>
         public uint LampId { get; set; }
 
@@ -40,12 +46,18 @@ namespace ThisCoder.CSA018
         ///     <para>ushort类型，长度为2个字节</para>
         /// </param>
         /// <param name="gatewayId">
-        /// 设备ID
+        /// 网关ID
         ///     <para>uint类型，长度为4个字节</para>
         /// </param>
         /// <param name="lampId">
-        /// 设备ID
+        /// 灯具ID
         ///     <para>uint类型，长度为4个字节</para>
+        ///     <para>0x00000000为保留地址，对于只需下发到网关的命令可以使用该地址，</para>
+        ///     <para>0x00000001~0xFFFFFF00分别对应入网的单灯的具体地址，</para>
+        ///     <para>0xFFFFFF01~0xFFFFFF20分别对应回路地址1～32路的地址，</para>
+        ///     <para>0xFFFFFF21~0xFFFFFF40分别对应组地址(组号)1～32，</para>
+        ///     <para>0xFFFFFF41~0xFFFFFFFE为保留地址，</para>
+        ///     <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
         /// </param>
         /// <param name="parameterList">
         /// 参数列表
