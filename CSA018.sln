@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSA018", "CSA018\CSA018.csproj", "{F3B6B7C2-AC6D-4499-9CA2-E432B61AA9CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThisCoder.CSA018", "CSA018\ThisCoder.CSA018.csproj", "{F3B6B7C2-AC6D-4499-9CA2-E432B61AA9CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSA018Example", "CSA018Example\CSA018Example.csproj", "{E562D6E3-32CB-438C-A58A-765D05AEC0AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThisCoder.CSA018Example", "CSA018Example\ThisCoder.CSA018Example.csproj", "{E562D6E3-32CB-438C-A58A-765D05AEC0AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

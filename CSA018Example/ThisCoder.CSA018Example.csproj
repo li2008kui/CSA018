@@ -7,8 +7,8 @@
     <ProjectGuid>{E562D6E3-32CB-438C-A58A-765D05AEC0AE}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSA018Example</RootNamespace>
-    <AssemblyName>CSA018Example</AssemblyName>
+    <RootNamespace>ThisCoder.CSA018Example</RootNamespace>
+    <AssemblyName>ThisCoder.CSA018Example</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSA018\CSA018.csproj">
+    <ProjectReference Include="..\CSA018\ThisCoder.CSA018.csproj">
       <Project>{f3b6b7c2-ac6d-4499-9ca2-e432b61aa9cd}</Project>
-      <Name>CSA018</Name>
+      <Name>ThisCoder.CSA018</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
