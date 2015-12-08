@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crc32.cs" />
+    <Compile Include="CsaAction.cs" />
     <Compile Include="CsaException.cs" />
     <Compile Include="ErrorCode.cs" />
     <Compile Include="MessageBody.cs" />
