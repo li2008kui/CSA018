@@ -89,11 +89,11 @@ namespace ThisCoder.CSA018
         /// <returns></returns>
         public byte[] GetOperateCommand(MessageId messageId, ParameterType type, byte[] value)
         {
-            List<Byte> byteList = new List<byte>();
-            byteList.AddRange(value);
-
             return GetOperateCommand(messageId,
-                new Parameter(type, byteList)
+                new Parameter(
+                    type,
+                    new List<byte>(value)
+                )
             );
         }
 
@@ -103,11 +103,12 @@ namespace ThisCoder.CSA018
         /// <param name="messageId">消息ID的枚举值</param>
         /// <param name="type">参数的类型枚举值</param>
         /// <param name="value">字符串类型的参数值</param>
+        /// <param name="isHex">该字符串是否是十六进制形式,默认为false。</param>
         /// <returns></returns>
-        public byte[] GetOperateCommand(MessageId messageId, ParameterType type, string value)
+        public byte[] GetOperateCommand(MessageId messageId, ParameterType type, string value, bool isHex = false)
         {
             return GetOperateCommand(messageId,
-                new Parameter(type, value)
+                new Parameter(type, value, isHex)
             );
         }
     }
