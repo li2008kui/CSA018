@@ -66,7 +66,7 @@ namespace ThisCoder.CSA018
         /// </param>
         /// <param name="parameterList">参数列表</param>
         /// <returns></returns>
-        protected Byte[] GetDatagram(MessageId messageId, List<Parameter> parameterList)
+        protected byte[] GetDatagram(MessageId messageId, List<Parameter> parameterList)
         {
             // 获取消息体对象
             MessageBody mb = new MessageBody(
@@ -98,9 +98,13 @@ namespace ThisCoder.CSA018
         /// </param>
         /// <param name="parameter">参数结构体对象</param>
         /// <returns></returns>
-        protected Byte[] GetDatagram(MessageId messageId, Parameter parameter)
+        protected byte[] GetDatagram(MessageId messageId, Parameter parameter)
         {
-            return GetDatagram(messageId, new List<Parameter> { parameter });
+            return GetDatagram(messageId,
+                new List<Parameter> {
+                    parameter
+                }
+            );
         }
     }
 }
