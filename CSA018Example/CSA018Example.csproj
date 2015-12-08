@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F3B6B7C2-AC6D-4499-9CA2-E432B61AA9CD}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{E562D6E3-32CB-438C-A58A-765D05AEC0AE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSA018</RootNamespace>
-    <AssemblyName>CSA018</AssemblyName>
+    <RootNamespace>CSA018Example</RootNamespace>
+    <AssemblyName>CSA018Example</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,23 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ByteArrayHelper.cs" />
-    <Compile Include="Crc32.cs" />
-    <Compile Include="CsaAction.cs" />
-    <Compile Include="CsaEventArgs.cs" />
-    <Compile Include="CsaException.cs" />
-    <Compile Include="ErrorCode.cs" />
-    <Compile Include="MessageBody.cs" />
-    <Compile Include="Datagram.cs" />
-    <Compile Include="MessageHead.cs" />
-    <Compile Include="MessageId.cs" />
-    <Compile Include="MessageType.cs" />
-    <Compile Include="OperateAction.cs" />
-    <Compile Include="Parameter.cs" />
-    <Compile Include="ParameterType.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sequencer.cs" />
-    <Compile Include="StringHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSA018\CSA018.csproj">
+      <Project>{f3b6b7c2-ac6d-4499-9ca2-e432b61aa9cd}</Project>
+      <Name>CSA018</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
