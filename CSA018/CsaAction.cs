@@ -4,6 +4,13 @@ using System.Collections.Generic;
 namespace ThisCoder.CSA018
 {
     /// <summary>
+    /// 消息报文处理委托
+    /// </summary>
+    /// <param name="sender">动作行为类</param>
+    /// <param name="e">消息报文事件参数</param>
+    public delegate void DatagramProcessHandler(object sender, DatagramEventArgs e);
+
+    /// <summary>
     /// 动作行为抽象基类
     ///     <para>只能通过OperateAction操作动作行为类创建实例对象</para>
     /// </summary>
@@ -76,7 +83,7 @@ namespace ThisCoder.CSA018
                 parameterList);
 
             // 获取消息体字节数组
-            Byte[] msgBody = mb.GetBody();
+            byte[] msgBody = mb.GetBody();
 
             // 获取消息头对象
             MessageHead mh = new MessageHead(
@@ -105,6 +112,23 @@ namespace ThisCoder.CSA018
                     parameter
                 }
             );
+        }
+
+        /// <summary>
+        /// 消息报文处理事件
+        /// </summary>
+        public event DatagramProcessHandler DatagramProcess;
+
+        /// <summary>
+        /// 触发消息报文的处理事件
+        /// </summary>
+        /// <param name="e">消息报文事件参数</param>
+        public virtual void OnDatagramProcess(DatagramEventArgs e)
+        {
+            if (DatagramProcess != null)
+            {
+                DatagramProcess(this, e);
+            }
         }
     }
 }
