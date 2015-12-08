@@ -49,6 +49,7 @@
     <Compile Include="MessageHead.cs" />
     <Compile Include="MessageId.cs" />
     <Compile Include="MessageType.cs" />
+    <Compile Include="OperateAction.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="ParameterType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
