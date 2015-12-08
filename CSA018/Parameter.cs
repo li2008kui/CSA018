@@ -73,11 +73,12 @@ namespace ThisCoder.CSA018
         ///     <para>ushort类型，长度为2个字节</para>
         /// </param>
         /// <param name="value">字符串类型的参数值</param>
-        public Parameter(ParameterType type, string value)
+        /// <param name="isHex">该字符串是否是十六进制形式,默认为false。</param>
+        public Parameter(ParameterType type, string value, bool isHex = false)
             : this()
         {
             Type = type;
-            Value = new List<byte>(Encoding.UTF8.GetBytes(value));
+            Value = new List<byte>(value.ToByteArray(isHex));
         }
 
         /// <summary>
