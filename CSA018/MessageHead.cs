@@ -57,7 +57,7 @@ namespace ThisCoder.CSA018
         /// 消息体CRC32校验
         ///     <para>uint类型，长度为4个字节</para>
         /// </param>
-        public MessageHead(MessageType type, ushort length, uint seqNumber, uint crc32)
+        public MessageHead(MessageType type, uint seqNumber, ushort length, uint crc32)
                 : this()
         {
             Type = type;
