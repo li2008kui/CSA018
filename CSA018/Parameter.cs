@@ -51,6 +51,21 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
+        /// 通过“参数类型”和byte类型的“参数值”初始化参数对象实例
+        /// </summary>
+        /// <param name="type">
+        /// 参数类型
+        ///     <para>ushort类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="value">byte类型的参数值</param>
+        public Parameter(ParameterType type, byte value)
+            : this()
+        {
+            Type = type;
+            Value = new List<byte> { value };
+        }
+
+        /// <summary>
         /// 通过“参数类型”和字符串类型的“参数值”初始化参数对象实例
         /// </summary>
         /// <param name="type">
