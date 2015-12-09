@@ -8,9 +8,11 @@
         /// <summary>
         /// 网关ID
         ///     <para>参数值最大字节数：10</para>
-        ///     <para>用十进制的字符串表示，由服务器分配，范围为1～4294967295(2^32-1)</para>
+        ///     <para>用十进制的数字表示，由服务器分配</para>
+        ///     <para>十进制范围为1～4294967295(2^32-1)</para>
+        ///     <para>十六进制形式范围为0x00000001~0xffffffff</para>
         /// </summary>
-        LuminaireID = 0x0001,
+        GatewayID = 0x0001,
 
         /// <summary>
         /// 服务器IP地址
