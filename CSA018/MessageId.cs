@@ -5,16 +5,21 @@
     /// </summary>
     public enum MessageId : ushort
     {
+        #region 配置命令
         /// <summary>
         /// 配置命令
         /// </summary>
         ConfigurationCommand = 0x1001,
+        #endregion
 
+        #region 操作维护
         /// <summary>
         /// 操作维护
         /// </summary>
         OperationMaintenance = 0x1002,
+        #endregion
 
+        #region 控制命令
         /// <summary>
         /// 设置默认开灯时间
         /// </summary>
@@ -130,7 +135,58 @@
         /// 接入认证请求
         /// </summary>
         AccessAuthenticationRequest = 0x1300,
+        #endregion
 
+        #region 数据采集
+        /// <summary>
+        /// 数据采集
+        /// </summary>
+        DataCollection = 0x2101,
+        #endregion
+
+        #region 事件列表
+        /// <summary>
+        /// 灯具重新启动
+        /// </summary>
+        LampRestart = 0x2200,
+
+        /// <summary>
+        /// 灯具临界告警消除
+        /// </summary>
+        LampThresholdEliminateAlarm = 0x2202,
+
+        /// <summary>
+        /// 灯具临界告警
+        /// </summary>
+        LampThresholdAlarm = 0x2302,
+
+        /// <summary>
+        /// 网关与灯具通信故障告警
+        /// </summary>
+        CommunicationFailureAlarm = 0x2303,
+
+        /// <summary>
+        /// 网关与灯具通信故障告警消除
+        /// </summary>
+        CommunicationFailureEliminateAlarm = 0x2203,
+
+        /// <summary>
+        /// 灯具未按控制设定工作告警
+        /// </summary>
+        LampRunExceptionAlarm = 0x2304,
+
+        /// <summary>
+        /// 灯具未按控制设定工作告警消除
+        /// </summary>
+        LampRunExceptionEliminateAlarm = 0x2204,
+
+        /// <summary>
+        /// 灯具防盗告警
+        /// </summary>
+        LampBurglarAlarm = 0x2305,
+        #endregion
+
+        #region 远程升级
         /// <summary>
         /// 远程升级
         /// </summary>
@@ -140,5 +196,6 @@
         /// 请求第N段文件
         /// </summary>
         RequestNthSegmentFile = 0x1101
+        #endregion
     }
 }
