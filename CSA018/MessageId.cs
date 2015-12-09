@@ -48,7 +48,7 @@
         /// <summary>
         /// 设置灯具调光计划
         /// </summary>
-        SettingLampDimmingPlan = 0x1206,
+        SettingLuminaireDimmingPlan = 0x1206,
 
         /// <summary>
         /// 设置触发告警阈值
@@ -58,37 +58,37 @@
         /// <summary>
         /// 实时开/关灯和调整亮度
         /// </summary>
-        RealTimeControlLamp = 0x1208,
+        RealTimeControlLuminaire = 0x1208,
 
         /// <summary>
         /// 实时查询灯具状态
         /// </summary>
-        RealTimeQueryLampStatus = 0x1209,
+        RealTimeQueryLuminaireStatus = 0x1209,
 
         /// <summary>
         /// 设置灯具数据采集周期
         /// </summary>
-        SettingLampDataCollectionPeriod = 0x120A,
+        SettingLuminaireDataCollectionPeriod = 0x120A,
 
         /// <summary>
         /// 设置灯具分组
         /// </summary>
-        SettingLampGroup = 0x120B,
+        SettingLuminaireGroup = 0x120B,
 
         /// <summary>
         /// 删除灯具分组
         /// </summary>
-        RemoveLampGroup = 0x120C,
+        RemoveLuminaireGroup = 0x120C,
 
         /// <summary>
         /// 设置灯具场景
         /// </summary>
-        SettingLampScene = 0x120D,
+        SettingLuminaireScene = 0x120D,
 
         /// <summary>
         /// 删除灯具场景
         /// </summary>
-        RemoveLampScene = 0x120E,
+        RemoveLuminaireScene = 0x120E,
 
         /// <summary>
         /// 设置灯具运行模式
@@ -99,12 +99,12 @@
         /// <summary>
         /// 要求上传灯具日志
         /// </summary>
-        RequireReportLampLog = 0x1210,
+        RequireReportLuminaireLog = 0x1210,
 
         /// <summary>
         /// 灯具恢复出厂状态
         /// </summary>
-        LampFactoryReset = 0x1211,
+        LuminaireFactoryReset = 0x1211,
 
         /// <summary>
         /// 更新RSA密钥
@@ -148,17 +148,17 @@
         /// <summary>
         /// 灯具重新启动
         /// </summary>
-        LampRestart = 0x2200,
+        LuminaireRestart = 0x2200,
 
         /// <summary>
         /// 灯具临界告警消除
         /// </summary>
-        LampThresholdEliminateAlarm = 0x2202,
+        LuminaireThresholdEliminateAlarm = 0x2202,
 
         /// <summary>
         /// 灯具临界告警
         /// </summary>
-        LampThresholdAlarm = 0x2302,
+        LuminaireThresholdAlarm = 0x2302,
 
         /// <summary>
         /// 网关与灯具通信故障告警
@@ -173,17 +173,17 @@
         /// <summary>
         /// 灯具未按控制设定工作告警
         /// </summary>
-        LampRunExceptionAlarm = 0x2304,
+        LuminaireRunExceptionAlarm = 0x2304,
 
         /// <summary>
         /// 灯具未按控制设定工作告警消除
         /// </summary>
-        LampRunExceptionEliminateAlarm = 0x2204,
+        LuminaireRunExceptionEliminateAlarm = 0x2204,
 
         /// <summary>
         /// 灯具防盗告警
         /// </summary>
-        LampBurglarAlarm = 0x2305,
+        LuminaireBurglarAlarm = 0x2305,
         #endregion
 
         #region 远程升级

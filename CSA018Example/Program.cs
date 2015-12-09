@@ -11,7 +11,7 @@ namespace ThisCoder.CSA018Example
             OperateAction oa = new OperateAction(MessageType.Request, 0x00000001);
 
             // 获取数据报文字节数组
-            byte[] cmd = oa.GetOperateCommand(MessageId.RealTimeControlLamp, ParameterType.Brightness, "70");
+            byte[] cmd = oa.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.Brightness, "70");
 
             // 将字节数组转成十六进制字符串形式并打印
             Console.WriteLine("生成命令：\n" + cmd.ToHexString());
@@ -44,7 +44,7 @@ namespace ThisCoder.CSA018Example
                     cmdRemarkString += "\n|------------------------------------|";
                     cmdRemarkString += "\n| 消 |            消息ID：" + ((ushort)(datagram.Body.MessageId)).ToString("X4") + "       |";
                     cmdRemarkString += "\n| 息 |            网关ID：" + datagram.Body.GatewayId.ToString("X8") + "   |";
-                    cmdRemarkString += "\n| 体 |            灯具ID：" + datagram.Body.LampId.ToString("X8") + "   |";
+                    cmdRemarkString += "\n| 体 |            灯具ID：" + datagram.Body.LuminaireId.ToString("X8") + "   |";
 
                     for (int i = 0; i < datagram.Body.ParameterList.Count; i++)
                     {

@@ -138,7 +138,7 @@ namespace ThisCoder.CSA018
 
                 mb.MessageId = (MessageId)((byteArray[16] << 8) + byteArray[17]);
                 mb.GatewayId = ((uint)byteArray[18] << 24) + ((uint)byteArray[19] << 16) + ((uint)byteArray[20] << 8) + byteArray[21];
-                mb.LampId = ((uint)byteArray[22] << 24) + ((uint)byteArray[23] << 16) + ((uint)byteArray[24] << 8) + byteArray[25];
+                mb.LuminaireId = ((uint)byteArray[22] << 24) + ((uint)byteArray[23] << 16) + ((uint)byteArray[24] << 8) + byteArray[25];
 
                 List<Parameter> pmtList = new List<Parameter>();
                 Parameter.GetParameterList(byteArray, 26, ref pmtList);

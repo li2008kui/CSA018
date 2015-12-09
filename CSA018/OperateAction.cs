@@ -16,7 +16,7 @@ namespace ThisCoder.CSA018
         /// 网关ID
         ///     <para>uint类型，长度为4个字节</para>
         /// </param>
-        /// <param name="lampId">
+        /// <param name="luminaireId">
         /// 灯具ID
         ///     <para>uint类型，长度为4个字节</para>
         ///     <para>0x00000000为保留地址，对于只需下发到网关的命令可以使用该地址，</para>
@@ -26,8 +26,8 @@ namespace ThisCoder.CSA018
         ///     <para>0xFFFFFF41~0xFFFFFFFE为保留地址，</para>
         ///     <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
         /// </param>
-        public OperateAction(MessageType messageType, uint gatewayId, uint lampId = 0x00000000)
-            : base(messageType, gatewayId, lampId)
+        public OperateAction(MessageType messageType, uint gatewayId, uint luminaireId = 0x00000000)
+            : base(messageType, gatewayId, luminaireId)
         { }
 
         /// <summary>

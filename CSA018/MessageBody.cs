@@ -30,7 +30,7 @@ namespace ThisCoder.CSA018
         ///     <para>0xFFFFFF41~0xFFFFFFFE为保留地址，</para>
         ///     <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
         /// </summary>
-        public uint LampId { get; set; }
+        public uint LuminaireId { get; set; }
 
         /// <summary>
         /// 参数列表
@@ -49,7 +49,7 @@ namespace ThisCoder.CSA018
         /// 网关ID
         ///     <para>uint类型，长度为4个字节</para>
         /// </param>
-        /// <param name="lampId">
+        /// <param name="luminaireId">
         /// 灯具ID
         ///     <para>uint类型，长度为4个字节</para>
         ///     <para>0x00000000为保留地址，对于只需下发到网关的命令可以使用该地址，</para>
@@ -63,12 +63,12 @@ namespace ThisCoder.CSA018
         /// 参数列表
         ///     <para>长度可变</para>
         /// </param>
-        public MessageBody(MessageId messageId, uint gatewayId, uint lampId, List<Parameter> parameterList)
+        public MessageBody(MessageId messageId, uint gatewayId, uint luminaireId, List<Parameter> parameterList)
             : this()
         {
             MessageId = messageId;
             GatewayId = gatewayId;
-            LampId = lampId;
+            LuminaireId = luminaireId;
             ParameterList = parameterList;
         }
 
@@ -90,7 +90,7 @@ namespace ThisCoder.CSA018
 
             for (int j = 24; j >= 0; j -= 8)
             {
-                mb.Add((byte)(LampId >> j));
+                mb.Add((byte)(LuminaireId >> j));
             }
 
             foreach (var pmt in ParameterList ?? new List<Parameter>())

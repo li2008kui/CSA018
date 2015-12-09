@@ -37,7 +37,7 @@ namespace ThisCoder.CSA018
         ///     <para>0xFFFFFF41~0xFFFFFFFE为保留地址，</para>
         ///     <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
         /// </summary>
-        public uint LampId { get; set; }
+        public uint LuminaireId { get; set; }
 
         /// <summary>
         /// 通过消息类型、网关ID和灯具ID初始化动作行为类
@@ -47,7 +47,7 @@ namespace ThisCoder.CSA018
         /// 网关ID
         ///     <para>uint类型，长度为4个字节</para>
         /// </param>
-        /// <param name="lampId">
+        /// <param name="luminaireId">
         /// 灯具ID
         ///     <para>uint类型，长度为4个字节</para>
         ///     <para>0x00000000为保留地址，对于只需下发到网关的命令可以使用该地址，</para>
@@ -57,11 +57,11 @@ namespace ThisCoder.CSA018
         ///     <para>0xFFFFFF41~0xFFFFFFFE为保留地址，</para>
         ///     <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
         /// </param>
-        protected CsaAction(MessageType messageType, uint gatewayId, uint lampId = 0x00000000)
+        protected CsaAction(MessageType messageType, uint gatewayId, uint luminaireId = 0x00000000)
         {
             MessageType = messageType;
             GatewayId = gatewayId;
-            LampId = lampId;
+            LuminaireId = luminaireId;
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace ThisCoder.CSA018
             MessageBody mb = new MessageBody(
                 messageId,
                 GatewayId,
-                LampId,
+                LuminaireId,
                 parameterList);
 
             // 获取消息体字节数组

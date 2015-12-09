@@ -13,7 +13,7 @@
         ///     <para>十进制范围为1～4294967295(2^32-1)，</para>
         ///     <para>十六进制形式范围为0x00000001~0xffffffff。</para>
         /// </summary>
-        GatewayID = 0x0001,
+        GatewayId = 0x0001,
 
         /// <summary>
         /// 服务器IP地址。
@@ -115,7 +115,7 @@
         ///     <para>网关所管理的灯具ID，用十进制的数字表示，由服务器分配，范围为0x00000001~0xffffff00，</para>
         ///     <para>这个参数在命令中可以包含一个或者多个。</para>
         /// </summary>
-        LampId = 0x000F,
+        LuminaireId = 0x000F,
         #endregion
 
         #region 操作维护命令参数
