@@ -281,12 +281,12 @@ namespace ThisCoder.CSA018
 
             for (int i = index; i < dataArray.Length; i++)
             {
-                if (dataArray[i] == 0X02)
+                if (dataArray[i] == 0x02)
                 {
                     byteList = new List<byte>();
                     isStx = true;
                 }
-                else if (dataArray[i] == 0X03)
+                else if (dataArray[i] == 0x03)
                 {
                     isStx = false;
 
