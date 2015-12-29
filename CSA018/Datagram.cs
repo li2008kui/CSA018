@@ -110,6 +110,31 @@ namespace ThisCoder.CSA018
         {
             if (dataArray.Length < 26)
             {
+                if (dataArray.Length > 0)
+                {
+                    if (dataArray[0] == 0xFF)
+                    {
+                        return new List<Datagram>()
+                        {
+                            new Datagram
+                            (
+                                new MessageHead(MessageType.HeartbeatData)
+                            )
+                        };
+                    }
+
+                    if (dataArray[0] == 0xFE)
+                    {
+                        return new List<Datagram>()
+                        {
+                            new Datagram
+                            (
+                                new MessageHead(MessageType.HeartbeatResponse)
+                            )
+                        };
+                    }
+                }
+
                 throw new CsaException("消息解析错误。", ErrorCode.MessageParseError);
             }
 
