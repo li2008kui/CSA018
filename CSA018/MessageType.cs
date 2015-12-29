@@ -25,7 +25,7 @@
         /// 事件和告警响应
         ///     <para>该类型的命令没有消息体。</para>
         /// </summary>
-        EventResp = 0x04,
+        EventResponse = 0x04,
 
         /// <summary>
         /// 命令结果
