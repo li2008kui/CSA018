@@ -50,6 +50,19 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
+        /// 通过消息头初始化报文对象实例
+        /// </summary>
+        /// <param name="head">
+        /// 消息头
+        ///     <para>长度为16字节</para>
+        /// </param>
+        public Datagram(MessageHead head)
+            : this()
+        {
+            Head = head;
+        }
+
+        /// <summary>
         /// 通过消息头和消息体初始化报文对象实例
         /// </summary>
         /// <param name="head">
