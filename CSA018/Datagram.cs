@@ -86,17 +86,31 @@ namespace ThisCoder.CSA018
         /// <returns></returns>
         public byte[] GetDatagram()
         {
-            List<byte> dg = new List<byte> { Stx };
+            if (Head.Type == MessageType.HeartbeatData)
+            {
+                return new byte[] { 0xFF };
+            }
+            else if (Head.Type == MessageType.HeartbeatResponse)
+            {
+                return new byte[] { 0xFE };
+            }
+            else
+            {
+                List<byte> dg = new List<byte> { Stx };
+                byte[] head = Head.GetHead();
+                dg.AddRange(Escaping(head));
 
-            byte[] head = Head.GetHead();
-            byte[] body = Body.GetBody();
+                //“命令响应”和“事件和告警响应”类型的消息类型无消息体
+                if (Head.Type != MessageType.Response
+                    && Head.Type != MessageType.EventResponse)
+                {
+                    byte[] body = Body.GetBody();
+                    dg.AddRange(Escaping(body));
+                }
 
-            dg.AddRange(Escaping(head));
-            dg.AddRange(Escaping(body));
-
-            dg.Add(Etx);
-
-            return dg.ToArray();
+                dg.Add(Etx);
+                return dg.ToArray();
+            }
         }
 
         /// <summary>
