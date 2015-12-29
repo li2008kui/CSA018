@@ -35,13 +35,13 @@
 
         /// <summary>
         /// 心跳包数据
-        ///     <para>该枚举值无意义，但可用其值直接表示报文数据。</para>
+        ///     <para>该枚举值无实际意义，但可用其值直接表示报文数据。</para>
         /// </summary>
         HeartbeatData = 0xFF,
 
         /// <summary>
         /// 心跳包响应
-        ///     <para>该枚举值无意义，但可用其值直接表示报文数据。</para>
+        ///     <para>该枚举值无实际意义，但可用其值直接表示报文数据。</para>
         /// </summary>
         HeartbeatResponse = 0xFE,
     }
