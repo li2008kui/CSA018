@@ -39,6 +39,19 @@ namespace ThisCoder.CSA018
         public uint Crc32 { get; set; }
 
         /// <summary>
+        /// 通过“消息类型”初始化消息头对象实例
+        /// </summary>
+        /// <param name="type">
+        /// 消息类型
+        ///     <para>byte类型，长度为1个字节</para>
+        /// </param>
+        public MessageHead(MessageType type)
+            : this()
+        {
+            Type = type;
+        }
+
+        /// <summary>
         /// 通过“消息类型”、“消息序号”、“消息体长度”和“消息体CRC32校验”初始化消息头对象实例
         /// </summary>
         /// <param name="type">
