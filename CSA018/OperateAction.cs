@@ -31,13 +31,27 @@ namespace ThisCoder.CSA018
         { }
 
         /// <summary>
-        /// 获取数据报文字节数组
+        /// 获取心跳包数据报文字节数组
         ///     <para>用于获取“心跳包数据”和“心跳包响应”字节数组</para>
         /// </summary>
         /// <returns></returns>
         public byte[] GetOperateCommand()
         {
             return GetDatagram();
+        }
+
+        /// <summary>
+        /// 获取响应数据报文字节数组
+        ///     <para>用于获取“命令响应”和“事件和告警响应”字节数组</para>
+        /// </summary>
+        /// <param name="seqNumber">
+        /// 消息序号
+        ///     <para>uint类型，长度为4个字节</para>
+        /// </param>
+        /// <returns></returns>
+        public byte[] GetOperateCommand(uint seqNumber)
+        {
+            return GetDatagram(seqNumber);
         }
 
         /// <summary>
