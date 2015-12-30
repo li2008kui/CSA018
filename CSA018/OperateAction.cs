@@ -52,62 +52,16 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 通过“消息ID”、“参数类型”和“参数值字节列表”执行操作
-        /// </summary>
-        /// <param name="messageId">消息ID的枚举值</param>
-        /// <param name="type">参数的类型枚举值</param>
-        /// <param name="value">参数值字节列表</param>
-        /// <returns></returns>
-        public byte[] GetOperateCommand(MessageId messageId, ParameterType type, List<byte> value)
-        {
-            return GetOperateCommand(messageId,
-                new Parameter(type, value)
-            );
-        }
-
-        /// <summary>
-        /// 通过“消息ID”、“参数类型”和byte类型的“参数值”执行操作
-        /// </summary>
-        /// <param name="messageId">消息ID的枚举值</param>
-        /// <param name="type">参数的类型枚举值</param>
-        /// <param name="value">byte类型的参数值</param>
-        /// <returns></returns>
-        public byte[] GetOperateCommand(MessageId messageId, ParameterType type, byte value)
-        {
-            return GetOperateCommand(messageId,
-                new Parameter(type, value)
-            );
-        }
-
-        /// <summary>
-        /// 通过“消息ID”、“参数类型”和byte数组类型的“参数值”执行操作
-        /// </summary>
-        /// <param name="messageId">消息ID的枚举值</param>
-        /// <param name="type">参数的类型枚举值</param>
-        /// <param name="value">byte数组类型的参数值</param>
-        /// <returns></returns>
-        public byte[] GetOperateCommand(MessageId messageId, ParameterType type, byte[] value)
-        {
-            return GetOperateCommand(messageId,
-                new Parameter(
-                    type,
-                    new List<byte>(value)
-                )
-            );
-        }
-
-        /// <summary>
         /// 通过“消息ID”、“参数类型”和字符串类型的“参数值”执行操作
         /// </summary>
         /// <param name="messageId">消息ID的枚举值</param>
         /// <param name="type">参数的类型枚举值</param>
         /// <param name="value">字符串类型的参数值</param>
-        /// <param name="isHex">该字符串是否是十六进制形式,默认为false。</param>
         /// <returns></returns>
-        public byte[] GetOperateCommand(MessageId messageId, ParameterType type, string value, bool isHex = false)
+        public byte[] GetOperateCommand(MessageId messageId, ParameterType type, string value)
         {
             return GetOperateCommand(messageId,
-                new Parameter(type, value, isHex)
+                new Parameter(type, value)
             );
         }
     }

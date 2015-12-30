@@ -16,10 +16,10 @@ namespace ThisCoder.CSA018
 
         /// <summary>
         /// 参数值
-        ///     <para>byte类型列表，长度可变。</para>
+        ///     <para>string类型，长度可变。</para>
         ///     <para>具体使用时可能需要转换为字符串类型。</para>
         /// </summary>
-        public List<byte> Value { get; set; }
+        public string Value { get; set; }
 
         /// <summary>
         /// 参数值结束符
@@ -36,36 +36,6 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 通过“参数类型”和字节列表类型的“参数值”初始化参数对象实例
-        /// </summary>
-        /// <param name="type">
-        /// 参数类型
-        ///     <para>ushort类型，长度为2个字节</para>
-        /// </param>
-        /// <param name="value">字节列表类型的参数值</param>
-        public Parameter(ParameterType type, List<byte> value)
-            : this()
-        {
-            Type = type;
-            Value = value;
-        }
-
-        /// <summary>
-        /// 通过“参数类型”和byte类型的“参数值”初始化参数对象实例
-        /// </summary>
-        /// <param name="type">
-        /// 参数类型
-        ///     <para>ushort类型，长度为2个字节</para>
-        /// </param>
-        /// <param name="value">byte类型的参数值</param>
-        public Parameter(ParameterType type, byte value)
-            : this()
-        {
-            Type = type;
-            Value = new List<byte> { value };
-        }
-
-        /// <summary>
         /// 通过“参数类型”和字符串类型的“参数值”初始化参数对象实例
         /// </summary>
         /// <param name="type">
@@ -73,12 +43,11 @@ namespace ThisCoder.CSA018
         ///     <para>ushort类型，长度为2个字节</para>
         /// </param>
         /// <param name="value">字符串类型的参数值</param>
-        /// <param name="isHex">该字符串是否是十六进制形式,默认为false。</param>
-        public Parameter(ParameterType type, string value, bool isHex = false)
+        public Parameter(ParameterType type, string value)
             : this()
         {
             Type = type;
-            Value = new List<byte>(value.ToByteArray(isHex));
+            Value = value;
         }
 
         /// <summary>
@@ -92,9 +61,9 @@ namespace ThisCoder.CSA018
                 (byte)(Type)
             };
 
-            if (Value != null && Value.Count > 0)
+            if (!Value.IsNullOrEmpty())
             {
-                pmt.AddRange(Value);
+                pmt.AddRange(Value.ToByteArray());
             }
 
             pmt.Add(0x00);
@@ -124,7 +93,7 @@ namespace ThisCoder.CSA018
                     indexByte = byteArray[index + 2];
                 }
 
-                parameter.Value = byteList;
+                parameter.Value = byteList.ToArray().ToString2();
                 pmtList.Add(parameter);
 
                 GetParameterList(byteArray, index + 3, ref pmtList);
