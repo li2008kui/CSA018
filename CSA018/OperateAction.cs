@@ -14,6 +14,7 @@ namespace ThisCoder.CSA018
         /// <param name="gatewayId">
         /// 网关ID
         ///     <para>uint类型，长度为4个字节</para>
+        ///     <para>心跳包数据和心跳包响应不需要此参数</para>
         /// </param>
         /// <param name="luminaireId">
         /// 灯具ID
@@ -25,7 +26,7 @@ namespace ThisCoder.CSA018
         ///     <para>0xFFFFFF41~0xFFFFFFFE为保留地址，</para>
         ///     <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
         /// </param>
-        public OperateAction(MessageType messageType, uint gatewayId, uint luminaireId = 0x00000000)
+        public OperateAction(MessageType messageType, uint gatewayId = 0x00000000, uint luminaireId = 0x00000000)
             : base(messageType, gatewayId, luminaireId)
         { }
 
