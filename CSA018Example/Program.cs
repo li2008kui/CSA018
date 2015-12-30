@@ -8,10 +8,13 @@ namespace ThisCoder.CSA018Example
         static void Main(string[] args)
         {
             // 实例化操作动作行为类的对象
-            OperateAction oa = new OperateAction(MessageType.Request, 0x00000001);
+            //OperateAction oa = new OperateAction(MessageType.HeartbeatResponse);
+            OperateAction oa = new OperateAction(MessageType.Response, 0x00000001);
 
             // 获取数据报文字节数组
-            byte[] cmd = oa.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.Brightness, "70");
+            //byte[] cmd = oa.GetOperateCommand();
+            //byte[] cmd = oa.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.Brightness, "100");
+            byte[] cmd = oa.GetOperateCommand(0x1234);
 
             // 将字节数组转成十六进制字符串形式并打印
             Console.WriteLine("生成命令：\n" + cmd.ToHexString());
@@ -34,34 +37,57 @@ namespace ThisCoder.CSA018Example
 
                 foreach (var datagram in e.DatagramList)
                 {
-                    cmdRemarkString += "\n|                 起始符：" + datagram.Stx.ToString("X2") + "         |";
-                    cmdRemarkString += "\n|------------------------------------|";
-                    cmdRemarkString += "\n|    |          消息类型：" + ((ushort)(datagram.Head.Type)).ToString("X2") + "         |";
-                    cmdRemarkString += "\n| 消 |          消息序号：" + datagram.Head.SeqNumber.ToString("X8") + "   |";
-                    cmdRemarkString += "\n| 息 |        消息体长度：" + datagram.Head.Length.ToString("X4") + "       |";
-                    cmdRemarkString += "\n| 头 |              预留：" + datagram.Head.Reserved.ToString("X10") + " |";
-                    cmdRemarkString += "\n|    |           CRC校验：" + datagram.Head.Crc32.ToString("X8") + "   |";
-                    cmdRemarkString += "\n|------------------------------------|";
-                    cmdRemarkString += "\n| 消 |            消息ID：" + ((ushort)(datagram.Body.MessageId)).ToString("X4") + "       |";
-                    cmdRemarkString += "\n| 息 |            网关ID：" + datagram.Body.GatewayId.ToString("X8") + "   |";
-                    cmdRemarkString += "\n| 体 |            灯具ID：" + datagram.Body.LuminaireId.ToString("X8") + "   |";
-
-                    for (int i = 0; i < datagram.Body.ParameterList.Count; i++)
+                    if (datagram.Head.Type == MessageType.HeartbeatData)
                     {
-                        cmdRemarkString += "\n|    |-------------------------------|";
-                        cmdRemarkString += "\n|    | 参 ｜    参数类型：" + ((ushort)datagram.Body.ParameterList[i].Type).ToString("X4") + "       |";
-                        cmdRemarkString += "\n|    | 数 ｜      参数值：";
+                        cmdRemarkString += "\n| 心跳包数据：FF                     |";
+                    }
+                    else if (datagram.Head.Type == MessageType.HeartbeatResponse)
+                    {
+                        cmdRemarkString += "\n| 心跳包响应：FE                     |";
+                    }
+                    else
+                    {
+                        cmdRemarkString += "\n|                 起始符：" + datagram.Stx.ToString("X2") + "         |";
+                        cmdRemarkString += "\n|------------------------------------|";
+                        cmdRemarkString += "\n|    |          消息类型：" + ((ushort)(datagram.Head.Type)).ToString("X2") + "         |";
+                        cmdRemarkString += "\n| 消 |          消息序号：" + datagram.Head.SeqNumber.ToString("X8") + "   |";
+                        cmdRemarkString += "\n| 息 |        消息体长度：" + datagram.Head.Length.ToString("X4") + "       |";
+                        cmdRemarkString += "\n| 头 |              预留：" + datagram.Head.Reserved.ToString("X10") + " |";
+                        cmdRemarkString += "\n|    |           CRC校验：" + datagram.Head.Crc32.ToString("X8") + "   |";
 
-                        foreach (var value in datagram.Body.ParameterList[i].Value.ToArray())
+                        if (datagram.Head.Type != MessageType.Response
+                            && datagram.Head.Type != MessageType.EventResponse)
                         {
-                            cmdRemarkString += value.ToString("X2");
+                            cmdRemarkString += "\n|------------------------------------|";
+                            cmdRemarkString += "\n| 消 |            消息ID：" + ((ushort)(datagram.Body.MessageId)).ToString("X4") + "       |";
+                            cmdRemarkString += "\n| 息 |            网关ID：" + datagram.Body.GatewayId.ToString("X8") + "   |";
+                            cmdRemarkString += "\n| 体 |            灯具ID：" + datagram.Body.LuminaireId.ToString("X8") + "   |";
+
+                            if (datagram.Head.Type != MessageType.Result)
+                            {
+                                for (int i = 0; i < datagram.Body.ParameterList.Count; i++)
+                                {
+                                    cmdRemarkString += "\n|    |-------------------------------|";
+                                    cmdRemarkString += "\n|    | 参 ｜    参数类型：" + ((ushort)datagram.Body.ParameterList[i].Type).ToString("X4") + "       |";
+                                    cmdRemarkString += "\n|    | 数 ｜      参数值：" + datagram.Body.ParameterList[i].Value + "        |";
+                                    cmdRemarkString += "\n|    | " + (i + 1).ToString().PadRight(2, ' ') + " | 参数值结束符：" + datagram.Body.ParameterList[i].End.ToString("X2") + "         |";
+                                }
+                            }
+                            else
+                            {
+                                cmdRemarkString += "\n| 体 |          错误代码：" + datagram.Body.ErrorCode.ToString("X8") + "   |";
+
+                                if (datagram.Body.ErrorInfo != null)
+                                {
+                                    cmdRemarkString += "\n|    |          错误信息：" + datagram.Body.ErrorInfo + "   |";
+                                }
+                            }
                         }
 
-                        cmdRemarkString += "       |\n|    | " + (i + 1).ToString().PadRight(2, ' ') + " | 参数值结束符：" + datagram.Body.ParameterList[i].End.ToString("X2") + "         |";
+                        cmdRemarkString += "\n|------------------------------------|";
+                        cmdRemarkString += "\n|                 结束符：" + datagram.Etx.ToString("X2") + "         |";
                     }
 
-                    cmdRemarkString += "\n|------------------------------------|";
-                    cmdRemarkString += "\n|                 结束符：" + datagram.Etx.ToString("X2") + "         |";
                     cmdRemarkString += "\n--------------------------------------";
                 }
 
