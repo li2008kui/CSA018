@@ -37,7 +37,78 @@ namespace ThisCoder.CSA018
         /// <returns></returns>
         public byte[] GetOperateCommand()
         {
-            return GetDatagram();
+            // 获取消息头对象
+            MessageHead mh = new MessageHead(MessageType);
+
+            // 返回消息报文字节数组
+            return new Datagram(mh).GetDatagram();
+        }
+
+        /// <summary>
+        /// 通过“消息ID”和“参数结构体对象”执行操作
+        /// </summary>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="parameter">参数结构体对象</param>
+        /// <returns></returns>
+        public byte[] GetOperateCommand(MessageId messageId, Parameter parameter)
+        {
+            return GetOperateCommand(messageId,
+                new List<Parameter> {
+                    parameter
+                }
+            );
+        }
+
+        /// <summary>
+        /// 通过“消息ID”和“参数结构体对象列表”执行操作
+        /// </summary>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="parameterList">参数结构体对象列表</param>
+        /// <returns></returns>
+        public byte[] GetOperateCommand(MessageId messageId, List<Parameter> parameterList)
+        {
+            // 获取消息体对象
+            MessageBody mb = new MessageBody(
+                messageId,
+                GatewayId,
+                LuminaireId,
+                parameterList);
+
+            // 获取消息体字节数组
+            byte[] msgBody = mb.GetBody();
+
+            // 获取消息头对象
+            MessageHead mh = new MessageHead(
+                MessageType,
+                Sequencer.Instance.SeqNumber++,
+                (ushort)(msgBody.Length),
+                Crc32.GetCrc32(msgBody));
+
+            // 返回消息报文字节数组
+            return new Datagram(mh, mb).GetDatagram();
+        }
+
+        /// <summary>
+        /// 通过“消息ID”、“参数类型”和字符串类型的“参数值”执行操作
+        /// </summary>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="type">参数的类型枚举值</param>
+        /// <param name="value">字符串类型的参数值</param>
+        /// <returns></returns>
+        public byte[] GetOperateCommand(MessageId messageId, ParameterType type, string value)
+        {
+            return GetOperateCommand(messageId,
+                new Parameter(type, value)
+            );
         }
 
         /// <summary>
@@ -51,43 +122,57 @@ namespace ThisCoder.CSA018
         /// <returns></returns>
         public byte[] GetOperateCommand(uint seqNumber)
         {
-            return GetDatagram(seqNumber);
+            // 获取消息头对象
+            MessageHead mh = new MessageHead(MessageType);
+
+            // 设置消息序号
+            mh.SeqNumber = seqNumber;
+
+            // 返回消息报文字节数组
+            return new Datagram(mh).GetDatagram();
         }
 
         /// <summary>
-        /// 通过“消息ID”和“参数结构体对象列表”执行操作
+        /// 获取命令执行结果数据报文字节数组
+        ///     <para>用于获取“命令执行结果”字节数组</para>
         /// </summary>
-        /// <param name="messageId">消息ID的枚举值</param>
-        /// <param name="parameterList">参数结构体对象列表</param>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="errorCode">
+        /// 错误代码
+        ///     <para>uint类型，长度为4个字节</para>
+        ///     <para>可选字段，对“命令结果”类型的消息有效。</para>
+        /// </param>
+        /// <param name="errorInfo">
+        /// 错误信息
+        ///     <para>string类型，长度可变</para>
+        ///     <para>可选字段，对“命令结果”类型的消息有效。</para>
+        /// </param>
         /// <returns></returns>
-        public byte[] GetOperateCommand(MessageId messageId, List<Parameter> parameterList)
+        public byte[] GetOperateCommand(MessageId messageId, uint errorCode, string errorInfo = null)
         {
-            return GetDatagram(messageId, parameterList);
-        }
+            // 获取消息体对象
+            MessageBody mb = new MessageBody(
+                messageId,
+                GatewayId,
+                LuminaireId,
+                errorCode,
+                errorInfo);
 
-        /// <summary>
-        /// 通过“消息ID”和“参数结构体对象”执行操作
-        /// </summary>
-        /// <param name="messageId">消息ID的枚举值</param>
-        /// <param name="parameter">参数结构体对象</param>
-        /// <returns></returns>
-        public byte[] GetOperateCommand(MessageId messageId, Parameter parameter)
-        {
-            return GetDatagram(messageId, parameter);
-        }
+            // 获取消息体字节数组
+            byte[] msgBody = mb.GetBody();
 
-        /// <summary>
-        /// 通过“消息ID”、“参数类型”和字符串类型的“参数值”执行操作
-        /// </summary>
-        /// <param name="messageId">消息ID的枚举值</param>
-        /// <param name="type">参数的类型枚举值</param>
-        /// <param name="value">字符串类型的参数值</param>
-        /// <returns></returns>
-        public byte[] GetOperateCommand(MessageId messageId, ParameterType type, string value)
-        {
-            return GetOperateCommand(messageId,
-                new Parameter(type, value)
-            );
+            // 获取消息头对象
+            MessageHead mh = new MessageHead(
+                MessageType,
+                Sequencer.Instance.SeqNumber++,
+                (ushort)(msgBody.Length),
+                Crc32.GetCrc32(msgBody));
+
+            // 返回消息报文字节数组
+            return new Datagram(mh, mb).GetDatagram();
         }
     }
 }

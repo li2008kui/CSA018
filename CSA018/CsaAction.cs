@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ThisCoder.CSA018
+﻿namespace ThisCoder.CSA018
 {
     /// <summary>
     /// 消息报文处理委托
@@ -63,91 +60,6 @@ namespace ThisCoder.CSA018
             MessageType = messageType;
             GatewayId = gatewayId;
             LuminaireId = luminaireId;
-        }
-
-        /// <summary>
-        /// 获取心跳包数据报文字节数组
-        ///     <para>用于获取“心跳包数据”和“心跳包响应”字节数组</para>
-        /// </summary>
-        /// <returns></returns>
-        protected byte[] GetDatagram()
-        {
-            // 获取消息头对象
-            MessageHead mh = new MessageHead(MessageType);
-
-            // 返回消息报文字节数组
-            return new Datagram(mh).GetDatagram();
-        }
-
-        /// <summary>
-        /// 通过“消息ID”和“参数结构体对象列表”获取消息报文字节数组
-        /// </summary>
-        /// <param name="messageId">
-        /// 消息ID
-        ///     <para>UInt16类型，长度为2个字节</para>
-        /// </param>
-        /// <param name="parameterList">参数列表</param>
-        /// <returns></returns>
-        protected byte[] GetDatagram(MessageId messageId, List<Parameter> parameterList)
-        {
-            // 获取消息体对象
-            MessageBody mb = new MessageBody(
-                messageId,
-                GatewayId,
-                LuminaireId,
-                parameterList);
-
-            // 获取消息体字节数组
-            byte[] msgBody = mb.GetBody();
-
-            // 获取消息头对象
-            MessageHead mh = new MessageHead(
-                MessageType,
-                Sequencer.Instance.SeqNumber++,
-                (ushort)(msgBody.Length),
-                Crc32.GetCrc32(msgBody));
-
-            // 返回消息报文字节数组
-            return new Datagram(mh, mb).GetDatagram();
-        }
-
-        /// <summary>
-        /// 通过“消息ID”和“参数结构体对象”获取消息报文字节数组
-        /// </summary>
-        /// <param name="messageId">
-        /// 消息ID
-        ///     <para>UInt16类型，长度为2个字节</para>
-        /// </param>
-        /// <param name="parameter">参数结构体对象</param>
-        /// <returns></returns>
-        protected byte[] GetDatagram(MessageId messageId, Parameter parameter)
-        {
-            return GetDatagram(messageId,
-                new List<Parameter> {
-                    parameter
-                }
-            );
-        }
-
-        /// <summary>
-        /// 获取响应数据报文字节数组
-        ///     <para>用于获取“命令响应”和“事件和告警响应”字节数组</para>
-        /// </summary>
-        /// <param name="seqNumber">
-        /// 消息序号
-        ///     <para>uint类型，长度为4个字节</para>
-        /// </param>
-        /// <returns></returns>
-        protected byte[] GetDatagram(uint seqNumber)
-        {
-            // 获取消息头对象
-            MessageHead mh = new MessageHead(MessageType);
-
-            // 设置消息序号
-            mh.SeqNumber = seqNumber;
-
-            // 返回消息报文字节数组
-            return new Datagram(mh).GetDatagram();
         }
 
         /// <summary>
