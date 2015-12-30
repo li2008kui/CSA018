@@ -27,5 +27,15 @@ namespace ThisCoder.CSA018
 
             return sb.ToString().TrimEnd(separator.ToCharArray());
         }
+
+        /// <summary>
+        /// 将字节数组转换为对应的字符串
+        /// </summary>
+        /// <param name="value">要转换的字节数组</param>
+        /// <returns></returns>
+        public static string ToString2(this byte[] value)
+        {
+            return Encoding.UTF8.GetString(value);
+        }
     }
 }
