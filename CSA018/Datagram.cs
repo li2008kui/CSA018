@@ -122,7 +122,7 @@ namespace ThisCoder.CSA018
         /// <returns></returns>
         public static List<Datagram> GetDatagramList(byte[] dataArray, bool isTcpOrUdp = false, bool isCheckCrc = true)
         {
-            if (dataArray.Length < 26)
+            if (dataArray.Length < 15)
             {
                 if (dataArray.Length > 0)
                 {
@@ -152,6 +152,7 @@ namespace ThisCoder.CSA018
                 throw new CsaException("消息解析错误。", ErrorCode.MessageParseError);
             }
 
+            List<Datagram> datagramList = new List<Datagram>();
             List<byte[]> newByteArrayList;
 
             if (!isTcpOrUdp)
@@ -165,11 +166,6 @@ namespace ThisCoder.CSA018
                 newByteArrayList = new List<byte[]> { dataArray };
             }
 
-            MessageHead mh = new MessageHead();
-            MessageBody mb = new MessageBody();
-            Datagram d = new Datagram();
-            List<Datagram> datagramList = new List<Datagram>();
-
             foreach (var byteArray in newByteArrayList)
             {
                 if (!Enum.IsDefined(typeof(MessageType), byteArray[0]))
@@ -177,40 +173,74 @@ namespace ThisCoder.CSA018
                     throw new CsaException("参数类型未定义。", ErrorCode.ParameterTypeUndefined);
                 }
 
+                Datagram d = new Datagram();
+                MessageHead mh = new MessageHead();
                 mh.Type = (MessageType)byteArray[0];
                 mh.SeqNumber = (uint)((byteArray[1] << 24) + (byteArray[2] << 16) + (byteArray[3] << 8) + byteArray[4]);
                 mh.Length = (ushort)((byteArray[5] << 8) + byteArray[6]);
                 mh.Reserved = (ulong)((byteArray[7] << 32) + (byteArray[8] << 24) + (byteArray[9] << 16) + (byteArray[10] << 8) + byteArray[11]);
                 mh.Crc32 = (uint)((byteArray[12] << 24) + (byteArray[13] << 16) + (byteArray[14] << 8) + byteArray[15]);
 
-                if (!Enum.IsDefined(typeof(MessageId), (ushort)((byteArray[16] << 8) + byteArray[17])))
+                if (mh.Type == MessageType.Request
+                    || mh.Type == MessageType.Event
+                    || mh.Type == MessageType.Result)
                 {
-                    throw new CsaException("消息ID未定义。", ErrorCode.MessageIdUndefined);
-                }
-
-                mb.MessageId = (MessageId)((byteArray[16] << 8) + byteArray[17]);
-                mb.GatewayId = ((uint)byteArray[18] << 24) + ((uint)byteArray[19] << 16) + ((uint)byteArray[20] << 8) + byteArray[21];
-                mb.LuminaireId = ((uint)byteArray[22] << 24) + ((uint)byteArray[23] << 16) + ((uint)byteArray[24] << 8) + byteArray[25];
-
-                List<Parameter> pmtList = new List<Parameter>();
-                Parameter.GetParameterList(byteArray, 26, ref pmtList);
-
-                if (pmtList.Count > 0)
-                {
-                    mb.ParameterList = pmtList;
-
-                    if (isCheckCrc && Crc32.GetCrc32(mb.GetBody()) != mh.Crc32)
+                    if (byteArray.Length >= 30)
                     {
-                        throw new CsaException("消息体CRC校验错误。", ErrorCode.ChecksumError);
+                        if (!Enum.IsDefined(typeof(MessageId), (ushort)((byteArray[16] << 8) + byteArray[17])))
+                        {
+                            throw new CsaException("消息ID未定义。", ErrorCode.MessageIdUndefined);
+                        }
+
+                        MessageBody mb = new MessageBody();
+                        mb.MessageId = (MessageId)((byteArray[16] << 8) + byteArray[17]);
+                        mb.GatewayId = ((uint)byteArray[18] << 24) + ((uint)byteArray[19] << 16) + ((uint)byteArray[20] << 8) + byteArray[21];
+                        mb.LuminaireId = ((uint)byteArray[22] << 24) + ((uint)byteArray[23] << 16) + ((uint)byteArray[24] << 8) + byteArray[25];
+
+                        if (mh.Type == MessageType.Result)
+                        {
+                            mb.ErrorCode = ((uint)byteArray[26] << 24) + ((uint)byteArray[27] << 16) + ((uint)byteArray[28] << 8) + byteArray[29];
+                            List<byte> errorInfoArrayList = new List<byte>();
+
+                            for (int i = 30; i < byteArray.Length; i++)
+                            {
+                                errorInfoArrayList.Add(byteArray[i]);
+                            }
+
+                            if (errorInfoArrayList.Count > 0)
+                            {
+                                mb.ErrorInfo = errorInfoArrayList.ToArray().ToString2();
+                            }
+                        }
+                        else
+                        {
+                            List<Parameter> pmtList = new List<Parameter>();
+                            Parameter.GetParameterList(byteArray, 26, ref pmtList);
+
+                            if (pmtList.Count > 0)
+                            {
+                                mb.ParameterList = pmtList;
+                            }
+                            else
+                            {
+                                throw new CsaException("参数格式错误。", ErrorCode.ParameterFormatError);
+                            }
+                        }
+
+                        if (isCheckCrc && Crc32.GetCrc32(mb.GetBody()) != mh.Crc32)
+                        {
+                            throw new CsaException("消息体CRC校验错误。", ErrorCode.ChecksumError);
+                        }
+
+                        d.Body = mb;
                     }
-                }
-                else
-                {
-                    throw new CsaException("参数格式错误。", ErrorCode.ParameterFormatError);
+                    else
+                    {
+                        throw new CsaException("消息解析错误。", ErrorCode.MessageParseError);
+                    }
                 }
 
                 d.Head = mh;
-                d.Body = mb;
                 datagramList.Add(d);
             }
 
