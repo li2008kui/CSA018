@@ -14,7 +14,7 @@ namespace ThisCoder.CSA018
         /// <param name="gatewayId">
         /// 网关ID
         ///     <para>uint类型，长度为4个字节</para>
-        ///     <para>心跳包数据和心跳包响应不需要此参数</para>
+        ///     <para>“心跳包数据”和“心跳包响应”不需要此参数</para>
         /// </param>
         /// <param name="luminaireId">
         /// 灯具ID
@@ -29,6 +29,16 @@ namespace ThisCoder.CSA018
         public OperateAction(MessageType messageType, uint gatewayId = 0x00000000, uint luminaireId = 0x00000000)
             : base(messageType, gatewayId, luminaireId)
         { }
+
+        /// <summary>
+        /// 获取数据报文字节数组
+        ///     <para>用于获取“心跳包数据”和“心跳包响应”字节数组</para>
+        /// </summary>
+        /// <returns></returns>
+        public byte[] GetOperateCommand()
+        {
+            return GetDatagram();
+        }
 
         /// <summary>
         /// 通过“消息ID”和“参数结构体对象列表”执行操作
