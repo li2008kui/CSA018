@@ -110,7 +110,7 @@ namespace ThisCoder.CSA018Example
                             }
                             else
                             {
-                                cmdRemarkString += "\n| 体 |          错误代码：" + datagram.Body.ErrorCode.ToString("X8") + "   |";
+                                cmdRemarkString += "\n|    |          错误代码：" + datagram.Body.ErrorCode.ToString("X8") + "   |";
 
                                 if (datagram.Body.ErrorInfo != null)
                                 {
