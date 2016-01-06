@@ -272,6 +272,20 @@
         ///     <para>参数值最大字节数：2，</para>
         ///     <para>总段数。</para>
         /// </summary>
-        SegmentCount = 0x0052
+        SegmentCount = 0x0052,
+
+        /// <summary>
+        /// 错误代码
+        ///     <para>uint类型，长度为4个字节</para>
+        ///     <para>非协议规定，用于解决无法生成和解析命令结果消息体的问题。</para>
+        /// </summary>
+        ErrorCode = 0x0060,
+
+        /// <summary>
+        /// 错误信息
+        ///     <para>string类型，长度可变</para>
+        ///     <para>非协议规定，用于解决无法生成和解析命令结果消息体的问题。</para>
+        /// </summary>
+        ErrorInfo = 0x0061
     }
 }

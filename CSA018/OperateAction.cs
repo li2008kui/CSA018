@@ -131,48 +131,5 @@ namespace ThisCoder.CSA018
             // 返回消息报文字节数组
             return new Datagram(mh).GetDatagram();
         }
-
-        /// <summary>
-        /// 获取命令执行结果数据报文字节数组
-        ///     <para>用于获取“命令执行结果”字节数组</para>
-        /// </summary>
-        /// <param name="messageId">
-        /// 消息ID
-        ///     <para>UInt16类型，长度为2个字节</para>
-        /// </param>
-        /// <param name="errorCode">
-        /// 错误代码
-        ///     <para>uint类型，长度为4个字节</para>
-        ///     <para>可选字段，对“命令结果”类型的消息有效。</para>
-        /// </param>
-        /// <param name="errorInfo">
-        /// 错误信息
-        ///     <para>string类型，长度可变</para>
-        ///     <para>可选字段，对“命令结果”类型的消息有效。</para>
-        /// </param>
-        /// <returns></returns>
-        public byte[] GetOperateCommand(MessageId messageId, uint errorCode, string errorInfo = null)
-        {
-            // 获取消息体对象
-            MessageBody mb = new MessageBody(
-                messageId,
-                GatewayId,
-                LuminaireId,
-                errorCode,
-                errorInfo);
-
-            // 获取消息体字节数组
-            byte[] msgBody = mb.GetBody();
-
-            // 获取消息头对象
-            MessageHead mh = new MessageHead(
-                MessageType,
-                Sequencer.Instance.SeqNumber++,
-                (ushort)(msgBody.Length),
-                Crc32.GetCrc32(msgBody));
-
-            // 返回消息报文字节数组
-            return new Datagram(mh, mb).GetDatagram();
-        }
     }
 }

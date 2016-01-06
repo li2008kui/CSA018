@@ -24,7 +24,7 @@ namespace ThisCoder.CSA018Example
             byte[] cmd4 = oa4.GetOperateCommand(0x1234);
             byte[] cmd5 = oa5.GetOperateCommand(MessageId.DataCollection, new List<Parameter> { new Parameter(ParameterType.ResourceType, "05"), new Parameter(ParameterType.ResourceValue, "100") });
             byte[] cmd6 = oa6.GetOperateCommand(0x1234);
-            byte[] cmd7 = oa7.GetOperateCommand(MessageId.RealTimeControlLuminaire, (uint)0x00000000, "成功");
+            byte[] cmd7 = oa7.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.ErrorCode, "成功");
 
             // 将字节数组转成十六进制字符串形式并打印
             Console.WriteLine("一、生成命令\n1、心跳包数据：\n" + cmd1.ToHexString()
@@ -98,24 +98,12 @@ namespace ThisCoder.CSA018Example
                             cmdRemarkString += "\n| 息 |            网关ID：" + datagram.Body.GatewayId.ToString("X8") + "   |";
                             cmdRemarkString += "\n| 体 |            灯具ID：" + datagram.Body.LuminaireId.ToString("X8") + "   |";
 
-                            if (datagram.Head.Type != MessageType.Result)
+                            for (int i = 0; i < datagram.Body.ParameterList.Count; i++)
                             {
-                                for (int i = 0; i < datagram.Body.ParameterList.Count; i++)
-                                {
-                                    cmdRemarkString += "\n|    |-------------------------------|";
-                                    cmdRemarkString += "\n|    | 参 ｜    参数类型：" + ((ushort)datagram.Body.ParameterList[i].Type).ToString("X4") + "       |";
-                                    cmdRemarkString += "\n|    | 数 ｜      参数值：" + datagram.Body.ParameterList[i].Value + "        |";
-                                    cmdRemarkString += "\n|    | " + (i + 1).ToString().PadRight(2, ' ') + " | 参数值结束符：" + datagram.Body.ParameterList[i].End.ToString("X2") + "         |";
-                                }
-                            }
-                            else
-                            {
-                                cmdRemarkString += "\n|    |          错误代码：" + datagram.Body.ErrorCode.ToString("X8") + "   |";
-
-                                if (datagram.Body.ErrorInfo != null)
-                                {
-                                    cmdRemarkString += "\n|    |          错误信息：" + datagram.Body.ErrorInfo + "   |";
-                                }
+                                cmdRemarkString += "\n|    |-------------------------------|";
+                                cmdRemarkString += "\n|    | 参 ｜    参数类型：" + ((ushort)datagram.Body.ParameterList[i].Type).ToString("X4") + "       |";
+                                cmdRemarkString += "\n|    | 数 ｜      参数值：" + datagram.Body.ParameterList[i].Value + "        |";
+                                cmdRemarkString += "\n|    | " + (i + 1).ToString().PadRight(2, ' ') + " | 参数值结束符：" + datagram.Body.ParameterList[i].End.ToString("X2") + "         |";
                             }
                         }
 

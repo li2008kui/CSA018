@@ -197,34 +197,16 @@ namespace ThisCoder.CSA018
                         mb.GatewayId = ((uint)byteArray[18] << 24) + ((uint)byteArray[19] << 16) + ((uint)byteArray[20] << 8) + byteArray[21];
                         mb.LuminaireId = ((uint)byteArray[22] << 24) + ((uint)byteArray[23] << 16) + ((uint)byteArray[24] << 8) + byteArray[25];
 
-                        if (mh.Type == MessageType.Result)
+                        List<Parameter> pmtList = new List<Parameter>();
+                        Parameter.GetParameterList(byteArray, 26, ref pmtList);
+
+                        if (pmtList.Count > 0)
                         {
-                            mb.ErrorCode = ((uint)byteArray[26] << 24) + ((uint)byteArray[27] << 16) + ((uint)byteArray[28] << 8) + byteArray[29];
-                            List<byte> errorInfoArrayList = new List<byte>();
-
-                            for (int i = 30; i < byteArray.Length; i++)
-                            {
-                                errorInfoArrayList.Add(byteArray[i]);
-                            }
-
-                            if (errorInfoArrayList.Count > 0)
-                            {
-                                mb.ErrorInfo = errorInfoArrayList.ToArray().ToString2();
-                            }
+                            mb.ParameterList = pmtList;
                         }
                         else
                         {
-                            List<Parameter> pmtList = new List<Parameter>();
-                            Parameter.GetParameterList(byteArray, 26, ref pmtList);
-
-                            if (pmtList.Count > 0)
-                            {
-                                mb.ParameterList = pmtList;
-                            }
-                            else
-                            {
-                                throw new CsaException("参数格式错误。", ErrorCode.ParameterFormatError);
-                            }
+                            throw new CsaException("参数格式错误。", ErrorCode.ParameterFormatError);
                         }
 
                         if (isCheckCrc && Crc32.GetCrc32(mb.GetBody()) != mh.Crc32)
