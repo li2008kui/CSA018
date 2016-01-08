@@ -135,6 +135,95 @@
         /// 接入认证请求
         /// </summary>
         AccessAuthenticationRequest = 0x1300,
+
+        #region 厂商自定义
+        /// <summary>
+        /// 设置（亮度和移动）传感器启动时灯具的联动半径。
+        ///     <para>通过灯具的GPS数据进行计算，单位：米。</para>
+        /// </summary>
+        SettingLinkageRadius = 0x1400,
+
+        /// <summary>
+        /// 设置移动传感器启动所需要的感应数目。
+        ///     <para>即有多少个移动传感器均收到感应信号时才能启动该移动传感器。</para>
+        ///     <para>移动传感器启动以后，通过联动半径影响其周围的灯具。</para>
+        ///     <para>单位：个。</para>
+        /// </summary>
+        SettingMoveSensorSenseCount = 0x1401,
+
+        /// <summary>
+        /// 设置移动传感器启动后灯具的亮度。
+        /// </summary>
+        SettingMoveSensorStartedBrightness = 0x1402,
+
+        /// <summary>
+        /// 设置移动传感器启动后灯具变化的保持时间。
+        ///     <para>单位：分钟。</para>
+        /// </summary>
+        SettingMoveSensorStartedKeepTime = 0x1403,
+
+        /// <summary>
+        /// 设置亮度传感器启动所需要的感应数目。
+        ///     <para>即有多少个亮度传感器均收到感应信号时才能启动该亮度传感器。</para>
+        ///     <para>亮度传感器启动以后，通过联动半径影响其周围的灯具。</para>
+        ///     <para>单位：个。</para>
+        /// </summary>
+        SettingLightSensorSenseCount = 0x1404,
+
+        /// <summary>
+        /// 设置无线网络通信频点。
+        ///     <para>ZigBee无线通信的信道。</para>
+        ///     <para>取值范围：[01,16]。</para>
+        /// </summary>
+        SettingFrequencyPoint = 0x1405,
+
+        /// <summary>
+        /// 设置启用或禁用防盗功能。
+        ///     <para>0x01表示启用，0x02表示禁用。</para>
+        /// </summary>
+        SettingEnableBurglarAlarm = 0x1406,
+
+        /// <summary>
+        /// 设置启用或禁用移动传感器。
+        ///     <para>0x01表示启用，0x02表示禁用。</para>
+        /// </summary>
+        SettingEnableMoveSensor = 0x1407,
+
+        /// <summary>
+        /// 设置启用或禁用亮度传感器。
+        ///     <para>0x01表示启用，0x02表示禁用。</para>
+        /// </summary>
+        SettingEnableLightSensor = 0x1408,
+
+        /// <summary>
+        /// 设置启用或禁用根据天气状况打开或关闭灯具。
+        ///     <para>0x01表示启用，0x02表示禁用。</para>
+        /// </summary>
+        SettingEnableWeather = 0x1409,
+
+        /// <summary>
+        /// 设置启用或禁用根据交通量对灯具进行调光。
+        ///     <para>0x01表示启用，0x02表示禁用。</para>
+        /// </summary>
+        SettingEnableTrafficFlow = 0x140A,
+
+        /// <summary>
+        /// 设置启用或禁用根据经纬度打开或关闭灯具。
+        ///     <para>0x01表示启用，0x02表示禁用。</para>
+        /// </summary>
+        SettingEnableLongitudeLatitude = 0x140B,
+
+        /// <summary>
+        /// 设置光衰补偿参数
+        /// </summary>
+        SettingAttenuationCompensationParameter = 0x140C,
+
+        /// <summary>
+        /// 设置启用或禁用光衰补偿。
+        ///     <para>0x01表示启用，0x02表示禁用。</para>
+        /// </summary>
+        SettingEnableAttenuationCompensation = 0x140D,
+        #endregion
         #endregion
 
         #region 数据采集
