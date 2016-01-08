@@ -127,6 +127,7 @@
         MaintainanceInfo = 0x0011,
         #endregion
 
+        #region 控制命令参数
         /// <summary>
         /// 时间。
         ///     <para>参数值最大字节数：2，</para>
@@ -273,7 +274,9 @@
         ///     <para>总段数。</para>
         /// </summary>
         SegmentCount = 0x0052,
+        #endregion
 
+        #region 厂商自定义参数
         /// <summary>
         /// 错误代码
         ///     <para>uint类型，长度为4个字节</para>
@@ -286,6 +289,27 @@
         ///     <para>string类型，长度可变</para>
         ///     <para>非协议规定，用于解决无法生成和解析命令结果消息体的问题。</para>
         /// </summary>
-        ErrorInfo = 0x0061
+        ErrorInfo = 0x0061,
+
+        /// <summary>
+        /// 设备名称
+        /// </summary>
+        DeviceName = 0x0062,
+
+        /// <summary>
+        /// 设备类型
+        /// </summary>
+        DeviceType = 0x0063,
+
+        /// <summary>
+        /// 负载功率
+        /// </summary>
+        LoadPower = 0x0064,
+
+        /// <summary>
+        /// 运行时间
+        /// </summary>
+        RunTime = 0x0065,
+        #endregion
     }
 }
