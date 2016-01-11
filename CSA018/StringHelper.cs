@@ -31,6 +31,16 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
+        /// 判断所指定的字符串是否是十六进制形式的字符串。
+        /// </summary>
+        /// <param name="value">要判断的字符串。</param>
+        /// <returns></returns>
+        public static bool IsHexString(this string value)
+        {
+            return value.IsMatch("^[0-9A-Fa-f]+$");
+        }
+
+        /// <summary>
         /// 将字符串转换为字节数组。
         /// </summary>
         /// <param name="value">要转换的字符串。</param>
@@ -49,7 +59,7 @@ namespace ThisCoder.CSA018
                         value = value.Substring(2);
                     }
 
-                    if (value.IsMatch("^[0-9A-Fa-f]+$"))
+                    if (value.IsHexString())
                     {
                         if (value.Length % 2 > 0)
                         {
