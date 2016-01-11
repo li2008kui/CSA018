@@ -24,10 +24,10 @@ namespace ThisCoder.CSA018Example
             byte[] cmd4 = oa4.GetOperateCommand(0x1234);
             byte[] cmd5 = oa5.GetOperateCommand(MessageId.DataCollection, new List<Parameter> { new Parameter(ParameterType.ResourceType, "05"), new Parameter(ParameterType.ResourceValue, "100") });
             byte[] cmd6 = oa6.GetOperateCommand(0x1234);
-            byte[] cmd7 = oa7.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.ErrorCode, "成功");
+            byte[] cmd7 = oa7.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.ErrorCode, "0000");
 
             // 将字节数组转成十六进制字符串形式并打印
-            Console.WriteLine("一、生成命令\n1、心跳包数据：\n" + cmd1.ToHexString()
+            Console.WriteLine("一、生成命令\n1、心跳包数据\n" + cmd1.ToHexString()
                 + "\n\n2、心跳包响应\n" + cmd2.ToHexString()
                 + "\n\n3、请求命令\n" + cmd3.ToHexString()
                 + "\n\n4、响应命令\n" + cmd4.ToHexString()
@@ -88,7 +88,7 @@ namespace ThisCoder.CSA018Example
                         cmdRemarkString += "\n| 消 |          消息序号：" + datagram.Head.SeqNumber.ToString("X8") + "   |";
                         cmdRemarkString += "\n| 息 |        消息体长度：" + datagram.Head.Length.ToString("X4") + "       |";
                         cmdRemarkString += "\n| 头 |              预留：" + datagram.Head.Reserved.ToString("X10") + " |";
-                        cmdRemarkString += "\n|    |           CRC校验：" + datagram.Head.Crc32.ToString("X8") + "   |";
+                        cmdRemarkString += "\n|    |     消息体CRC校验：" + datagram.Head.Crc32.ToString("X8") + "   |";
 
                         if (datagram.Head.Type != MessageType.Response
                             && datagram.Head.Type != MessageType.EventResponse)
@@ -102,7 +102,7 @@ namespace ThisCoder.CSA018Example
                             {
                                 cmdRemarkString += "\n|    |-------------------------------|";
                                 cmdRemarkString += "\n|    | 参 ｜    参数类型：" + ((ushort)datagram.Body.ParameterList[i].Type).ToString("X4") + "       |";
-                                cmdRemarkString += "\n|    | 数 ｜      参数值：" + datagram.Body.ParameterList[i].Value + "        |";
+                                cmdRemarkString += "\n|    | 数 ｜      参数值：\"" + datagram.Body.ParameterList[i].Value + "\"      |";
                                 cmdRemarkString += "\n|    | " + (i + 1).ToString().PadRight(2, ' ') + " | 参数值结束符：" + datagram.Body.ParameterList[i].End.ToString("X2") + "         |";
                             }
                         }
