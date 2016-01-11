@@ -8,6 +8,11 @@ namespace ThisCoder.CSA018
     public class OperateAction : CsaAction
     {
         /// <summary>
+        /// 通过默认构造方法初始化操作动作行为类
+        /// </summary>
+        public OperateAction() : base() { }
+
+        /// <summary>
         /// 通过消息类型、网关ID和灯具ID初始化操作动作行为类
         /// </summary>
         /// <param name="messageType">消息类型</param>
