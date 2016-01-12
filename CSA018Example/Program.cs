@@ -13,27 +13,27 @@ namespace ThisCoder.CSA018Example
             OperateAction oa2 = new OperateAction(MessageType.HeartbeatResponse);
             OperateAction oa3 = new OperateAction(MessageType.Request, 0x00000001);
             OperateAction oa4 = new OperateAction(MessageType.Response);
-            OperateAction oa5 = new OperateAction(MessageType.Event, 0x00000001);
-            OperateAction oa6 = new OperateAction(MessageType.EventResponse);
-            OperateAction oa7 = new OperateAction(MessageType.Result, 0x00000001);
+            OperateAction oa5 = new OperateAction(MessageType.Result, 0x00000001);
+            OperateAction oa6 = new OperateAction(MessageType.Event, 0x00000001);
+            OperateAction oa7 = new OperateAction(MessageType.EventResponse);
 
             // 获取数据报文字节数组
             byte[] cmd1 = oa1.GetOperateCommand();
             byte[] cmd2 = oa2.GetOperateCommand();
             byte[] cmd3 = oa3.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.Brightness, "100");
-            byte[] cmd4 = oa4.GetOperateCommand(Sequencer.Instance.SeqNumber);
-            byte[] cmd5 = oa5.GetOperateCommand(MessageId.DataCollection, new List<Parameter> { new Parameter(ParameterType.ResourceType, "05"), new Parameter(ParameterType.ResourceValue, "100") });
-            byte[] cmd6 = oa6.GetOperateCommand(Sequencer.Instance.SeqNumber);
-            byte[] cmd7 = oa7.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.ErrorCode, "0000");
+            byte[] cmd4 = oa4.GetOperateCommand();
+            byte[] cmd5 = oa5.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.ErrorCode, "0000");
+            byte[] cmd6 = oa6.GetOperateCommand(MessageId.DataCollection, new List<Parameter> { new Parameter(ParameterType.ResourceType, "05"), new Parameter(ParameterType.ResourceValue, "100") });
+            byte[] cmd7 = oa7.GetOperateCommand();
 
             // 将字节数组转成十六进制字符串形式并打印
             Console.WriteLine("一、生成命令\n1、心跳包数据\n" + cmd1.ToHexString()
                 + "\n\n2、心跳包响应\n" + cmd2.ToHexString()
                 + "\n\n3、请求命令\n" + cmd3.ToHexString()
                 + "\n\n4、响应命令\n" + cmd4.ToHexString()
-                + "\n\n5、事件命令\n" + cmd5.ToHexString()
-                + "\n\n6、事件响应\n" + cmd6.ToHexString()
-                + "\n\n7、结果命令\n" + cmd7.ToHexString());
+                + "\n\n5、结果命令\n" + cmd7.ToHexString()
+                + "\n\n6、事件命令\n" + cmd5.ToHexString()
+                + "\n\n7、事件响应\n" + cmd6.ToHexString());
 
             // 订阅消息报文处理事件
             oa1.DatagramProcess += Oa_DatagramProcess;
@@ -53,12 +53,12 @@ namespace ThisCoder.CSA018Example
             oa3.OnDatagramProcess(new DatagramEventArgs(cmd3));
             Console.WriteLine("\n4、响应命令");
             oa4.OnDatagramProcess(new DatagramEventArgs(cmd4));
-            Console.WriteLine("\n5、事件命令");
-            oa5.OnDatagramProcess(new DatagramEventArgs(cmd5));
-            Console.WriteLine("\n6、事件响应");
-            oa6.OnDatagramProcess(new DatagramEventArgs(cmd6));
-            Console.WriteLine("\n7、结果命令");
-            oa7.OnDatagramProcess(new DatagramEventArgs(cmd7));
+            Console.WriteLine("\n5、结果命令");
+            oa7.OnDatagramProcess(new DatagramEventArgs(cmd5));
+            Console.WriteLine("\n6、事件命令");
+            oa5.OnDatagramProcess(new DatagramEventArgs(cmd6));
+            Console.WriteLine("\n7、事件响应");
+            oa6.OnDatagramProcess(new DatagramEventArgs(cmd7));
 
             // 等待用户按键退出
             Console.ReadKey();

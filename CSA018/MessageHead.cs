@@ -49,6 +49,9 @@ namespace ThisCoder.CSA018
             : this()
         {
             Type = type;
+            SeqNumber = ((type == MessageType.Request || type == MessageType.Event)
+                ? ++Sequencer.Instance.SeqNumber
+                : Sequencer.Instance.SeqNumber);
         }
 
         /// <summary>
@@ -58,10 +61,6 @@ namespace ThisCoder.CSA018
         /// 消息类型
         ///     <para>byte类型，长度为1个字节</para>
         /// </param>
-        /// <param name="seqNumber">
-        /// 消息序号
-        ///     <para>uint类型，长度为4个字节</para>
-        /// </param>
         /// <param name="length">
         /// 消息体长度
         ///     <para>ushort类型，长度为2个字节</para>
@@ -70,11 +69,9 @@ namespace ThisCoder.CSA018
         /// 消息体CRC32校验
         ///     <para>uint类型，长度为4个字节</para>
         /// </param>
-        public MessageHead(MessageType type, uint seqNumber, ushort length, uint crc32)
-                : this()
+        public MessageHead(MessageType type, ushort length, uint crc32)
+                : this(type)
         {
-            Type = type;
-            SeqNumber = seqNumber;
             Length = length;
             Crc32 = crc32;
         }
