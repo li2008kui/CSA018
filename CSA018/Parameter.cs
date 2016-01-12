@@ -51,6 +51,30 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
+        /// 通过“参数类型”和字节数组类型的“参数值”初始化参数对象实例
+        /// </summary>
+        /// <param name="type">
+        /// 参数类型
+        ///     <para>ushort类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="value">字符串类型的参数值</param>
+        public Parameter(ParameterType type, byte[] value)
+            : this(type, Encoding.UTF8.GetString(value))
+        { }
+
+        /// <summary>
+        /// 通过“参数类型”和字节类型的“参数值”初始化参数对象实例
+        /// </summary>
+        /// <param name="type">
+        /// 参数类型
+        ///     <para>ushort类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="value">字符串类型的参数值</param>
+        public Parameter(ParameterType type, byte value)
+            : this(type, new byte[] { value })
+        { }
+
+        /// <summary>
         /// 获取参数字节数组
         /// </summary>
         /// <returns></returns>
