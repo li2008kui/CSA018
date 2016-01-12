@@ -21,9 +21,9 @@ namespace ThisCoder.CSA018Example
             byte[] cmd1 = oa1.GetOperateCommand();
             byte[] cmd2 = oa2.GetOperateCommand();
             byte[] cmd3 = oa3.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.Brightness, "100");
-            byte[] cmd4 = oa4.GetOperateCommand(0x1234);
+            byte[] cmd4 = oa4.GetOperateCommand(Sequencer.Instance.SeqNumber);
             byte[] cmd5 = oa5.GetOperateCommand(MessageId.DataCollection, new List<Parameter> { new Parameter(ParameterType.ResourceType, "05"), new Parameter(ParameterType.ResourceValue, "100") });
-            byte[] cmd6 = oa6.GetOperateCommand(0x1234);
+            byte[] cmd6 = oa6.GetOperateCommand(Sequencer.Instance.SeqNumber);
             byte[] cmd7 = oa7.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.ErrorCode, "0000");
 
             // 将字节数组转成十六进制字符串形式并打印
