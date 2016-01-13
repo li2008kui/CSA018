@@ -278,38 +278,113 @@
 
         #region 厂商自定义参数
         /// <summary>
-        /// 错误代码
-        ///     <para>uint类型，长度为4个字节</para>
+        /// 错误代码。
+        ///     <para>uint类型，长度为4个字节。</para>
         ///     <para>非协议规定，用于解决无法生成和解析命令结果消息体的问题。</para>
         /// </summary>
         ErrorCode = 0x0060,
 
         /// <summary>
-        /// 错误信息
-        ///     <para>string类型，长度可变</para>
+        /// 错误信息。
+        ///     <para>string类型，长度可变。</para>
         ///     <para>非协议规定，用于解决无法生成和解析命令结果消息体的问题。</para>
         /// </summary>
         ErrorInfo = 0x0061,
 
         /// <summary>
-        /// 设备名称
+        /// 设备名称。
         /// </summary>
         DeviceName = 0x0062,
 
         /// <summary>
-        /// 设备类型
+        /// 设备类型。
         /// </summary>
         DeviceType = 0x0063,
 
         /// <summary>
-        /// 负载功率
+        /// 负载功率。
         /// </summary>
         LoadPower = 0x0064,
 
         /// <summary>
-        /// 运行时间
+        /// 半径。
+        ///     <para>单位：米。</para>
         /// </summary>
-        RunTime = 0x0065,
+        Radius = 0x0066,
+
+        /// <summary>
+        /// 数量。
+        ///     <para>单位：个。</para>
+        /// </summary>
+        Quantity = 0x0067,
+
+        /// <summary>
+        /// 持续时间。
+        ///     <para>单位：分钟。</para>
+        /// </summary>
+        Duration = 0x0068,
+
+        /// <summary>
+        /// 灵敏度。
+        /// </summary>
+        Sensitivity = 0x0069,
+
+        /// <summary>
+        /// 数字滤波参数。
+        /// </summary>
+        DigitFilterParameter = 0x006A,
+
+        /// <summary>
+        /// 白天黑夜临界值。
+        /// </summary>
+        DayNightThreshold = 0x006B,
+
+        /// <summary>
+        /// 频点。
+        ///     <para>ZigBee无线通信的信道。</para>
+        ///     <para>取值范围：[01,16]。</para>
+        /// </summary>
+        FrequencyPoint = 0x006C,
+
+        /// <summary>
+        /// 小时。
+        /// </summary>
+        Hour = 0x006D,
+
+        /// <summary>
+        /// 防盗。
+        /// </summary>
+        SwitchBurglarAlarm = 0x0070,
+
+        /// <summary>
+        /// 移动传感器。
+        /// </summary>
+        SwitchMoveSensor = 0x0071,
+
+        /// <summary>
+        /// 亮度传感器。
+        /// </summary>
+        SwitchLightSensor = 0x0072,
+
+        /// <summary>
+        /// 天气状况。
+        /// </summary>
+        SwitchWeather = 0x0073,
+
+        /// <summary>
+        /// 交通量。
+        /// </summary>
+        SwitchTrafficFlow = 0x0074,
+
+        /// <summary>
+        /// 经纬度。
+        /// </summary>
+        SwitchLongitudeLatitude = 0x0075,
+
+        /// <summary>
+        /// 光衰补偿。
+        /// </summary>
+        SwitchAttenuationCompensation = 0x0076,
         #endregion
     }
 }

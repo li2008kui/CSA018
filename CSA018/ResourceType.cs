@@ -111,11 +111,9 @@
         移动传感器是否存在 = 18,
 
         /// <summary>
-        /// 频点。
-        ///     <para>ZigBee无线通信的信道。</para>
-        ///     <para>取值范围：[01,16]。</para>
+        /// 运行时间。
         /// </summary>
-        FrequencyPoint = 19,
+        RunTime = 19,
         #endregion
     }
 }
