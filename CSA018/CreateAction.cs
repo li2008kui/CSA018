@@ -3,17 +3,40 @@
 namespace ThisCoder.CSA018
 {
     /// <summary>
-    /// 操作动作行为类
+    /// 创建消息动作行为类
     /// </summary>
-    public class OperateAction : CsaAction
+    public class CreateAction
     {
         /// <summary>
-        /// 通过默认构造方法初始化操作动作行为类
+        /// 消息类型
         /// </summary>
-        public OperateAction() : base() { }
+        public MessageType MessageType { get; set; }
 
         /// <summary>
-        /// 通过消息类型、网关ID和灯具ID初始化操作动作行为类
+        /// 网关ID
+        ///     <para>uint类型，长度为4个字节</para>
+        /// </summary>
+        public uint GatewayId { get; set; }
+
+        /// <summary>
+        /// 灯具ID
+        ///     <para>uint类型，长度为4个字节</para>
+        ///     <para>0x00000000为保留地址，对于只需下发到网关的命令可以使用该地址，</para>
+        ///     <para>0x00000001~0xFFFFFF00分别对应入网的单灯的具体地址，</para>
+        ///     <para>0xFFFFFF01~0xFFFFFF20分别对应回路地址1～32路的地址，</para>
+        ///     <para>0xFFFFFF21~0xFFFFFF40分别对应组地址(组号)1～32，</para>
+        ///     <para>0xFFFFFF41~0xFFFFFFFE为保留地址，</para>
+        ///     <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
+        /// </summary>
+        public uint LuminaireId { get; set; }
+
+        /// <summary>
+        /// 通过默认构造方法初始化创建消息动作行为类
+        /// </summary>
+        public CreateAction() { }
+
+        /// <summary>
+        /// 通过消息类型、网关ID和灯具ID初始化创建消息动作行为类
         /// </summary>
         /// <param name="messageType">消息类型</param>
         /// <param name="gatewayId">
@@ -31,9 +54,12 @@ namespace ThisCoder.CSA018
         ///     <para>0xFFFFFF41~0xFFFFFFFE为保留地址，</para>
         ///     <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
         /// </param>
-        public OperateAction(MessageType messageType, uint gatewayId = 0x00000000, uint luminaireId = 0x00000000)
-            : base(messageType, gatewayId, luminaireId)
-        { }
+        public CreateAction(MessageType messageType, uint gatewayId = 0x00000000, uint luminaireId = 0x00000000)
+        {
+            MessageType = messageType;
+            GatewayId = gatewayId;
+            LuminaireId = luminaireId;
+        }
 
         /// <summary>
         /// 获取响应或心跳包数据报文字节数组
