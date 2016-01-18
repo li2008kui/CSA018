@@ -134,13 +134,11 @@ namespace ThisCoder.CSA018
                 dataList.RemoveAt(i);
             }
 
-            byte[] newDataArray = dataList.ToArray();
-
-            if (newDataArray.Length < 15)
+            if (dataList.Count < 15)
             {
-                if (newDataArray.Length > 0)
+                foreach (var item in dataList)
                 {
-                    if (newDataArray[0] == 0xFF)
+                    if (item == 0xFF)
                     {
                         return new List<Datagram>()
                         {
@@ -151,7 +149,7 @@ namespace ThisCoder.CSA018
                         };
                     }
 
-                    if (newDataArray[0] == 0xFE)
+                    if (item == 0xFE)
                     {
                         return new List<Datagram>()
                         {
@@ -172,12 +170,12 @@ namespace ThisCoder.CSA018
             if (!isTcpOrUdp)
             {
                 List<byte[]> byteArrayList = new List<byte[]>();
-                GetByteArrayList(newDataArray, 0, ref byteArrayList);
+                GetByteArrayList(dataList.ToArray(), 0, ref byteArrayList);
                 newByteArrayList = Descaping(byteArrayList);
             }
             else
             {
-                newByteArrayList = new List<byte[]> { newDataArray };
+                newByteArrayList = new List<byte[]> { dataList.ToArray() };
             }
 
             foreach (var tempByteArray in newByteArrayList)
