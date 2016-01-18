@@ -31,9 +31,9 @@ namespace ThisCoder.CSA018Example
                 + "\n\n2、心跳包响应\n" + cmd2.ToHexString()
                 + "\n\n3、请求命令\n" + cmd3.ToHexString()
                 + "\n\n4、响应命令\n" + cmd4.ToHexString()
-                + "\n\n5、结果命令\n" + cmd7.ToHexString()
-                + "\n\n6、事件命令\n" + cmd5.ToHexString()
-                + "\n\n7、事件响应\n" + cmd6.ToHexString());
+                + "\n\n5、结果命令\n" + cmd5.ToHexString()
+                + "\n\n6、事件命令\n" + cmd6.ToHexString()
+                + "\n\n7、事件响应\n" + cmd7.ToHexString());
 
             // 订阅消息报文处理事件
             ParseAction pa = new ParseAction();
