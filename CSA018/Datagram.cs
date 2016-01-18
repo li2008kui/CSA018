@@ -122,11 +122,25 @@ namespace ThisCoder.CSA018
         /// <returns></returns>
         public static List<Datagram> GetDatagramList(byte[] dataArray, bool isTcpOrUdp = false, bool isCheckCrc = true)
         {
-            if (dataArray.Length < 15)
+            List<byte> dataList = new List<byte>(dataArray);
+
+            for (int i = dataArray.Length - 1; i >= 0; i--)
             {
-                if (dataArray.Length > 0)
+                if (dataList[i] > 0)
                 {
-                    if (dataArray[0] == 0xFF)
+                    break;
+                }
+
+                dataList.RemoveAt(i);
+            }
+
+            byte[] newDataArray = dataList.ToArray();
+
+            if (newDataArray.Length < 15)
+            {
+                if (newDataArray.Length > 0)
+                {
+                    if (newDataArray[0] == 0xFF)
                     {
                         return new List<Datagram>()
                         {
@@ -137,7 +151,7 @@ namespace ThisCoder.CSA018
                         };
                     }
 
-                    if (dataArray[0] == 0xFE)
+                    if (newDataArray[0] == 0xFE)
                     {
                         return new List<Datagram>()
                         {
@@ -158,47 +172,47 @@ namespace ThisCoder.CSA018
             if (!isTcpOrUdp)
             {
                 List<byte[]> byteArrayList = new List<byte[]>();
-                GetByteArrayList(dataArray, 0, ref byteArrayList);
+                GetByteArrayList(newDataArray, 0, ref byteArrayList);
                 newByteArrayList = Descaping(byteArrayList);
             }
             else
             {
-                newByteArrayList = new List<byte[]> { dataArray };
+                newByteArrayList = new List<byte[]> { newDataArray };
             }
 
-            foreach (var byteArray in newByteArrayList)
+            foreach (var tempByteArray in newByteArrayList)
             {
-                if (!Enum.IsDefined(typeof(MessageType), byteArray[0]))
+                if (!Enum.IsDefined(typeof(MessageType), tempByteArray[0]))
                 {
                     throw new CsaException("参数类型未定义。", ErrorCode.ParameterTypeUndefined);
                 }
 
                 Datagram d = new Datagram();
                 MessageHead mh = new MessageHead();
-                mh.Type = (MessageType)byteArray[0];
-                mh.SeqNumber = (uint)((byteArray[1] << 24) + (byteArray[2] << 16) + (byteArray[3] << 8) + byteArray[4]);
-                mh.Length = (ushort)((byteArray[5] << 8) + byteArray[6]);
-                mh.Reserved = (ulong)((byteArray[7] << 32) + (byteArray[8] << 24) + (byteArray[9] << 16) + (byteArray[10] << 8) + byteArray[11]);
-                mh.Crc32 = (uint)((byteArray[12] << 24) + (byteArray[13] << 16) + (byteArray[14] << 8) + byteArray[15]);
+                mh.Type = (MessageType)tempByteArray[0];
+                mh.SeqNumber = (uint)((tempByteArray[1] << 24) + (tempByteArray[2] << 16) + (tempByteArray[3] << 8) + tempByteArray[4]);
+                mh.Length = (ushort)((tempByteArray[5] << 8) + tempByteArray[6]);
+                mh.Reserved = (ulong)((tempByteArray[7] << 32) + (tempByteArray[8] << 24) + (tempByteArray[9] << 16) + (tempByteArray[10] << 8) + tempByteArray[11]);
+                mh.Crc32 = (uint)((tempByteArray[12] << 24) + (tempByteArray[13] << 16) + (tempByteArray[14] << 8) + tempByteArray[15]);
 
                 if (mh.Type == MessageType.Request
                     || mh.Type == MessageType.Event
                     || mh.Type == MessageType.Result)
                 {
-                    if (byteArray.Length >= 30)
+                    if (tempByteArray.Length >= 30)
                     {
-                        if (!Enum.IsDefined(typeof(MessageId), (ushort)((byteArray[16] << 8) + byteArray[17])))
+                        if (!Enum.IsDefined(typeof(MessageId), (ushort)((tempByteArray[16] << 8) + tempByteArray[17])))
                         {
                             throw new CsaException("消息ID未定义。", ErrorCode.MessageIdUndefined);
                         }
 
                         MessageBody mb = new MessageBody();
-                        mb.MessageId = (MessageId)((byteArray[16] << 8) + byteArray[17]);
-                        mb.GatewayId = ((uint)byteArray[18] << 24) + ((uint)byteArray[19] << 16) + ((uint)byteArray[20] << 8) + byteArray[21];
-                        mb.LuminaireId = ((uint)byteArray[22] << 24) + ((uint)byteArray[23] << 16) + ((uint)byteArray[24] << 8) + byteArray[25];
+                        mb.MessageId = (MessageId)((tempByteArray[16] << 8) + tempByteArray[17]);
+                        mb.GatewayId = ((uint)tempByteArray[18] << 24) + ((uint)tempByteArray[19] << 16) + ((uint)tempByteArray[20] << 8) + tempByteArray[21];
+                        mb.LuminaireId = ((uint)tempByteArray[22] << 24) + ((uint)tempByteArray[23] << 16) + ((uint)tempByteArray[24] << 8) + tempByteArray[25];
 
                         List<Parameter> pmtList = new List<Parameter>();
-                        Parameter.GetParameterList(byteArray, 26, ref pmtList);
+                        Parameter.GetParameterList(tempByteArray, 26, ref pmtList);
 
                         if (pmtList.Count > 0)
                         {
