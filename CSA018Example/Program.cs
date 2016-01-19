@@ -9,8 +9,8 @@ namespace ThisCoder.CSA018Example
         static void Main(string[] args)
         {
             // 实例化创建消息动作行为类的对象
-            CreateAction ca1 = new CreateAction(MessageType.HeartbeatData);
-            CreateAction ca2 = new CreateAction(MessageType.HeartbeatResponse);
+            CreateAction ca1 = new CreateAction();
+            CreateAction ca2 = new CreateAction();
             CreateAction ca3 = new CreateAction(MessageType.Request, 0x00000001);
             CreateAction ca4 = new CreateAction(MessageType.Response);
             CreateAction ca5 = new CreateAction(MessageType.Result, 0x00000001);

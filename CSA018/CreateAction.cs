@@ -31,6 +31,11 @@ namespace ThisCoder.CSA018
         public uint LuminaireId { get; set; }
 
         /// <summary>
+        /// 通过默认构造方法初始化创建消息动作行为类
+        /// </summary>
+        public CreateAction() { }
+
+        /// <summary>
         /// 通过消息类型、网关ID和灯具ID初始化创建消息动作行为类
         /// </summary>
         /// <param name="messageType">消息类型</param>
