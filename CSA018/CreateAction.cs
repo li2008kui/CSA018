@@ -31,11 +31,6 @@ namespace ThisCoder.CSA018
         public uint LuminaireId { get; set; }
 
         /// <summary>
-        /// 通过默认构造方法初始化创建消息动作行为类
-        /// </summary>
-        public CreateAction() { }
-
-        /// <summary>
         /// 通过消息类型、网关ID和灯具ID初始化创建消息动作行为类
         /// </summary>
         /// <param name="messageType">消息类型</param>
@@ -62,21 +57,106 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 获取响应或心跳包数据报文字节数组
-        ///     <para>用于获取“命令响应”、“事件和告警响应”、“心跳包数据”或“心跳包响应”字节数组</para>
+        /// 获取“心跳包数据”报文字节命令。
         /// </summary>
         /// <returns></returns>
-        public byte[] GetOperateCommand()
+        public byte GetHeartbeatDataCommand()
+        {
+            return 0xFF;
+        }
+
+        /// <summary>
+        /// 获取“心跳包响应”报文字节命令。
+        /// </summary>
+        /// <returns></returns>
+        public byte GetHeartbeatResponseCommand()
+        {
+            return 0xFE;
+        }
+
+        /// <summary>
+        /// 获取“响应”报文字节数组命令。
+        /// </summary>
+        /// <param name="seqNumber">
+        /// 消息序号。
+        ///     <para>uint类型，长度为4个字节。</para>
+        /// </param>
+        /// <returns></returns>
+        public byte[] GetResponseCommand(uint seqNumber)
         {
             // 获取消息头对象
-            MessageHead mh = new MessageHead(MessageType);
+            MessageHead mh = new MessageHead(MessageType, seqNumber);
 
             // 返回消息报文字节数组
             return new Datagram(mh).GetDatagram();
         }
 
         /// <summary>
-        /// 通过“消息ID”和“参数结构体对象”执行操作
+        /// 获取“事件和告警响应”响应报文字节数组命令。
+        /// </summary>
+        /// <param name="seqNumber">
+        /// 消息序号。
+        ///     <para>uint类型，长度为4个字节。</para>
+        /// </param>
+        /// <returns></returns>
+        public byte[] GetEventResponseCommand(uint seqNumber)
+        {
+            return GetResponseCommand(seqNumber);
+        }
+
+        /// <summary>
+        /// 通过“消息ID”、“参数类型”和字符串类型的“参数值”获取“请求”报文字节数组命令。
+        /// </summary>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="type">参数的类型枚举值</param>
+        /// <param name="value">字符串类型的参数值</param>
+        /// <returns></returns>
+        public byte[] GetRequestCommand(MessageId messageId, ParameterType type, string value)
+        {
+            return GetRequestCommand(messageId,
+                new Parameter(type, value)
+            );
+        }
+
+        /// <summary>
+        /// 通过“消息ID”、“参数类型”和字节数组类型的“参数值”获取“请求”报文字节数组命令。
+        /// </summary>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="type">参数的类型枚举值</param>
+        /// <param name="value">字节数组类型的参数值</param>
+        /// <returns></returns>
+        public byte[] GetRequestCommand(MessageId messageId, ParameterType type, byte[] value)
+        {
+            return GetRequestCommand(messageId,
+                new Parameter(type, value)
+            );
+        }
+
+        /// <summary>
+        /// 通过“消息ID”、“参数类型”和字节类型的“参数值”获取“请求”报文字节数组命令。
+        /// </summary>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="type">参数的类型枚举值</param>
+        /// <param name="value">字节类型的参数值</param>
+        /// <returns></returns>
+        public byte[] GetRequestCommand(MessageId messageId, ParameterType type, byte value)
+        {
+            return GetRequestCommand(messageId,
+                new Parameter(type, value)
+            );
+        }
+
+        /// <summary>
+        /// 通过“消息ID”和“参数结构体对象”获取“请求”报文字节数组命令。
         /// </summary>
         /// <param name="messageId">
         /// 消息ID
@@ -84,13 +164,213 @@ namespace ThisCoder.CSA018
         /// </param>
         /// <param name="parameter">参数结构体对象</param>
         /// <returns></returns>
-        public byte[] GetOperateCommand(MessageId messageId, Parameter parameter)
+        public byte[] GetRequestCommand(MessageId messageId, Parameter parameter)
         {
-            return GetOperateCommand(messageId,
+            return GetRequestCommand(messageId,
                 new List<Parameter> {
                     parameter
                 }
             );
+        }
+
+        /// <summary>
+        /// 通过“消息ID”和“参数结构体对象列表”获取“请求”报文字节数组命令。
+        /// </summary>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="parameterList">参数结构体对象列表</param>
+        /// <returns></returns>
+        public byte[] GetRequestCommand(MessageId messageId, List<Parameter> parameterList)
+        {
+            return GetOperateCommand(messageId, parameterList);
+        }
+
+        /// <summary>
+        /// 通过“消息ID”、“参数类型”和字符串类型的“参数值”获取“事件或告警”报文字节数组命令。
+        /// </summary>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="type">参数的类型枚举值</param>
+        /// <param name="value">字符串类型的参数值</param>
+        /// <returns></returns>
+        public byte[] GetEventCommand(MessageId messageId, ParameterType type, string value)
+        {
+            return GetEventCommand(messageId,
+                new Parameter(type, value)
+            );
+        }
+
+        /// <summary>
+        /// 通过“消息ID”、“参数类型”和字节数组类型的“参数值”获取“事件或告警”报文字节数组命令。
+        /// </summary>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="type">参数的类型枚举值</param>
+        /// <param name="value">字节数组类型的参数值</param>
+        /// <returns></returns>
+        public byte[] GetEventCommand(MessageId messageId, ParameterType type, byte[] value)
+        {
+            return GetEventCommand(messageId,
+                new Parameter(type, value)
+            );
+        }
+
+        /// <summary>
+        /// 通过“消息ID”、“参数类型”和字节类型的“参数值”获取“事件或告警”报文字节数组命令。
+        /// </summary>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="type">参数的类型枚举值</param>
+        /// <param name="value">字节类型的参数值</param>
+        /// <returns></returns>
+        public byte[] GetEventCommand(MessageId messageId, ParameterType type, byte value)
+        {
+            return GetEventCommand(messageId,
+                new Parameter(type, value)
+            );
+        }
+
+        /// <summary>
+        /// 通过“消息ID”和“参数结构体对象”获取“事件或告警”报文字节数组命令。
+        /// </summary>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="parameter">参数结构体对象</param>
+        /// <returns></returns>
+        public byte[] GetEventCommand(MessageId messageId, Parameter parameter)
+        {
+            return GetEventCommand(messageId,
+                new List<Parameter> {
+                    parameter
+                }
+            );
+        }
+
+        /// <summary>
+        /// 通过“消息ID”和“参数结构体对象列表”获取“事件或告警”报文字节数组命令。
+        /// </summary>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="parameterList">参数结构体对象列表</param>
+        /// <returns></returns>
+        public byte[] GetEventCommand(MessageId messageId, List<Parameter> parameterList)
+        {
+            return GetOperateCommand(messageId, parameterList);
+        }
+
+        /// <summary>
+        /// 通过“消息序号”、“消息ID”、“参数类型”和字符串类型的“参数值”获取“结果”报文字节数组命令。
+        /// </summary>
+        /// <param name="seqNumber">
+        /// 消息序号。
+        ///     <para>uint类型，长度为4个字节。</para>
+        /// </param>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="type">参数的类型枚举值</param>
+        /// <param name="value">字符串类型的参数值</param>
+        /// <returns></returns>
+        public byte[] GetResultCommand(uint seqNumber, MessageId messageId, ParameterType type, string value)
+        {
+            return GetResultCommand(seqNumber, messageId,
+                new Parameter(type, value)
+            );
+        }
+
+        /// <summary>
+        /// 通过“消息序号”、“消息ID”、“参数类型”和字节数组类型的“参数值”获取“结果”报文字节数组命令。
+        /// </summary>
+        /// <param name="seqNumber">
+        /// 消息序号。
+        ///     <para>uint类型，长度为4个字节。</para>
+        /// </param>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="type">参数的类型枚举值</param>
+        /// <param name="value">字节数组类型的参数值</param>
+        /// <returns></returns>
+        public byte[] GetResultCommand(uint seqNumber, MessageId messageId, ParameterType type, byte[] value)
+        {
+            return GetResultCommand(seqNumber, messageId,
+                new Parameter(type, value)
+            );
+        }
+
+        /// <summary>
+        /// 通过“消息序号”、“消息ID”、“参数类型”和字节类型的“参数值”获取“结果”报文字节数组命令。
+        /// </summary>
+        /// <param name="seqNumber">
+        /// 消息序号。
+        ///     <para>uint类型，长度为4个字节。</para>
+        /// </param>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="type">参数的类型枚举值</param>
+        /// <param name="value">字节类型的参数值</param>
+        /// <returns></returns>
+        public byte[] GetResultCommand(uint seqNumber, MessageId messageId, ParameterType type, byte value)
+        {
+            return GetResultCommand(seqNumber, messageId,
+                new Parameter(type, value)
+            );
+        }
+
+        /// <summary>
+        /// 通过“消息序号”、“消息ID”和“参数结构体对象”获取“结果”报文字节数组命令。
+        /// </summary>
+        /// <param name="seqNumber">
+        /// 消息序号。
+        ///     <para>uint类型，长度为4个字节。</para>
+        /// </param>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="parameter">参数结构体对象</param>
+        /// <returns></returns>
+        public byte[] GetResultCommand(uint seqNumber, MessageId messageId, Parameter parameter)
+        {
+            return GetResultCommand(seqNumber, messageId,
+                new List<Parameter> {
+                    parameter
+                }
+            );
+        }
+
+        /// <summary>
+        /// 通过“消息序号”、“消息ID”和“参数结构体对象列表”获取“结果”报文字节数组命令。
+        /// </summary>
+        /// <param name="seqNumber">
+        /// 消息序号。
+        ///     <para>uint类型，长度为4个字节。</para>
+        /// </param>
+        /// <param name="messageId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="parameterList">参数结构体对象列表</param>
+        /// <returns></returns>
+        public byte[] GetResultCommand(uint seqNumber, MessageId messageId, List<Parameter> parameterList)
+        {
+            return GetOperateCommand(seqNumber, messageId, parameterList);
         }
 
         /// <summary>
@@ -102,7 +382,7 @@ namespace ThisCoder.CSA018
         /// </param>
         /// <param name="parameterList">参数结构体对象列表</param>
         /// <returns></returns>
-        public byte[] GetOperateCommand(MessageId messageId, List<Parameter> parameterList)
+        private byte[] GetOperateCommand(MessageId messageId, List<Parameter> parameterList)
         {
             // 获取消息体对象
             MessageBody mb = new MessageBody(
@@ -125,20 +405,39 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 通过“消息ID”、“参数类型”和字符串类型的“参数值”执行操作
+        /// 通过“消息序号”、“消息ID”和“参数结构体对象列表”执行操作，该命令用于结果类型的消息。
         /// </summary>
+        /// <param name="seqNumber">
+        /// 消息序号。
+        ///     <para>uint类型，长度为4个字节。</para>
+        /// </param>
         /// <param name="messageId">
         /// 消息ID
         ///     <para>UInt16类型，长度为2个字节</para>
         /// </param>
-        /// <param name="type">参数的类型枚举值</param>
-        /// <param name="value">字符串类型的参数值</param>
+        /// <param name="parameterList">参数结构体对象列表</param>
         /// <returns></returns>
-        public byte[] GetOperateCommand(MessageId messageId, ParameterType type, string value)
+        private byte[] GetOperateCommand(uint seqNumber, MessageId messageId, List<Parameter> parameterList)
         {
-            return GetOperateCommand(messageId,
-                new Parameter(type, value)
-            );
+            // 获取消息体对象
+            MessageBody mb = new MessageBody(
+                messageId,
+                GatewayId,
+                LuminaireId,
+                parameterList);
+
+            // 获取消息体字节数组
+            byte[] msgBody = mb.GetBody();
+
+            // 获取消息头对象
+            MessageHead mh = new MessageHead(
+                MessageType,
+                seqNumber,
+                (ushort)(msgBody.Length),
+                Crc32.GetCrc32(msgBody));
+
+            // 返回消息报文字节数组
+            return new Datagram(mh, mb).GetDatagram();
         }
     }
 }

@@ -57,7 +57,7 @@ namespace ThisCoder.CSA018
         /// 参数类型
         ///     <para>ushort类型，长度为2个字节</para>
         /// </param>
-        /// <param name="value">字符串类型的参数值</param>
+        /// <param name="value">字节数组类型的参数值</param>
         public Parameter(ParameterType type, byte[] value)
             : this(type, Encoding.UTF8.GetString(value))
         { }
@@ -69,7 +69,7 @@ namespace ThisCoder.CSA018
         /// 参数类型
         ///     <para>ushort类型，长度为2个字节</para>
         /// </param>
-        /// <param name="value">字符串类型的参数值</param>
+        /// <param name="value">字节类型的参数值</param>
         public Parameter(ParameterType type, byte value)
             : this(type, new byte[] { value })
         { }

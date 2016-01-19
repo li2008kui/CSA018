@@ -46,16 +46,29 @@ namespace ThisCoder.CSA018
         ///     <para>byte类型，长度为1个字节</para>
         /// </param>
         public MessageHead(MessageType type)
+            : this(type, Sequencer.Instance.SeqNumber++)
+        { }
+
+        /// <summary>
+        /// 通过“消息类型”初始化消息头对象实例
+        /// </summary>
+        /// <param name="type">
+        /// 消息类型
+        ///     <para>byte类型，长度为1个字节</para>
+        /// </param>
+        /// <param name="seqNumber">
+        /// 消息序号。
+        ///     <para>uint类型，长度为4个字节。</para>
+        /// </param>
+        public MessageHead(MessageType type, uint seqNumber)
             : this()
         {
             Type = type;
-            SeqNumber = ((type == MessageType.Request || type == MessageType.Event)
-                ? ++Sequencer.Instance.SeqNumber
-                : Sequencer.Instance.SeqNumber);
+            SeqNumber = seqNumber;
         }
 
         /// <summary>
-        /// 通过“消息类型”、“消息序号”、“消息体长度”和“消息体CRC32校验”初始化消息头对象实例
+        /// 通过“消息类型”、“消息体长度”和“消息体CRC32校验”初始化消息头对象实例
         /// </summary>
         /// <param name="type">
         /// 消息类型
@@ -71,6 +84,32 @@ namespace ThisCoder.CSA018
         /// </param>
         public MessageHead(MessageType type, ushort length, uint crc32)
                 : this(type)
+        {
+            Length = length;
+            Crc32 = crc32;
+        }
+
+        /// <summary>
+        /// 通过“消息类型”、“消息序号”、“消息体长度”和“消息体CRC32校验”初始化消息头对象实例
+        /// </summary>
+        /// <param name="type">
+        /// 消息类型
+        ///     <para>byte类型，长度为1个字节</para>
+        /// </param>
+        /// <param name="seqNumber">
+        /// 消息序号。
+        ///     <para>uint类型，长度为4个字节。</para>
+        /// </param>
+        /// <param name="length">
+        /// 消息体长度
+        ///     <para>ushort类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="crc32">
+        /// 消息体CRC32校验
+        ///     <para>uint类型，长度为4个字节</para>
+        /// </param>
+        public MessageHead(MessageType type, uint seqNumber, ushort length, uint crc32)
+                : this(type, seqNumber)
         {
             Length = length;
             Crc32 = crc32;

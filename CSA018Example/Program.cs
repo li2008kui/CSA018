@@ -18,13 +18,13 @@ namespace ThisCoder.CSA018Example
             CreateAction ca7 = new CreateAction(MessageType.EventResponse);
 
             // 获取数据报文字节数组
-            byte[] cmd1 = ca1.GetOperateCommand();
-            byte[] cmd2 = ca2.GetOperateCommand();
-            byte[] cmd3 = ca3.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.Brightness, "100");
-            byte[] cmd4 = ca4.GetOperateCommand();
-            byte[] cmd5 = ca5.GetOperateCommand(MessageId.RealTimeControlLuminaire, ParameterType.ErrorCode, "0000");
-            byte[] cmd6 = ca6.GetOperateCommand(MessageId.DataCollection, new List<Parameter> { new Parameter(ParameterType.ResourceType, "05"), new Parameter(ParameterType.ResourceValue, "100") });
-            byte[] cmd7 = ca7.GetOperateCommand();
+            byte[] cmd1 = new byte[] { ca1.GetHeartbeatDataCommand() };
+            byte[] cmd2 = new byte[] { ca2.GetHeartbeatResponseCommand() };
+            byte[] cmd3 = ca3.GetRequestCommand(MessageId.RealTimeControlLuminaire, ParameterType.Brightness, "100");
+            byte[] cmd4 = ca4.GetResponseCommand(0x0);
+            byte[] cmd5 = ca5.GetResultCommand(0x0, MessageId.RealTimeControlLuminaire, ParameterType.ErrorCode, "0000");
+            byte[] cmd6 = ca6.GetEventCommand(MessageId.DataCollection, new List<Parameter> { new Parameter(ParameterType.ResourceType, "05"), new Parameter(ParameterType.ResourceValue, "100") });
+            byte[] cmd7 = ca7.GetEventResponseCommand(0x01);
 
             // 将字节数组转成十六进制字符串形式并打印
             Console.WriteLine("一、生成命令\n1、心跳包数据\n" + cmd1.ToHexString()
