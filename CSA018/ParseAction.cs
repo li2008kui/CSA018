@@ -35,7 +35,7 @@
         }
 
         /// <summary>
-        /// 触发消息报文的处理事件
+        /// 触发消息报文的处理事件。
         /// </summary>
         /// <param name="cmd">命令字节数组。</param>
         public virtual void OnDatagramProcess(byte[] cmd)

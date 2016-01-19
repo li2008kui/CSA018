@@ -4,27 +4,27 @@ using System.Text;
 namespace ThisCoder.CSA018
 {
     /// <summary>
-    /// 参数结构体
+    /// 参数结构体。
     /// </summary>
     public struct Parameter
     {
         /// <summary>
-        /// 参数类型
-        ///     <para>ushort类型，长度为2个字节</para>
+        /// 参数类型。
+        ///     <para>ushort类型，长度为2个字节。</para>
         /// </summary>
         public ParameterType Type { get; set; }
 
         /// <summary>
-        /// 参数值
+        /// 参数值。
         ///     <para>string类型，长度可变。</para>
         ///     <para>具体使用时可能需要转换为字符串类型。</para>
         /// </summary>
         public string Value { get; set; }
 
         /// <summary>
-        /// 参数值结束符
-        ///     <para>只读属性</para>
-        ///     <para>值为0x00</para>
+        /// 参数值结束符。
+        ///     <para>只读属性。</para>
+        ///     <para>值为0x00。</para>
         /// </summary>
         public byte End
         {
@@ -36,13 +36,13 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 通过“参数类型”和字符串类型的“参数值”初始化参数对象实例
+        /// 通过“参数类型”和字符串类型的“参数值”初始化参数对象实例。
         /// </summary>
         /// <param name="type">
-        /// 参数类型
-        ///     <para>ushort类型，长度为2个字节</para>
+        /// 参数类型。
+        ///     <para>ushort类型，长度为2个字节。</para>
         /// </param>
-        /// <param name="value">字符串类型的参数值</param>
+        /// <param name="value">字符串类型的参数值。</param>
         public Parameter(ParameterType type, string value)
             : this()
         {
@@ -51,31 +51,31 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 通过“参数类型”和字节数组类型的“参数值”初始化参数对象实例
+        /// 通过“参数类型”和字节数组类型的“参数值”初始化参数对象实例。
         /// </summary>
         /// <param name="type">
-        /// 参数类型
-        ///     <para>ushort类型，长度为2个字节</para>
+        /// 参数类型。
+        ///     <para>ushort类型，长度为2个字节。</para>
         /// </param>
-        /// <param name="value">字节数组类型的参数值</param>
+        /// <param name="value">字节数组类型的参数值。</param>
         public Parameter(ParameterType type, byte[] value)
             : this(type, Encoding.UTF8.GetString(value))
         { }
 
         /// <summary>
-        /// 通过“参数类型”和字节类型的“参数值”初始化参数对象实例
+        /// 通过“参数类型”和字节类型的“参数值”初始化参数对象实例。
         /// </summary>
         /// <param name="type">
-        /// 参数类型
-        ///     <para>ushort类型，长度为2个字节</para>
+        /// 参数类型。
+        ///     <para>ushort类型，长度为2个字节。</para>
         /// </param>
-        /// <param name="value">字节类型的参数值</param>
+        /// <param name="value">字节类型的参数值。</param>
         public Parameter(ParameterType type, byte value)
             : this(type, new byte[] { value })
         { }
 
         /// <summary>
-        /// 获取参数字节数组
+        /// 获取参数字节数组。
         /// </summary>
         /// <returns></returns>
         public byte[] GetParameter()
@@ -95,11 +95,11 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 获取参数对象列表
+        /// 获取参数对象列表。
         /// </summary>
-        /// <param name="byteArray">消息报文字节数组</param>
-        /// <param name="index">数组索引</param>
-        /// <param name="pmtList">参数对象列表</param>
+        /// <param name="byteArray">消息报文字节数组。</param>
+        /// <param name="index">数组索引。</param>
+        /// <param name="pmtList">参数对象列表。</param>
         internal static void GetParameterList(byte[] byteArray, int index, ref List<Parameter> pmtList)
         {
             if (byteArray.Length > index + 2)
@@ -125,11 +125,11 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 获取参数十六进制字符串
+        /// 获取参数十六进制字符串。
         /// </summary>
         /// <param name="separator">
-        /// 分隔符
-        ///     <para>默认为空字符</para>
+        /// 分隔符。
+        ///     <para>默认为空字符。</para>
         /// </param>
         /// <returns></returns>
         public string ToHexString(string separator = "")
@@ -145,7 +145,7 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 获取参数字符串
+        /// 获取参数字符串。
         /// </summary>
         /// <returns></returns>
         public override string ToString()

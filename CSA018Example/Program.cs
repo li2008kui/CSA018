@@ -8,7 +8,7 @@ namespace ThisCoder.CSA018Example
     {
         static void Main(string[] args)
         {
-            // 实例化创建消息动作行为类的对象
+            // 实例化创建消息动作行为类的对象。
             CreateAction ca1 = new CreateAction();
             CreateAction ca2 = new CreateAction();
             CreateAction ca3 = new CreateAction(MessageType.Request, 0x00000001);
@@ -17,7 +17,7 @@ namespace ThisCoder.CSA018Example
             CreateAction ca6 = new CreateAction(MessageType.Event, 0x00000001);
             CreateAction ca7 = new CreateAction(MessageType.EventResponse);
 
-            // 获取数据报文字节数组
+            // 获取数据报文字节数组。
             byte[] cmd1 = new byte[] { ca1.GetHeartbeatDataCommand() };
             byte[] cmd2 = new byte[] { ca2.GetHeartbeatResponseCommand() };
             byte[] cmd3 = ca3.GetRequestCommand(MessageId.RealTimeControlLuminaire, ParameterType.Brightness, "100");
@@ -26,7 +26,7 @@ namespace ThisCoder.CSA018Example
             byte[] cmd6 = ca6.GetEventCommand(MessageId.DataCollection, new List<Parameter> { new Parameter(ParameterType.ResourceType, "05"), new Parameter(ParameterType.ResourceValue, "100") });
             byte[] cmd7 = ca7.GetEventResponseCommand(0x01);
 
-            // 将字节数组转成十六进制字符串形式并打印
+            // 将字节数组转成十六进制字符串形式并打印。
             Console.WriteLine("一、生成命令\n1、心跳包数据\n" + cmd1.ToHexString()
                 + "\n\n2、心跳包响应\n" + cmd2.ToHexString()
                 + "\n\n3、请求命令\n" + cmd3.ToHexString()
@@ -35,11 +35,11 @@ namespace ThisCoder.CSA018Example
                 + "\n\n6、事件命令\n" + cmd6.ToHexString()
                 + "\n\n7、事件响应\n" + cmd7.ToHexString());
 
-            // 订阅消息报文处理事件
+            // 订阅消息报文处理事件。
             ParseAction pa = new ParseAction();
             pa.DatagramProcess += Oa_DatagramProcess;
 
-            // 触发消息报文处理事件
+            // 触发消息报文处理事件。
             Console.WriteLine("\n\n二、解析命令\n1、心跳包数据");
             pa.OnDatagramProcess(cmd1);
             Console.WriteLine("\n2、心跳包响应");
@@ -55,7 +55,7 @@ namespace ThisCoder.CSA018Example
             Console.WriteLine("\n7、事件响应");
             pa.OnDatagramProcess(cmd7);
 
-            // 等待用户按键退出
+            // 等待用户按键退出。
             Console.ReadKey();
         }
 

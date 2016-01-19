@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace ThisCoder.CSA018
 {
     /// <summary>
-    /// 字符串助手类
+    /// 字符串助手类。
     /// </summary>
     public static class StringHelper
     {

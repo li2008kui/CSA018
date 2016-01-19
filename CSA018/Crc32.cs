@@ -1,12 +1,12 @@
 ﻿namespace ThisCoder.CSA018
 {
     /// <summary>
-    /// CRC32校验类
+    /// CRC32校验类。
     /// </summary>
     public class Crc32
     {
         /// <summary>
-        /// CRC32表
+        /// CRC32表。
         /// </summary>
         private static uint[] Crc32Table
         {
@@ -40,9 +40,9 @@
         }
 
         /// <summary>
-        /// 获取字节数组的CRC32校验值
+        /// 获取字节数组的CRC32校验值。
         /// </summary>
-        /// <param name="data">需要校验的字节数组</param>
+        /// <param name="data">需要校验的字节数组。</param>
         /// <returns></returns>
         public static uint GetCrc32(byte[] data)
         {

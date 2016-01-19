@@ -5,14 +5,14 @@ using System.Text;
 namespace ThisCoder.CSA018
 {
     /// <summary>
-    /// 报文结构体
+    /// 报文结构体。
     /// </summary>
     public struct Datagram
     {
         /// <summary>
         /// 起始符
-        ///     <para>只读属性</para>
-        ///     <para>值为0x02</para>
+        ///     <para>只读属性。</para>
+        ///     <para>值为0x02。</para>
         /// </summary>
         public byte Stx
         {
@@ -24,21 +24,21 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 消息头
-        ///     <para>长度为16字节</para>
+        /// 消息头。
+        ///     <para>长度为16字节。</para>
         /// </summary>
         public MessageHead Head { get; set; }
 
         /// <summary>
-        /// 消息体
-        ///     <para>长度可变</para>
+        /// 消息体。
+        ///     <para>长度可变。</para>
         /// </summary>
         public MessageBody Body { get; set; }
 
         /// <summary>
-        /// 结束符
-        ///     <para>只读属性</para>
-        ///     <para>值为0x03</para>
+        /// 结束符。
+        ///     <para>只读属性。</para>
+        ///     <para>值为0x03。</para>
         /// </summary>
         public byte Etx
         {
@@ -50,11 +50,11 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 通过消息头初始化报文对象实例
+        /// 通过消息头初始化报文对象实例。
         /// </summary>
         /// <param name="head">
-        /// 消息头
-        ///     <para>长度为16字节</para>
+        /// 消息头。
+        ///     <para>长度为16字节。</para>
         /// </param>
         public Datagram(MessageHead head)
             : this()
@@ -63,15 +63,15 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 通过消息头和消息体初始化报文对象实例
+        /// 通过消息头和消息体初始化报文对象实例。
         /// </summary>
         /// <param name="head">
-        /// 消息头
-        ///     <para>长度为16字节</para>
+        /// 消息头。
+        ///     <para>长度为16字节。</para>
         /// </param>
         /// <param name="body">
-        /// 消息体
-        ///     <para>长度可变</para>
+        /// 消息体。
+        ///     <para>长度可变。</para>
         /// </param>
         public Datagram(MessageHead head, MessageBody body)
             : this()
@@ -81,7 +81,7 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 获取消息报文字节数组
+        /// 获取消息报文字节数组。
         /// </summary>
         /// <returns></returns>
         public byte[] GetDatagram()
@@ -100,7 +100,7 @@ namespace ThisCoder.CSA018
                 byte[] head = Head.GetHead();
                 dg.AddRange(Escaping(head));
 
-                //“命令响应”和“事件和告警响应”类型的消息类型无消息体
+                //“命令响应”和“事件和告警响应”类型的消息类型无消息体。
                 if (Head.Type != MessageType.Response
                     && Head.Type != MessageType.EventResponse)
                 {
@@ -114,11 +114,11 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 获取消息报文对象列表
+        /// 获取消息报文对象列表。
         /// </summary>
-        /// <param name="dataArray">消息报文字节数组</param>
-        /// <param name="isTcpOrUdp">报文承载方式是否是TCP或UDP，默认为false</param>
-        /// <param name="isCheckCrc">是否校验CRC</param>
+        /// <param name="dataArray">消息报文字节数组。</param>
+        /// <param name="isTcpOrUdp">报文承载方式是否是TCP或UDP，默认为false。</param>
+        /// <param name="isCheckCrc">是否校验CRC。</param>
         /// <returns></returns>
         public static List<Datagram> GetDatagramList(byte[] dataArray, bool isTcpOrUdp = false, bool isCheckCrc = true)
         {
@@ -242,12 +242,12 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 转义特殊字符
-        ///     <para>STX转义为ESC和0xE7，即02->1BE7</para>
-        ///     <para>ETX转义为ESC和0xE8，即03->1BE8</para>
-        ///     <para>ESC转义为ESC和0x00，即1B->1B00</para>
+        /// 转义特殊字符。
+        ///     <para>STX转义为ESC和0xE7，即02->1BE7。</para>
+        ///     <para>ETX转义为ESC和0xE8，即03->1BE8。</para>
+        ///     <para>ESC转义为ESC和0x00，即1B->1B00。</para>
         /// </summary>
-        /// <param name="byteArray">消息报文字节数组</param>
+        /// <param name="byteArray">消息报文字节数组。</param>
         /// <returns></returns>
         private static byte[] Escaping(byte[] byteArray)
         {
@@ -280,9 +280,9 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 去除转义特殊字符
+        /// 去除转义特殊字符。
         /// </summary>
-        /// <param name="byteArray">原消息报文字节数组</param>
+        /// <param name="byteArray">原消息报文字节数组。</param>
         private static byte[] Descaping(byte[] byteArray)
         {
             List<byte> byteList = new List<byte>();
@@ -326,9 +326,9 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 去除转义特殊字符
+        /// 去除转义特殊字符。
         /// </summary>
-        /// <param name="byteArrayList">原消息报文字节数组列表</param>
+        /// <param name="byteArrayList">原消息报文字节数组列表。</param>
         private static List<byte[]> Descaping(List<byte[]> byteArrayList)
         {
             List<byte[]> newByteArrayList = new List<byte[]>();
@@ -344,12 +344,12 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 获取消息报文字节数组列表
+        /// 获取消息报文字节数组列表。
         ///     <para>此列表中的消息报文字节数组不包含起止符。</para>
         /// </summary>
-        /// <param name="dataArray">消息报文字节数组</param>
-        /// <param name="index">数组索引</param>
-        /// <param name="byteArrayList">消息报文字节数组列表</param>
+        /// <param name="dataArray">消息报文字节数组。</param>
+        /// <param name="index">数组索引。</param>
+        /// <param name="byteArrayList">消息报文字节数组列表。</param>
         private static void GetByteArrayList(byte[] dataArray, int index, ref List<byte[]> byteArrayList)
         {
             bool isStx = false;
@@ -382,11 +382,11 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 获取消息报文十六进制字符串
+        /// 获取消息报文十六进制字符串。
         /// </summary>
         /// <param name="separator">
-        /// 分隔符
-        ///     <para>默认为空字符</para>
+        /// 分隔符。
+        ///     <para>默认为空字符。</para>
         /// </param>
         /// <returns></returns>
         public string ToHexString(string separator = "")
@@ -402,7 +402,7 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 获取消息报文字符串
+        /// 获取消息报文字符串。
         /// </summary>
         /// <returns></returns>
         public override string ToString()
