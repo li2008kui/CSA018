@@ -92,7 +92,7 @@
 
         /// <summary>
         /// 设置灯具运行模式。
-        ///     <para>自动或手动。</para>
+        /// <para>自动或手动。</para>
         /// </summary>
         SettingRunningMode = 0x120F,
 
@@ -139,39 +139,39 @@
         #region 厂商自定义
         /// <summary>
         /// 启用或禁用功能。
-        ///     <para>防盗。</para>
-        ///     <para>移动传感器。</para>
-        ///     <para>亮度传感器。</para>
-        ///     <para>天气状况。</para>
-        ///     <para>交通量。</para>
-        ///     <para>经纬度。</para>
-        ///     <para>光衰补偿。</para>
+        /// <para>防盗。</para>
+        /// <para>移动传感器。</para>
+        /// <para>亮度传感器。</para>
+        /// <para>天气状况。</para>
+        /// <para>交通量。</para>
+        /// <para>经纬度。</para>
+        /// <para>光衰补偿。</para>
         /// </summary>
         SettingEnableFunction = 0x1400,
 
         /// <summary>
         /// 设置移动传感器参数。
-        ///     <para>启动后所影响灯具的GPS联动半径，单位：米。</para>
-        ///     <para>启动所需要的感应数目，单位：个。</para>
-        ///     <para>启动后灯具的亮度。</para>
-        ///     <para>启动后灯具变化的保持时间，单位：分钟。</para>
-        ///     <para>灵敏度。</para>
-        ///     <para>数字滤波参数。</para>
+        /// <para>启动后所影响灯具的GPS联动半径，单位：米。</para>
+        /// <para>启动所需要的感应数目，单位：个。</para>
+        /// <para>启动后灯具的亮度。</para>
+        /// <para>启动后灯具变化的保持时间，单位：分钟。</para>
+        /// <para>灵敏度。</para>
+        /// <para>数字滤波参数。</para>
         /// </summary>
         SettingMoveSensorParameter = 0x1401,
 
         /// <summary>
         /// 设置亮度传感器参数。
-        ///     <para>启动后所影响灯具的GPS联动半径，单位：米。</para>
-        ///     <para>启动所需要的感应数目，单位：个。</para>
-        ///     <para>白天黑夜临界值。</para>
+        /// <para>启动后所影响灯具的GPS联动半径，单位：米。</para>
+        /// <para>启动所需要的感应数目，单位：个。</para>
+        /// <para>白天黑夜临界值。</para>
         /// </summary>
         SettingLightSensorParameter = 0x1402,
 
         /// <summary>
         /// 设置ZigBee无线网络参数。
-        ///     <para>无线频点，即ZigBee无线通信的信道，取值范围：[01,16]。</para>
-        ///     <para>其他参数待定。</para>
+        /// <para>无线频点，即ZigBee无线通信的信道，取值范围：[01,16]。</para>
+        /// <para>其他参数待定。</para>
         /// </summary>
         SettingZigBeeParameter = 0x1403,
 

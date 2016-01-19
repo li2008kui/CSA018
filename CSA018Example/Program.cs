@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using ThisCoder.CSA018;
 
 namespace ThisCoder.CSA018Example
@@ -11,18 +12,18 @@ namespace ThisCoder.CSA018Example
             // 实例化创建消息动作行为类的对象。
             CreateAction ca1 = new CreateAction();
             CreateAction ca2 = new CreateAction();
-            CreateAction ca3 = new CreateAction(MessageType.Request, 0x00000001);
-            CreateAction ca4 = new CreateAction(MessageType.Response);
-            CreateAction ca5 = new CreateAction(MessageType.Result, 0x00000001);
+            CreateAction ca3 = new CreateAction(MessageType.Command, 0x00000001);
+            CreateAction ca4 = new CreateAction(MessageType.CommandACK);
+            CreateAction ca5 = new CreateAction(MessageType.CommandResult, 0x00000001);
             CreateAction ca6 = new CreateAction(MessageType.Event, 0x00000001);
-            CreateAction ca7 = new CreateAction(MessageType.EventResponse);
+            CreateAction ca7 = new CreateAction(MessageType.EventACK);
 
             // 获取数据报文字节数组。
             byte[] cmd1 = new byte[] { ca1.GetHeartbeatDataCommand() };
             byte[] cmd2 = new byte[] { ca2.GetHeartbeatResponseCommand() };
             byte[] cmd3 = ca3.GetRequestCommand(MessageId.RealTimeControlLuminaire, ParameterType.Brightness, "100");
             byte[] cmd4 = ca4.GetResponseCommand(0x0);
-            byte[] cmd5 = ca5.GetResultCommand(0x0, MessageId.RealTimeControlLuminaire, ParameterType.ErrorCode, "0000");
+            byte[] cmd5 = ca5.GetResultCommand(0x0, MessageId.RealTimeControlLuminaire, ErrorCode.Succeed, "成功");
             byte[] cmd6 = ca6.GetEventCommand(MessageId.DataCollection, new List<Parameter> { new Parameter(ParameterType.ResourceType, "05"), new Parameter(ParameterType.ResourceValue, "100") });
             byte[] cmd7 = ca7.GetEventResponseCommand(0x01);
 
@@ -85,20 +86,39 @@ namespace ThisCoder.CSA018Example
                         cmdRemarkString += "\n| 头 |              预留：" + datagram.Head.Reserved.ToString("X10") + " |";
                         cmdRemarkString += "\n|    |     消息体CRC校验：" + datagram.Head.Crc32.ToString("X8") + "   |";
 
-                        if (datagram.Head.Type != MessageType.Response
-                            && datagram.Head.Type != MessageType.EventResponse)
+                        if (datagram.Head.Type != MessageType.CommandACK
+                            && datagram.Head.Type != MessageType.EventACK)
                         {
                             cmdRemarkString += "\n|------------------------------------|";
                             cmdRemarkString += "\n| 消 |            消息ID：" + ((ushort)(datagram.Body.MessageId)).ToString("X4") + "       |";
                             cmdRemarkString += "\n| 息 |            网关ID：" + datagram.Body.GatewayId.ToString("X8") + "   |";
                             cmdRemarkString += "\n| 体 |            灯具ID：" + datagram.Body.LuminaireId.ToString("X8") + "   |";
 
-                            for (int i = 0; i < datagram.Body.ParameterList.Count; i++)
+                            if (datagram.Head.Type != MessageType.CommandResult)
                             {
-                                cmdRemarkString += "\n|    |-------------------------------|";
-                                cmdRemarkString += "\n|    | 参 ｜    参数类型：" + ((ushort)datagram.Body.ParameterList[i].Type).ToString("X4") + "       |";
-                                cmdRemarkString += "\n|    | 数 ｜      参数值：\"" + datagram.Body.ParameterList[i].Value + "\"      |";
-                                cmdRemarkString += "\n|    | " + (i + 1).ToString().PadRight(2, ' ') + " | 参数值结束符：" + datagram.Body.ParameterList[i].End.ToString("X2") + "         |";
+                                for (int i = 0; i < datagram.Body.ParameterList.Count; i++)
+                                {
+                                    cmdRemarkString += "\n|    |-------------------------------|";
+                                    cmdRemarkString += "\n|    | 参 ｜    参数类型：" + ((ushort)datagram.Body.ParameterList[i].Type).ToString("X4") + "       |";
+                                    cmdRemarkString += "\n|    | 数 ｜      参数值：\"" + datagram.Body.ParameterList[i].Value + "\"      |";
+                                    cmdRemarkString += "\n|    | " + (i + 1).ToString().PadRight(2, ' ') + " | 参数值结束符：" + datagram.Body.ParameterList[i].End.ToString("X2") + "         |";
+                                }
+                            }
+                            else
+                            {
+                                cmdRemarkString += "\n|    |          错误代码：\""
+                                    + Encoding.UTF8.GetString(
+                                        new byte[] {
+                                            (byte)((uint)(datagram.Body.ErrorCode) >> 24),
+                                            (byte)((uint)(datagram.Body.ErrorCode) >> 16),
+                                            (byte)((uint)(datagram.Body.ErrorCode) >> 8),
+                                            (byte)(datagram.Body.ErrorCode)
+                                        }) + "\"     |";
+
+                                if (datagram.Body.ErrorInfo != null)
+                                {
+                                    cmdRemarkString += "\n|    |          错误信息：\"" + datagram.Body.ErrorInfo + "\"     |";
+                                }
                             }
                         }
 

@@ -4,7 +4,7 @@
     /// 消息报文处理委托。
     /// </summary>
     /// <param name="sender">动作行为类。</param>
-    /// <param name="e">消息报文事件参数。</param>
+    /// <param name="e"><see cref="DatagramEventArgs"/>类型，消息报文事件参数。</param>
     public delegate void DatagramProcessHandler(object sender, DatagramEventArgs e);
 
     /// <summary>
@@ -25,22 +25,21 @@
         /// <summary>
         /// 触发消息报文的处理事件。
         /// </summary>
-        /// <param name="e">消息报文事件参数。</param>
-        public virtual void OnDatagramProcess(DatagramEventArgs e)
+        /// <param name="e"><see cref="DatagramEventArgs"/>类型，消息报文事件参数。</param>
+        public void OnDatagramProcess(DatagramEventArgs e)
         {
-            if (DatagramProcess != null)
-            {
-                DatagramProcess(this, e);
-            }
+            DatagramProcess?.Invoke(this, e);
         }
 
         /// <summary>
         /// 触发消息报文的处理事件。
         /// </summary>
-        /// <param name="cmd">命令字节数组。</param>
-        public virtual void OnDatagramProcess(byte[] cmd)
+        /// <param name="dataArray">消息报文字节数组。</param>
+        /// <param name="isTcpOrUdp">报文承载方式是否是TCP或UDP，默认为false。</param>
+        /// <param name="isCheckCrc">是否校验CRC。</param>
+        public void OnDatagramProcess(byte[] dataArray, bool isTcpOrUdp = false, bool isCheckCrc = true)
         {
-            OnDatagramProcess(new DatagramEventArgs(cmd));
+            OnDatagramProcess(new DatagramEventArgs(dataArray, isTcpOrUdp, isCheckCrc));
         }
     }
 }

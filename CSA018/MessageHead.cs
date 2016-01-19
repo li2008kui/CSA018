@@ -10,31 +10,31 @@ namespace ThisCoder.CSA018
     {
         /// <summary>
         /// 消息类型。
-        ///     <para>byte类型，长度为1个字节。</para>
+        /// <para><see cref="MessageType"/>类型，长度为1个字节。</para>
         /// </summary>
         public MessageType Type { get; set; }
 
         /// <summary>
         /// 消息序号。
-        ///     <para>uint类型，长度为4个字节。</para>
+        /// <para>uint类型，长度为4个字节。</para>
         /// </summary>
         public uint SeqNumber { get; set; }
 
         /// <summary>
         /// 消息体长度。
-        ///     <para>ushort类型，长度为2个字节。</para>
+        /// <para>ushort类型，长度为2个字节。</para>
         /// </summary>
         public ushort Length { get; set; }
 
         /// <summary>
         /// 预留字段。
-        ///     <para>ulong类型，长度为5字节。</para>
+        /// <para>ulong类型，长度为5字节。</para>
         /// </summary>
         public ulong Reserved { get; set; }
 
         /// <summary>
         /// 消息体CRC32校验。
-        ///     <para>uint类型，长度为4个字节。</para>
+        /// <para>uint类型，长度为4个字节。</para>
         /// </summary>
         public uint Crc32 { get; set; }
 
@@ -43,7 +43,7 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="type">
         /// 消息类型。
-        ///     <para>byte类型，长度为1个字节。</para>
+        /// <para><see cref="MessageType"/>类型，长度为1个字节。</para>
         /// </param>
         public MessageHead(MessageType type)
             : this(type, Sequencer.Instance.SeqNumber++)
@@ -54,11 +54,11 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="type">
         /// 消息类型。
-        ///     <para>byte类型，长度为1个字节。</para>
+        /// <para><see cref="MessageType"/>类型，长度为1个字节。</para>
         /// </param>
         /// <param name="seqNumber">
         /// 消息序号。
-        ///     <para>uint类型，长度为4个字节。</para>
+        /// <para>uint类型，长度为4个字节。</para>
         /// </param>
         public MessageHead(MessageType type, uint seqNumber)
             : this()
@@ -72,15 +72,15 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="type">
         /// 消息类型。
-        ///     <para>byte类型，长度为1个字节。</para>
+        /// <para><see cref="MessageType"/>类型，长度为1个字节。</para>
         /// </param>
         /// <param name="length">
         /// 消息体长度。
-        ///     <para>ushort类型，长度为2个字节。</para>
+        /// <para>ushort类型，长度为2个字节。</para>
         /// </param>
         /// <param name="crc32">
         /// 消息体CRC32校验。
-        ///     <para>uint类型，长度为4个字节。</para>
+        /// <para>uint类型，长度为4个字节。</para>
         /// </param>
         public MessageHead(MessageType type, ushort length, uint crc32)
                 : this(type)
@@ -94,19 +94,19 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="type">
         /// 消息类型。
-        ///     <para>byte类型，长度为1个字节。</para>
+        /// <para><see cref="MessageType"/>类型，长度为1个字节。</para>
         /// </param>
         /// <param name="seqNumber">
         /// 消息序号。
-        ///     <para>uint类型，长度为4个字节。</para>
+        /// <para>uint类型，长度为4个字节。</para>
         /// </param>
         /// <param name="length">
         /// 消息体长度。
-        ///     <para>ushort类型，长度为2个字节。</para>
+        /// <para>ushort类型，长度为2个字节。</para>
         /// </param>
         /// <param name="crc32">
         /// 消息体CRC32校验。
-        ///     <para>uint类型，长度为4个字节。</para>
+        /// <para>uint类型，长度为4个字节。</para>
         /// </param>
         public MessageHead(MessageType type, uint seqNumber, ushort length, uint crc32)
                 : this(type, seqNumber)
@@ -150,10 +150,10 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="separator">
         /// 分隔符。
-        ///     <para>默认为空字符。</para>
+        /// <para>默认为空字符。</para>
         /// </param>
         /// <returns></returns>
-        public string ToHexString(string separator = "")
+        public string ToHexString(string separator = " ")
         {
             StringBuilder sb = new StringBuilder();
 
@@ -169,9 +169,6 @@ namespace ThisCoder.CSA018
         /// 获取消息头字符串。
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return Encoding.UTF8.GetString(GetHead());
-        }
+        public override string ToString() => Encoding.UTF8.GetString(GetHead());
     }
 }

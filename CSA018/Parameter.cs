@@ -10,21 +10,21 @@ namespace ThisCoder.CSA018
     {
         /// <summary>
         /// 参数类型。
-        ///     <para>ushort类型，长度为2个字节。</para>
+        /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </summary>
         public ParameterType Type { get; set; }
 
         /// <summary>
         /// 参数值。
-        ///     <para>string类型，长度可变。</para>
-        ///     <para>具体使用时可能需要转换为字符串类型。</para>
+        /// <para>string类型，长度可变。</para>
+        /// <para>具体使用时可能需要转换为字符串类型。</para>
         /// </summary>
         public string Value { get; set; }
 
         /// <summary>
         /// 参数值结束符。
-        ///     <para>只读属性。</para>
-        ///     <para>值为0x00。</para>
+        /// <para>只读属性。</para>
+        /// <para>值为0x00。</para>
         /// </summary>
         public byte End
         {
@@ -40,7 +40,7 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="type">
         /// 参数类型。
-        ///     <para>ushort类型，长度为2个字节。</para>
+        /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="value">字符串类型的参数值。</param>
         public Parameter(ParameterType type, string value)
@@ -55,7 +55,7 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="type">
         /// 参数类型。
-        ///     <para>ushort类型，长度为2个字节。</para>
+        /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="value">字节数组类型的参数值。</param>
         public Parameter(ParameterType type, byte[] value)
@@ -67,7 +67,7 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="type">
         /// 参数类型。
-        ///     <para>ushort类型，长度为2个字节。</para>
+        /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="value">字节类型的参数值。</param>
         public Parameter(ParameterType type, byte value)
@@ -129,10 +129,10 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="separator">
         /// 分隔符。
-        ///     <para>默认为空字符。</para>
+        /// <para>默认为空字符。</para>
         /// </param>
         /// <returns></returns>
-        public string ToHexString(string separator = "")
+        public string ToHexString(string separator = " ")
         {
             StringBuilder sb = new StringBuilder();
 
@@ -148,9 +148,6 @@ namespace ThisCoder.CSA018
         /// 获取参数字符串。
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return Encoding.UTF8.GetString(GetParameter());
-        }
+        public override string ToString() => Encoding.UTF8.GetString(GetParameter());
     }
 }

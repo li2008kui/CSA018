@@ -4,7 +4,7 @@ namespace ThisCoder.CSA018
 {
     /// <summary>
     /// 消息序号计数器类。
-    ///     <para>此类只有一个对象。</para>
+    /// <para>此类只有一个对象。</para>
     /// </summary>
     public sealed class Sequencer
     {

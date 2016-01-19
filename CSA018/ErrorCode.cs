@@ -2,6 +2,7 @@
 {
     /// <summary>
     /// 错误代码。
+    /// <para>uint类型，长度为4个字节。</para>
     /// </summary>
     public enum ErrorCode : uint
     {

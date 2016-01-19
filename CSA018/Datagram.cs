@@ -11,8 +11,8 @@ namespace ThisCoder.CSA018
     {
         /// <summary>
         /// 起始符
-        ///     <para>只读属性。</para>
-        ///     <para>值为0x02。</para>
+        /// <para>只读属性。</para>
+        /// <para>值为0x02。</para>
         /// </summary>
         public byte Stx
         {
@@ -25,20 +25,20 @@ namespace ThisCoder.CSA018
 
         /// <summary>
         /// 消息头。
-        ///     <para>长度为16字节。</para>
+        /// <para><see cref="MessageHead"/>类型，长度为16字节。</para>
         /// </summary>
         public MessageHead Head { get; set; }
 
         /// <summary>
         /// 消息体。
-        ///     <para>长度可变。</para>
+        /// <para><see cref="MessageBody"/>类型，长度可变。</para>
         /// </summary>
         public MessageBody Body { get; set; }
 
         /// <summary>
         /// 结束符。
-        ///     <para>只读属性。</para>
-        ///     <para>值为0x03。</para>
+        /// <para>只读属性。</para>
+        /// <para>值为0x03。</para>
         /// </summary>
         public byte Etx
         {
@@ -54,7 +54,7 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="head">
         /// 消息头。
-        ///     <para>长度为16字节。</para>
+        /// <para><see cref="MessageHead"/>类型，长度为16字节。</para>
         /// </param>
         public Datagram(MessageHead head)
             : this()
@@ -67,11 +67,11 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="head">
         /// 消息头。
-        ///     <para>长度为16字节。</para>
+        /// <para><see cref="MessageHead"/>类型，长度为16字节。</para>
         /// </param>
         /// <param name="body">
         /// 消息体。
-        ///     <para>长度可变。</para>
+        /// <para><see cref="MessageBody"/>类型，长度可变。</para>
         /// </param>
         public Datagram(MessageHead head, MessageBody body)
             : this()
@@ -101,8 +101,8 @@ namespace ThisCoder.CSA018
                 dg.AddRange(Escaping(head));
 
                 //“命令响应”和“事件和告警响应”类型的消息类型无消息体。
-                if (Head.Type != MessageType.Response
-                    && Head.Type != MessageType.EventResponse)
+                if (Head.Type != MessageType.CommandACK
+                    && Head.Type != MessageType.EventACK)
                 {
                     byte[] body = Body.GetBody();
                     dg.AddRange(Escaping(body));
@@ -193,9 +193,9 @@ namespace ThisCoder.CSA018
                 mh.Reserved = (ulong)((tempByteArray[7] << 32) + (tempByteArray[8] << 24) + (tempByteArray[9] << 16) + (tempByteArray[10] << 8) + tempByteArray[11]);
                 mh.Crc32 = (uint)((tempByteArray[12] << 24) + (tempByteArray[13] << 16) + (tempByteArray[14] << 8) + tempByteArray[15]);
 
-                if (mh.Type == MessageType.Request
+                if (mh.Type == MessageType.Command
                     || mh.Type == MessageType.Event
-                    || mh.Type == MessageType.Result)
+                    || mh.Type == MessageType.CommandResult)
                 {
                     if (tempByteArray.Length >= 30)
                     {
@@ -209,16 +209,34 @@ namespace ThisCoder.CSA018
                         mb.GatewayId = ((uint)tempByteArray[18] << 24) + ((uint)tempByteArray[19] << 16) + ((uint)tempByteArray[20] << 8) + tempByteArray[21];
                         mb.LuminaireId = ((uint)tempByteArray[22] << 24) + ((uint)tempByteArray[23] << 16) + ((uint)tempByteArray[24] << 8) + tempByteArray[25];
 
-                        List<Parameter> pmtList = new List<Parameter>();
-                        Parameter.GetParameterList(tempByteArray, 26, ref pmtList);
-
-                        if (pmtList.Count > 0)
+                        if (mh.Type == MessageType.CommandResult)
                         {
-                            mb.ParameterList = pmtList;
+                            mb.ErrorCode = (ErrorCode)((tempByteArray[26] << 24) + (tempByteArray[27] << 16) + (tempByteArray[28] << 8) + tempByteArray[29]);
+                            List<byte> errorInfoArrayList = new List<byte>();
+
+                            for (int i = 30; i < tempByteArray.Length; i++)
+                            {
+                                errorInfoArrayList.Add(tempByteArray[i]);
+                            }
+
+                            if (errorInfoArrayList.Count > 0)
+                            {
+                                mb.ErrorInfo = errorInfoArrayList.ToArray().ToString2();
+                            }
                         }
                         else
                         {
-                            throw new CsaException("参数格式错误。", ErrorCode.ParameterFormatError);
+                            List<Parameter> pmtList = new List<Parameter>();
+                            Parameter.GetParameterList(tempByteArray, 26, ref pmtList);
+
+                            if (pmtList.Count > 0)
+                            {
+                                mb.ParameterList = pmtList;
+                            }
+                            else
+                            {
+                                throw new CsaException("参数格式错误。", ErrorCode.ParameterFormatError);
+                            }
                         }
 
                         if (isCheckCrc && Crc32.GetCrc32(mb.GetBody()) != mh.Crc32)
@@ -243,9 +261,9 @@ namespace ThisCoder.CSA018
 
         /// <summary>
         /// 转义特殊字符。
-        ///     <para>STX转义为ESC和0xE7，即02->1BE7。</para>
-        ///     <para>ETX转义为ESC和0xE8，即03->1BE8。</para>
-        ///     <para>ESC转义为ESC和0x00，即1B->1B00。</para>
+        /// <para>STX转义为ESC和0xE7，即02->1BE7。</para>
+        /// <para>ETX转义为ESC和0xE8，即03->1BE8。</para>
+        /// <para>ESC转义为ESC和0x00，即1B->1B00。</para>
         /// </summary>
         /// <param name="byteArray">消息报文字节数组。</param>
         /// <returns></returns>
@@ -345,7 +363,7 @@ namespace ThisCoder.CSA018
 
         /// <summary>
         /// 获取消息报文字节数组列表。
-        ///     <para>此列表中的消息报文字节数组不包含起止符。</para>
+        /// <para>此列表中的消息报文字节数组不包含起止符。</para>
         /// </summary>
         /// <param name="dataArray">消息报文字节数组。</param>
         /// <param name="index">数组索引。</param>
@@ -386,10 +404,10 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="separator">
         /// 分隔符。
-        ///     <para>默认为空字符。</para>
+        /// <para>默认为空字符。</para>
         /// </param>
         /// <returns></returns>
-        public string ToHexString(string separator = "")
+        public string ToHexString(string separator = " ")
         {
             StringBuilder sb = new StringBuilder();
 
@@ -405,9 +423,6 @@ namespace ThisCoder.CSA018
         /// 获取消息报文字符串。
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return Encoding.UTF8.GetString(GetDatagram());
-        }
+        public override string ToString() => Encoding.UTF8.GetString(GetDatagram());
     }
 }

@@ -13,7 +13,7 @@ namespace ThisCoder.CSA018
         /// <param name="value">要转换的字节数组。</param>
         /// <param name="separator">
         /// 分隔符。
-        ///     <para>默认为空格。</para>
+        /// <para>默认为空格。</para>
         /// </param>
         /// <returns></returns>
         public static string ToHexString(this byte[] value, string separator = " ")
@@ -33,9 +33,6 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="value">要转换的字节数组。</param>
         /// <returns></returns>
-        public static string ToString2(this byte[] value)
-        {
-            return Encoding.UTF8.GetString(value);
-        }
+        public static string ToString2(this byte[] value) => Encoding.UTF8.GetString(value);
     }
 }
