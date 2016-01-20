@@ -10,10 +10,9 @@ namespace ThisCoder.CSA018
     public struct Datagram
     {
         /// <summary>
-        /// 起始符
-        /// <para>只读属性。</para>
-        /// <para>值为0x02。</para>
+        /// 起始符。
         /// </summary>
+        /// <value>只读属性，取值为0x02。</value>
         public byte Stx
         {
             get
@@ -37,9 +36,8 @@ namespace ThisCoder.CSA018
 
         /// <summary>
         /// 结束符。
-        /// <para>只读属性。</para>
-        /// <para>值为0x03。</para>
         /// </summary>
+        /// <value>只读属性，取值为0x03。</value>
         public byte Etx
         {
             get
@@ -83,7 +81,7 @@ namespace ThisCoder.CSA018
         /// <summary>
         /// 获取消息报文字节数组。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>消息报文字节数组。</returns>
         public byte[] GetDatagram()
         {
             if (Head.Type == MessageType.HeartbeatData)
@@ -119,7 +117,7 @@ namespace ThisCoder.CSA018
         /// <param name="dataArray">消息报文字节数组。</param>
         /// <param name="isTcpOrUdp">报文承载方式是否是TCP或UDP，默认为false。</param>
         /// <param name="isCheckCrc">是否校验CRC。</param>
-        /// <returns></returns>
+        /// <returns>消息报文对象列表。</returns>
         public static List<Datagram> GetDatagramList(byte[] dataArray, bool isTcpOrUdp = false, bool isCheckCrc = true)
         {
             List<byte> dataList = new List<byte>(dataArray);
@@ -266,7 +264,7 @@ namespace ThisCoder.CSA018
         /// <para>ESC转义为ESC和0x00，即1B->1B00。</para>
         /// </summary>
         /// <param name="byteArray">消息报文字节数组。</param>
-        /// <returns></returns>
+        /// <returns>转义后的字节数组。</returns>
         private static byte[] Escaping(byte[] byteArray)
         {
             List<byte> byteList = new List<byte>();
@@ -301,6 +299,7 @@ namespace ThisCoder.CSA018
         /// 去除转义特殊字符。
         /// </summary>
         /// <param name="byteArray">原消息报文字节数组。</param>
+        /// <returns>去除转义字符的字节数组。</returns>
         private static byte[] Descaping(byte[] byteArray)
         {
             List<byte> byteList = new List<byte>();
@@ -347,6 +346,7 @@ namespace ThisCoder.CSA018
         /// 去除转义特殊字符。
         /// </summary>
         /// <param name="byteArrayList">原消息报文字节数组列表。</param>
+        /// <returns>去除转义字符的字节数组列表。</returns>
         private static List<byte[]> Descaping(List<byte[]> byteArrayList)
         {
             List<byte[]> newByteArrayList = new List<byte[]>();
@@ -406,7 +406,7 @@ namespace ThisCoder.CSA018
         /// 分隔符。
         /// <para>默认为空字符。</para>
         /// </param>
-        /// <returns></returns>
+        /// <returns>消息报文十六进制字符串。</returns>
         public string ToHexString(string separator = " ")
         {
             StringBuilder sb = new StringBuilder();
@@ -422,7 +422,7 @@ namespace ThisCoder.CSA018
         /// <summary>
         /// 获取消息报文字符串。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>消息报文字符串。</returns>
         public override string ToString() => Encoding.UTF8.GetString(GetDatagram());
     }
 }

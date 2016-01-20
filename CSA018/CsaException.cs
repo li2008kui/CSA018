@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace ThisCoder.CSA018
 {
     /// <summary>
-    /// 发生非致命应用程序错误时引发的自定义异常。
+    /// 发生非致命应用程序错误时引发的Csa异常。
     /// </summary>
     [Serializable]
     public class CsaException : ApplicationException
@@ -16,7 +16,7 @@ namespace ThisCoder.CSA018
         public ErrorCode Code { get; private set; }
 
         /// <summary>
-        /// 初始化 AirException 类的新实例。
+        /// 初始化 CsaException 类的新实例。
         /// </summary>
         /// <param name="code">
         /// 错误代码。
@@ -29,7 +29,7 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 使用指定错误消息初始化 AirException 类的新实例。
+        /// 使用指定错误消息初始化 CsaException 类的新实例。
         /// </summary>
         /// <param name="message">解释异常原因的错误信息。</param>
         /// <param name="code">
@@ -43,7 +43,7 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// Initializes a new instance of the AirException class with
+        /// Initializes a new instance of the CsaException class with
         /// serialized data.
         /// </summary>
         /// <param name="info">保存序列化对象数据的对象。</param>
@@ -59,7 +59,7 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// Initializes a new instance of the AirException class with
+        /// Initializes a new instance of the CsaException class with
         /// a specified error message and a reference to the inner exception that is
         /// the cause of this exception.
         /// </summary>

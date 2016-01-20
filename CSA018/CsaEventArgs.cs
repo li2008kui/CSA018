@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace ThisCoder.CSA018
 {
     /// <summary>
-    /// 自定义事件参数类。
+    /// 消息报文事件参数类。
     /// </summary>
     public class DatagramEventArgs : EventArgs
     {
