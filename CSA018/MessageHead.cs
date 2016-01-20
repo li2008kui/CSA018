@@ -162,7 +162,9 @@ namespace ThisCoder.CSA018
                 sb.Append(item.ToString("X2") + separator);
             }
 
-            return sb.ToString().TrimEnd(separator.ToCharArray());
+            List<char> trimCharList = new List<char>(separator.ToCharArray());
+            trimCharList.AddRange(new char[] { '0', ' ' });
+            return sb.ToString().TrimEnd(trimCharList.ToArray());
         }
 
         /// <summary>

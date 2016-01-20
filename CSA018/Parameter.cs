@@ -17,7 +17,6 @@ namespace ThisCoder.CSA018
         /// <summary>
         /// 参数值。
         /// <para>string类型，长度可变。</para>
-        /// <para>具体使用时可能需要转换为字符串类型。</para>
         /// </summary>
         public string Value { get; set; }
 
@@ -141,7 +140,9 @@ namespace ThisCoder.CSA018
                 sb.Append(item.ToString("X2") + separator);
             }
 
-            return sb.ToString().TrimEnd(separator.ToCharArray());
+            List<char> trimCharList = new List<char>(separator.ToCharArray());
+            trimCharList.AddRange(new char[] { '0', ' ' });
+            return sb.ToString().TrimEnd(trimCharList.ToArray());
         }
 
         /// <summary>
