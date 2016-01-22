@@ -234,8 +234,9 @@
         SerialNumer = 0x0031,
 
         /// <summary>
-        /// RSA对称密钥。
-        /// <para>参数值最大字节数：64。</para>
+        /// RSA密钥。
+        /// <para>该密钥为私钥。</para>
+        /// <para>参数值最大字节数：128。</para>
         /// <para>使用base64转码的密钥。</para>
         /// </summary>
         RSAKey = 0x0040,

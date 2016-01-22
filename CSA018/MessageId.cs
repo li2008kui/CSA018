@@ -112,9 +112,9 @@
         UpdateRSAKey = 0x1212,
 
         /// <summary>
-        /// 更新AES密钥。
+        /// 更新DES密钥。
         /// </summary>
-        UpdateAESKey = 0x1213,
+        UpdateDESKey = 0x1213,
 
         /// <summary>
         /// 同步时间。
