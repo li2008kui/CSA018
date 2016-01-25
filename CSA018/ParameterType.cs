@@ -243,7 +243,8 @@
 
         /// <summary>
         /// DES密钥。
-        /// <para>参数值最大字节数：64。</para>
+        /// <para>该密钥使用RSA公钥进行加密。</para>
+        /// <para>参数值最大字节数：128。</para>
         /// <para>使用base64转码的密钥。</para>
         /// </summary>
         DESKey = 0x0041,

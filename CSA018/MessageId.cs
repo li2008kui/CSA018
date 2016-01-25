@@ -28,7 +28,7 @@
         /// <summary>
         /// 设置默认关灯时间。
         /// </summary>
-        SettingDefaultTurnOffTime = 1202,
+        SettingDefaultTurnOffTime = 0x1202,
 
         /// <summary>
         /// 设置默认调整亮度时间。
@@ -133,6 +133,7 @@
 
         /// <summary>
         /// 接入认证请求。
+        /// <para>由网关向服务器发起。</para>
         /// </summary>
         AccessAuthenticationRequest = 0x1300,
 
