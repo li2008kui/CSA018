@@ -37,24 +37,36 @@ namespace ThisCoder.CSA018Example
                 + "\n\n7、事件响应\n" + cmd7.ToHexString());
 
             // 订阅消息报文处理事件。
-            ParseAction pa = new ParseAction();
-            pa.DatagramProcess += Oa_DatagramProcess;
+            ParseAction pa1 = new ParseAction(cmd1);
+            ParseAction pa2 = new ParseAction(cmd2);
+            ParseAction pa3 = new ParseAction(cmd3);
+            ParseAction pa4 = new ParseAction(cmd4);
+            ParseAction pa5 = new ParseAction(cmd5);
+            ParseAction pa6 = new ParseAction(cmd6);
+            ParseAction pa7 = new ParseAction(cmd7);
+            pa1.DatagramProcess += Oa_DatagramProcess;
+            pa2.DatagramProcess += Oa_DatagramProcess;
+            pa3.DatagramProcess += Oa_DatagramProcess;
+            pa4.DatagramProcess += Oa_DatagramProcess;
+            pa5.DatagramProcess += Oa_DatagramProcess;
+            pa6.DatagramProcess += Oa_DatagramProcess;
+            pa7.DatagramProcess += Oa_DatagramProcess;
 
             // 触发消息报文处理事件。
             Console.WriteLine("\n\n二、解析命令\n1、心跳包数据");
-            pa.OnDatagramProcess(cmd1);
+            pa1.OnDatagramProcess();
             Console.WriteLine("\n2、心跳包响应");
-            pa.OnDatagramProcess(cmd2);
+            pa2.OnDatagramProcess();
             Console.WriteLine("\n3、请求命令");
-            pa.OnDatagramProcess(cmd3);
+            pa3.OnDatagramProcess();
             Console.WriteLine("\n4、响应命令");
-            pa.OnDatagramProcess(cmd4);
+            pa4.OnDatagramProcess();
             Console.WriteLine("\n5、结果命令");
-            pa.OnDatagramProcess(cmd5);
+            pa5.OnDatagramProcess();
             Console.WriteLine("\n6、事件命令");
-            pa.OnDatagramProcess(cmd6);
+            pa6.OnDatagramProcess();
             Console.WriteLine("\n7、事件响应");
-            pa.OnDatagramProcess(cmd7);
+            pa7.OnDatagramProcess();
 
             // 等待用户按键退出。
             Console.ReadKey();
