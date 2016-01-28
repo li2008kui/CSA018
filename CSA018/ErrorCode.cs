@@ -59,7 +59,30 @@
         #endregion
 
         #region 厂商自定义(0100~9998)
+        /// <summary>
+        /// 不支持该消息类型。
+        /// </summary>
+        NotSupportedMessageType = 0x30313030,
 
+        /// <summary>
+        /// 网关尚未完成初始化。
+        /// </summary>
+        NoInitialized = 0x30313031,
+
+        /// <summary>
+        /// 网关尚未完成入网控制。
+        /// </summary>
+        NoAuthorized = 0x30313032,
+
+        /// <summary>
+        /// 网关不在线。
+        /// </summary>
+        Offline = 0x30313033,
+
+        /// <summary>
+        /// 命令超时。
+        /// </summary>
+        CommandTimeout = 0x30313034,
         #endregion
     }
 }
