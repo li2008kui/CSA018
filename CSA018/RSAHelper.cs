@@ -71,7 +71,10 @@ namespace ThisCoder.CSA018
                 using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(keySize))
                 {
                     rsa.FromXmlString(xmlKeys);
-                    privateKey = rsa.ExportParameters(true).D;
+                    RSAParameters pmt = rsa.ExportParameters(true);
+
+                    // 私钥表示为 {d, n}。
+                    privateKey = pmt.D.Concat(pmt.Modulus).ToArray();
                 }
             }
             catch { }
