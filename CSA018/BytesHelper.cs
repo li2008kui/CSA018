@@ -19,7 +19,7 @@ namespace ThisCoder.CSA018
         /// <returns></returns>
         public static string ToHexString(this byte[] value, string separator = " ")
         {
-            return string.Join(separator, value.Select(b => b.ToString("X2"))).TrimEnd('0', ' ');
+            return string.Join(separator, value.Select(b => b.ToString("X2")));
         }
 
         /// <summary>
