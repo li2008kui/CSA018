@@ -37,7 +37,7 @@ namespace ThisCoder.CSA018
         /// DES 密钥。
         /// <para>该密钥运算模式采用 ECB 模式。</para>
         /// </summary>
-        private byte[] DESKey { get; set; }
+        private byte[] DESKey { get; }
 
         /// <summary>
         /// 通过默认构造方法初始化消息命令类实例。
