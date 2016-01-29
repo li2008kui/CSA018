@@ -209,37 +209,37 @@ namespace ThisCoder.CSA018
                     || mh.Type == MessageType.Event
                     || mh.Type == MessageType.CommandResult)
                 {
-                    byte[] newByteArray = tempByteArray.Where((b, index) => index >= 16 && index < 16 + mh.Length).ToArray();
+                    byte[] msgBody = tempByteArray.Where((b, index) => index >= 16 && index < 16 + mh.Length).ToArray();
 
                     if (desKey?.Length == 8)
                     {
                         DESHelper des = new DESHelper();
-                        newByteArray = des.Decrypt(desKey, newByteArray);
+                        msgBody = des.Decrypt(desKey, msgBody);
 
                         // 设置一个值指示采用 DES 密钥加密。
                         IsCryptographic = true;
                     }
 
-                    if (newByteArray.Length > 13)
+                    if (msgBody.Length > 13)
                     {
-                        if (!Enum.IsDefined(typeof(MessageId), (ushort)((newByteArray[0] << 8) + newByteArray[1])))
+                        if (!Enum.IsDefined(typeof(MessageId), (ushort)((msgBody[0] << 8) + msgBody[1])))
                         {
                             throw new CsaException("消息ID未定义。", ErrorCode.MessageIdUndefined);
                         }
 
                         MessageBody mb = new MessageBody();
-                        mb.MessageId = (MessageId)((newByteArray[0] << 8) + newByteArray[1]);
-                        mb.GatewayId = ((uint)newByteArray[2] << 24) + ((uint)newByteArray[3] << 16) + ((uint)newByteArray[4] << 8) + newByteArray[5];
-                        mb.LuminaireId = ((uint)newByteArray[6] << 24) + ((uint)newByteArray[7] << 16) + ((uint)newByteArray[8] << 8) + newByteArray[9];
+                        mb.MessageId = (MessageId)((msgBody[0] << 8) + msgBody[1]);
+                        mb.GatewayId = ((uint)msgBody[2] << 24) + ((uint)msgBody[3] << 16) + ((uint)msgBody[4] << 8) + msgBody[5];
+                        mb.LuminaireId = ((uint)msgBody[6] << 24) + ((uint)msgBody[7] << 16) + ((uint)msgBody[8] << 8) + msgBody[9];
 
                         if (mh.Type == MessageType.CommandResult)
                         {
-                            mb.ErrorCode = (ErrorCode)((newByteArray[10] << 24) + (newByteArray[11] << 16) + (newByteArray[12] << 8) + newByteArray[13]);
+                            mb.ErrorCode = (ErrorCode)((msgBody[10] << 24) + (msgBody[11] << 16) + (msgBody[12] << 8) + msgBody[13]);
                             List<byte> errorInfoArrayList = new List<byte>();
 
-                            for (int i = 14; i < newByteArray.Length; i++)
+                            for (int i = 14; i < msgBody.Length; i++)
                             {
-                                errorInfoArrayList.Add(newByteArray[i]);
+                                errorInfoArrayList.Add(msgBody[i]);
                             }
 
                             if (errorInfoArrayList.Count > 0)
@@ -250,7 +250,7 @@ namespace ThisCoder.CSA018
                         else
                         {
                             List<Parameter> pmtList = new List<Parameter>();
-                            Parameter.GetParameterList(newByteArray, 10, ref pmtList);
+                            Parameter.GetParameterList(msgBody, 10, ref pmtList);
 
                             if (pmtList.Count > 0)
                             {
