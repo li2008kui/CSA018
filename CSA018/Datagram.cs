@@ -209,15 +209,20 @@ namespace ThisCoder.CSA018
                     || mh.Type == MessageType.Event
                     || mh.Type == MessageType.CommandResult)
                 {
-                    byte[] msgBody = tempByteArray.Where((b, index) => index >= 16 && index < 16 + mh.Length).ToArray();
+                    byte[] newByteArray = tempByteArray.Where((b, index) => index >= 16 && index < 16 + mh.Length).ToArray();
+                    byte[] msgBody;
 
                     if (desKey?.Length == 8)
                     {
                         DESHelper des = new DESHelper();
-                        msgBody = des.Decrypt(desKey, msgBody);
+                        msgBody = des.Decrypt(desKey, newByteArray);
 
                         // 设置一个值指示采用 DES 密钥加密。
                         IsCryptographic = true;
+                    }
+                    else
+                    {
+                        msgBody = newByteArray;
                     }
 
                     if (msgBody.Length > 13)
@@ -262,7 +267,7 @@ namespace ThisCoder.CSA018
                             }
                         }
 
-                        if (isCheckCrc && Crc32.GetCrc32(mb.GetBody()) != mh.Crc32)
+                        if (isCheckCrc && Crc32.GetCrc32(newByteArray) != mh.Crc32)
                         {
                             throw new CsaException("消息体CRC校验错误。", ErrorCode.ChecksumError);
                         }
