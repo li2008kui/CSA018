@@ -231,7 +231,7 @@
         /// <para>参数值最大字节数：32。</para>
         /// <para>灯具的序列号。</para>
         /// </summary>
-        SerialNumer = 0x0031,
+        SerialNumber = 0x0031,
 
         /// <summary>
         /// RSA密钥。
