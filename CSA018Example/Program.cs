@@ -15,7 +15,11 @@ namespace ThisCoder.CSA018Example
             CreateCommand ca3 = new CreateCommand(MessageType.Command, 0x00000001);
             CreateCommand ca4 = new CreateCommand(MessageType.CommandACK);
             CreateCommand ca5 = new CreateCommand(MessageType.CommandResult, 0x00000001);
-            CreateCommand ca6 = new CreateCommand(MessageType.Event, 0x00000001);
+
+            // 采用 DES 密钥加密。
+            DESHelper des = new DESHelper();
+            byte[] desKey = des.GetSecretKey();
+            CreateCommand ca6 = new CreateCommand(MessageType.Event, desKey, 0x00000001);
             CreateCommand ca7 = new CreateCommand(MessageType.EventACK);
 
             // 获取数据报文字节数组。
@@ -42,8 +46,11 @@ namespace ThisCoder.CSA018Example
             ParseCommand pa3 = new ParseCommand(cmd3);
             ParseCommand pa4 = new ParseCommand(cmd4);
             ParseCommand pa5 = new ParseCommand(cmd5);
-            ParseCommand pa6 = new ParseCommand(cmd6);
+
+            // 采用 DES 密钥解密。
+            ParseCommand pa6 = new ParseCommand(cmd6, desKey);
             ParseCommand pa7 = new ParseCommand(cmd7);
+
             pa1.DatagramProcess += Oa_DatagramProcess;
             pa2.DatagramProcess += Oa_DatagramProcess;
             pa3.DatagramProcess += Oa_DatagramProcess;
