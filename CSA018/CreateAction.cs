@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace ThisCoder.CSA018
 {
@@ -102,12 +103,12 @@ namespace ThisCoder.CSA018
         {
             if (desKey == null)
             {
-                throw new ArgumentNullException(nameof(desKey), "DES 密钥不能为空。");
+                throw new ArgumentNullException(nameof(desKey), $"{typeof(DES)} 密钥不能为空。");
             }
 
             if (desKey.Length != 8)
             {
-                throw new ArgumentNullException(nameof(desKey), "DES 密钥长度不正确。");
+                throw new ArgumentNullException(nameof(desKey), $"{typeof(DES)} 密钥长度不正确。");
             }
 
             MessageType = messageType;

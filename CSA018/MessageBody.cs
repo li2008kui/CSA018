@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ThisCoder.CSA018
@@ -148,7 +149,7 @@ namespace ThisCoder.CSA018
 
         /// <summary>
         /// 获取消息体字节数组。
-        /// <para>如果 desKey 不为空，则使用 DES 密钥加密消息体。</para>
+        /// <para>如果 <see cref="DESKey"/> 不为空，则使用 <see cref="DES"/> 密钥加密消息体。</para>
         /// </summary>
         /// <returns></returns>
         public byte[] GetBody()
@@ -192,7 +193,7 @@ namespace ThisCoder.CSA018
             {
                 if (DESKey.Length != 8)
                 {
-                    throw new ArgumentNullException(nameof(DESKey), "DES 密钥长度不正确。");
+                    throw new ArgumentNullException(nameof(DESKey), $"{typeof(DES)} 密钥长度不正确。");
                 }
                 else
                 {
