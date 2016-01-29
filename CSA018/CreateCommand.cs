@@ -5,9 +5,9 @@ using System.Security.Cryptography;
 namespace ThisCoder.CSA018
 {
     /// <summary>
-    /// 创建消息动作行为类。
+    /// 创建消息命令类。
     /// </summary>
-    public class CreateAction
+    public class CreateCommand
     {
         /// <summary>
         /// 消息类型。
@@ -40,12 +40,12 @@ namespace ThisCoder.CSA018
         private byte[] DESKey { get; set; }
 
         /// <summary>
-        /// 通过默认构造方法初始化消息动作行为类。
+        /// 通过默认构造方法初始化消息命令类实例。
         /// </summary>
-        public CreateAction() { }
+        public CreateCommand() { }
 
         /// <summary>
-        /// 通过消息类型、可选的网关ID和可选的灯具ID初始化消息动作行为类。
+        /// 通过消息类型、可选的网关ID和可选的灯具ID初始化消息命令类实例。
         /// </summary>
         /// <param name="messageType">
         /// 消息类型。
@@ -66,7 +66,7 @@ namespace ThisCoder.CSA018
         /// <para>0xFFFFFF41~0xFFFFFFFE为保留地址。</para>
         /// <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
         /// </param>
-        public CreateAction(MessageType messageType, uint gatewayId = 0x0, uint luminaireId = 0x0)
+        public CreateCommand(MessageType messageType, uint gatewayId = 0x0, uint luminaireId = 0x0)
         {
             MessageType = messageType;
             GatewayId = gatewayId;
@@ -74,7 +74,7 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 通过消息类型、DES 密钥、网关ID和可选的灯具ID初始化消息动作行为类。
+        /// 通过消息类型、DES 密钥、网关ID和可选的灯具ID初始化消息命令类实例。
         /// <para>如果 DES 密钥不为空，则使用该密钥加密消息体。</para>
         /// </summary>
         /// <param name="messageType">
@@ -99,7 +99,7 @@ namespace ThisCoder.CSA018
         /// <para>0xFFFFFF41~0xFFFFFFFE为保留地址。</para>
         /// <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
         /// </param>
-        public CreateAction(MessageType messageType, byte[] desKey, uint gatewayId, uint luminaireId = 0x0)
+        public CreateCommand(MessageType messageType, byte[] desKey, uint gatewayId, uint luminaireId = 0x0)
         {
             if (desKey == null)
             {

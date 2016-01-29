@@ -6,7 +6,7 @@ namespace ThisCoder.CSA018
     /// <summary>
     /// 字节数组助手类。
     /// </summary>
-    public static class ByteArrayHelper
+    public static class BytesHelper
     {
         /// <summary>
         /// 将字节数组转换为十六进制字符串。

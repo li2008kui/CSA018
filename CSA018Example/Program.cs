@@ -9,14 +9,14 @@ namespace ThisCoder.CSA018Example
     {
         static void Main(string[] args)
         {
-            // 实例化创建消息动作行为类的对象。
-            CreateAction ca1 = new CreateAction();
-            CreateAction ca2 = new CreateAction();
-            CreateAction ca3 = new CreateAction(MessageType.Command, 0x00000001);
-            CreateAction ca4 = new CreateAction(MessageType.CommandACK);
-            CreateAction ca5 = new CreateAction(MessageType.CommandResult, 0x00000001);
-            CreateAction ca6 = new CreateAction(MessageType.Event, 0x00000001);
-            CreateAction ca7 = new CreateAction(MessageType.EventACK);
+            // 实例化创建消息命令类的对象。
+            CreateCommand ca1 = new CreateCommand();
+            CreateCommand ca2 = new CreateCommand();
+            CreateCommand ca3 = new CreateCommand(MessageType.Command, 0x00000001);
+            CreateCommand ca4 = new CreateCommand(MessageType.CommandACK);
+            CreateCommand ca5 = new CreateCommand(MessageType.CommandResult, 0x00000001);
+            CreateCommand ca6 = new CreateCommand(MessageType.Event, 0x00000001);
+            CreateCommand ca7 = new CreateCommand(MessageType.EventACK);
 
             // 获取数据报文字节数组。
             byte[] cmd1 = new byte[] { ca1.GetHeartbeatDataCommand() };
@@ -37,13 +37,13 @@ namespace ThisCoder.CSA018Example
                 + "\n\n7、事件响应\n" + cmd7.ToHexString());
 
             // 订阅消息报文处理事件。
-            ParseAction pa1 = new ParseAction(cmd1);
-            ParseAction pa2 = new ParseAction(cmd2);
-            ParseAction pa3 = new ParseAction(cmd3);
-            ParseAction pa4 = new ParseAction(cmd4);
-            ParseAction pa5 = new ParseAction(cmd5);
-            ParseAction pa6 = new ParseAction(cmd6);
-            ParseAction pa7 = new ParseAction(cmd7);
+            ParseCommand pa1 = new ParseCommand(cmd1);
+            ParseCommand pa2 = new ParseCommand(cmd2);
+            ParseCommand pa3 = new ParseCommand(cmd3);
+            ParseCommand pa4 = new ParseCommand(cmd4);
+            ParseCommand pa5 = new ParseCommand(cmd5);
+            ParseCommand pa6 = new ParseCommand(cmd6);
+            ParseCommand pa7 = new ParseCommand(cmd7);
             pa1.DatagramProcess += Oa_DatagramProcess;
             pa2.DatagramProcess += Oa_DatagramProcess;
             pa3.DatagramProcess += Oa_DatagramProcess;
