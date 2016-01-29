@@ -237,7 +237,7 @@ namespace ThisCoder.CSA018
                             mb.ErrorCode = (ErrorCode)((newByteArray[10] << 24) + (newByteArray[11] << 16) + (newByteArray[12] << 8) + newByteArray[13]);
                             List<byte> errorInfoArrayList = new List<byte>();
 
-                            for (int i = 13; i < newByteArray.Length; i++)
+                            for (int i = 14; i < newByteArray.Length; i++)
                             {
                                 errorInfoArrayList.Add(newByteArray[i]);
                             }
