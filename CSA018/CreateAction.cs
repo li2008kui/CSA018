@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ThisCoder.CSA018
 {
@@ -11,13 +12,13 @@ namespace ThisCoder.CSA018
         /// 消息类型。
         /// <para><see cref="MessageType"/>类型，长度为1个字节。</para>
         /// </summary>
-        public MessageType MessageType { get; set; }
+        private MessageType MessageType { get; set; }
 
         /// <summary>
         /// 网关ID。
         /// <para>uint类型，长度为4个字节。</para>
         /// </summary>
-        public uint GatewayId { get; set; }
+        private uint GatewayId { get; set; }
 
         /// <summary>
         /// 灯具ID。
@@ -29,7 +30,13 @@ namespace ThisCoder.CSA018
         /// <para>0xFFFFFF41~0xFFFFFFFE为保留地址。</para>
         /// <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
         /// </summary>
-        public uint LuminaireId { get; set; }
+        private uint LuminaireId { get; set; }
+
+        /// <summary>
+        /// DES 密钥。
+        /// <para>该密钥运算模式采用 ECB 模式。</para>
+        /// </summary>
+        private byte[] DESKey { get; set; }
 
         /// <summary>
         /// 通过默认构造方法初始化消息动作行为类。
@@ -37,7 +44,7 @@ namespace ThisCoder.CSA018
         public CreateAction() { }
 
         /// <summary>
-        /// 通过消息类型、网关ID和灯具ID初始化消息动作行为类。
+        /// 通过消息类型、可选的网关ID和可选的灯具ID初始化消息动作行为类。
         /// </summary>
         /// <param name="messageType">
         /// 消息类型。
@@ -58,9 +65,53 @@ namespace ThisCoder.CSA018
         /// <para>0xFFFFFF41~0xFFFFFFFE为保留地址。</para>
         /// <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
         /// </param>
-        public CreateAction(MessageType messageType, uint gatewayId = 0x00000000, uint luminaireId = 0x00000000)
+        public CreateAction(MessageType messageType, uint gatewayId = 0x0, uint luminaireId = 0x0)
         {
             MessageType = messageType;
+            GatewayId = gatewayId;
+            LuminaireId = luminaireId;
+        }
+
+        /// <summary>
+        /// 通过消息类型、DES 密钥、网关ID和可选的灯具ID初始化消息动作行为类。
+        /// <para>如果 DES 密钥不为空，则使用该密钥加密消息体。</para>
+        /// </summary>
+        /// <param name="messageType">
+        /// 消息类型。
+        /// <para><see cref="MessageType"/>类型，长度为1个字节。</para>
+        /// </param>
+        /// <param name="desKey">
+        /// DES 密钥。
+        /// <para>该密钥运算模式采用 ECB 模式。</para>
+        /// </param>
+        /// <param name="gatewayId">
+        /// 网关ID。
+        /// <para>uint类型，长度为4个字节。</para>
+        /// </param>
+        /// <param name="luminaireId">
+        /// 灯具ID。
+        /// <para>uint类型，长度为4个字节。</para>
+        /// <para>0x00000000为保留地址，对于只需下发到网关的命令可以使用该地址。</para>
+        /// <para>0x00000001~0xFFFFFF00分别对应入网的单灯的具体地址。</para>
+        /// <para>0xFFFFFF01~0xFFFFFF20分别对应回路地址1～32路的地址。</para>
+        /// <para>0xFFFFFF21~0xFFFFFF40分别对应组地址(组号)1～32。</para>
+        /// <para>0xFFFFFF41~0xFFFFFFFE为保留地址。</para>
+        /// <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
+        /// </param>
+        public CreateAction(MessageType messageType, byte[] desKey, uint gatewayId, uint luminaireId = 0x0)
+        {
+            if (desKey == null)
+            {
+                throw new ArgumentNullException(nameof(desKey), "DES 密钥不能为空。");
+            }
+
+            if (desKey.Length != 8)
+            {
+                throw new ArgumentNullException(nameof(desKey), "DES 密钥长度不正确。");
+            }
+
+            MessageType = messageType;
+            DESKey = desKey;
             GatewayId = gatewayId;
             LuminaireId = luminaireId;
         }
@@ -334,7 +385,8 @@ namespace ThisCoder.CSA018
                  GatewayId,
                  LuminaireId,
                  errorCode,
-                 errorInfo);
+                 errorInfo,
+                 DESKey);
 
             // 获取消息体字节数组。
             byte[] msgBody = mb.GetBody();
@@ -366,7 +418,8 @@ namespace ThisCoder.CSA018
                 messageId,
                 GatewayId,
                 LuminaireId,
-                parameterList);
+                parameterList,
+                DESKey);
 
             // 获取消息体字节数组。
             byte[] msgBody = mb.GetBody();
@@ -401,7 +454,8 @@ namespace ThisCoder.CSA018
                 messageId,
                 GatewayId,
                 LuminaireId,
-                parameterList);
+                parameterList,
+                DESKey);
 
             // 获取消息体字节数组。
             byte[] msgBody = mb.GetBody();

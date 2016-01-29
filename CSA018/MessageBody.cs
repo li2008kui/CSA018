@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace ThisCoder.CSA018
@@ -54,6 +55,12 @@ namespace ThisCoder.CSA018
         public string ErrorInfo { get; set; }
 
         /// <summary>
+        /// DES 密钥。
+        /// <para>该密钥运算模式采用 ECB 模式。</para>
+        /// </summary>
+        private byte[] DESKey { get; set; }
+
+        /// <summary>
         /// 通过“消息ID”、“网关ID”、“灯具ID”和“参数列表”初始化消息体对象实例。
         /// </summary>
         /// <param name="messageId">
@@ -79,18 +86,23 @@ namespace ThisCoder.CSA018
         /// <para>长度可变。</para>
         /// <para>可选字段，对“请求”和“事件和告警”类型的消息有效。</para>
         /// </param>
-        public MessageBody(MessageId messageId, uint gatewayId, uint luminaireId, List<Parameter> parameterList)
+        /// <param name="desKey">
+        /// DES 密钥，默认不加密。
+        /// <para>该密钥运算模式采用 ECB 模式。</para>
+        /// </param>
+        public MessageBody(MessageId messageId, uint gatewayId, uint luminaireId, List<Parameter> parameterList, byte[] desKey = null)
             : this()
         {
             MessageId = messageId;
             GatewayId = gatewayId;
             LuminaireId = luminaireId;
             ParameterList = parameterList;
+            DESKey = desKey;
         }
 
         /// <summary>
         /// 通过“消息ID”、“网关ID”、“灯具ID”、“错误代码”和可选的“错误信息”初始化消息体对象实例。
-        /// </summary> 
+        /// </summary>
         /// <param name="messageId">
         /// 消息ID。
         /// <para><see cref="MessageId"/>类型，长度为2个字节。</para>
@@ -98,7 +110,7 @@ namespace ThisCoder.CSA018
         /// <param name="gatewayId">
         /// 网关ID。
         /// <para>uint类型，长度为4个字节。</para>
-        /// </param> 
+        /// </param>
         /// <param name="luminaireId">
         /// 灯具ID。
         /// <para>uint类型，长度为4个字节。</para>
@@ -108,18 +120,22 @@ namespace ThisCoder.CSA018
         /// <para>0xFFFFFF21~0xFFFFFF40分别对应组地址(组号)1～32。</para>
         /// <para>0xFFFFFF41~0xFFFFFFFE为保留地址。</para>
         /// <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
-        /// </param> 
-        /// <param name="errorCode"> 
+        /// </param>
+        /// <param name="errorCode">
         /// 错误代码。
         /// <para><see cref="ErrorCode"/>类型，长度为4个字节。</para>
         /// <para>可选字段，对“命令结果”类型的消息有效。</para>
-        /// </param> 
-        /// <param name="errorInfo"> 
+        /// </param>
+        /// <param name="errorInfo">
         /// 错误信息。
         /// <para>string类型，长度可变。</para> 
         /// <para>可选字段，对“命令结果”类型的消息有效。</para>
-        /// </param> 
-        public MessageBody(MessageId messageId, uint gatewayId, uint luminaireId, ErrorCode errorCode, string errorInfo = null)
+        /// </param>
+        /// <param name="desKey">
+        /// DES 密钥，默认不加密。
+        /// <para>该密钥运算模式采用 ECB 模式。</para>
+        /// </param>
+        public MessageBody(MessageId messageId, uint gatewayId, uint luminaireId, ErrorCode errorCode, string errorInfo = null, byte[] desKey = null)
             : this()
         {
             MessageId = messageId;
@@ -127,10 +143,12 @@ namespace ThisCoder.CSA018
             LuminaireId = luminaireId;
             ErrorCode = errorCode;
             ErrorInfo = errorInfo;
+            DESKey = desKey;
         }
 
         /// <summary>
         /// 获取消息体字节数组。
+        /// <para>如果 desKey 不为空，则使用 DES 密钥加密消息体。</para>
         /// </summary>
         /// <returns></returns>
         public byte[] GetBody()
@@ -170,7 +188,22 @@ namespace ThisCoder.CSA018
                 }
             }
 
-            return mb.ToArray();
+            if (DESKey != null)
+            {
+                if (DESKey.Length != 8)
+                {
+                    throw new ArgumentNullException(nameof(DESKey), "DES 密钥长度不正确。");
+                }
+                else
+                {
+                    DESHelper des = new DESHelper();
+                    return des.Encrypt(DESKey, mb.ToArray());
+                }
+            }
+            else
+            {
+                return mb.ToArray();
+            }
         }
 
         /// <summary>

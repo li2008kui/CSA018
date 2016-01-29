@@ -80,6 +80,7 @@ namespace ThisCoder.CSA018
 
         /// <summary>
         /// 获取消息报文字节数组。
+        /// <para>如果 desKey 不为空，则使用 DES 密钥加密消息体。</para>
         /// </summary>
         /// <returns>消息报文字节数组。</returns>
         public byte[] GetDatagram()
