@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ThisCoder.CSA018
@@ -19,16 +20,7 @@ namespace ThisCoder.CSA018
         /// <returns></returns>
         public static string ToHexString(this byte[] value, string separator = " ")
         {
-            StringBuilder sb = new StringBuilder();
-
-            foreach (var item in value)
-            {
-                sb.Append(item.ToString("X2") + separator);
-            }
-
-            List<char> trimCharList = new List<char>(separator.ToCharArray());
-            trimCharList.AddRange(new char[] { '0', ' ' });
-            return sb.ToString().TrimEnd(trimCharList.ToArray());
+            return string.Join(separator, value.Select(b => b.ToString("X2"))).TrimEnd('0', ' ');
         }
 
         /// <summary>
