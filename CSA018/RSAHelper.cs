@@ -143,27 +143,15 @@ namespace ThisCoder.CSA018
         /// <returns></returns>
         public byte[] Decrypt(byte[] privateKey, byte[] cipherBytes)
         {
-            byte[] pd = new byte[64];
-            byte[] pm = new byte[64];
-
             if (privateKey.Length != 128)
             {
                 return new byte[] { };
             }
 
-            for (int i = 0; i < privateKey.Length; i++)
-            {
-                if (i < 64)
-                {
-                    pd[i] = privateKey[i];
-                }
-                else
-                {
-                    pm[i - 64] = privateKey[i];
-                }
-            }
-
-            return Decrypt(cipherBytes, pd, pm, false);
+            return Decrypt(cipherBytes,
+                privateKey.Where((b, i) => i < 64).ToArray(),
+                privateKey.Where((b, j) => j >= 64).ToArray(),
+                false);
         }
 
         /// <summary>

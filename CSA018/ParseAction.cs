@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace ThisCoder.CSA018
 {
@@ -42,8 +44,39 @@ namespace ThisCoder.CSA018
         /// <param name="isCheckCrc">是否校验CRC。</param>
         public ParseAction(byte[] dataArray, bool isTcpOrUdp = false, bool isCheckCrc = true)
         {
-            datagramEventArgs = new DatagramEventArgs(dataArray, IsTcpOrUdp, IsCheckCrc);
+            datagramEventArgs = new DatagramEventArgs(
+                dataArray,
+                isTcpOrUdp: IsTcpOrUdp,
+                isCheckCrc: IsCheckCrc);
 
+            DatagramList = datagramEventArgs.DatagramList;
+            IsTcpOrUdp = isTcpOrUdp;
+            IsCheckCrc = isCheckCrc;
+        }
+
+        /// <summary>
+        /// 通过默认构造方法初始化解析消息动作行为类。
+        /// </summary>
+        /// <param name="dataArray">消息报文字节数组。</param>
+        /// <param name="desKey">
+        /// DES 密钥。
+        /// <para>该密钥运算模式采用 ECB 模式。</para>
+        /// </param>
+        /// <param name="isTcpOrUdp">报文承载方式是否是TCP或UDP，默认为false。</param>
+        /// <param name="isCheckCrc">是否校验CRC。</param>
+        public ParseAction(byte[] dataArray, byte[] desKey, bool isTcpOrUdp = false, bool isCheckCrc = true)
+        {
+            if (desKey == null)
+            {
+                throw new ArgumentNullException(nameof(desKey), $"{typeof(DES)} 密钥不能为空。");
+            }
+
+            if (desKey.Length != 8)
+            {
+                throw new ArgumentNullException(nameof(desKey), $"{typeof(DES)} 密钥长度不正确。");
+            }
+
+            datagramEventArgs = new DatagramEventArgs(dataArray, desKey, IsTcpOrUdp, IsCheckCrc);
             DatagramList = datagramEventArgs.DatagramList;
             IsTcpOrUdp = isTcpOrUdp;
             IsCheckCrc = isCheckCrc;

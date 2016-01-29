@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ThisCoder.CSA018
@@ -48,6 +50,11 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
+        /// 获取一个值，该值指示报文 <see cref="Datagram"/> 的消息体 <see cref="MessageBody"/> 是否采用 <see cref="DES"/> 密钥加密。
+        /// </summary>
+        public bool IsCryptographic { get; private set; }
+
+        /// <summary>
         /// 通过消息头初始化报文对象实例。
         /// </summary>
         /// <param name="head">
@@ -76,6 +83,9 @@ namespace ThisCoder.CSA018
         {
             Head = head;
             Body = body;
+
+            // 设置一个值指示采用 DES 密钥加密。
+            IsCryptographic = Body.DESKey?.Length == 8;
         }
 
         /// <summary>
@@ -98,7 +108,7 @@ namespace ThisCoder.CSA018
                 byte[] head = Head.GetHead();
                 dg.AddRange(Escaping(head));
 
-                //“命令响应”和“事件和告警响应”类型的消息类型无消息体。
+                // “命令响应”和“事件和告警响应”类型的消息类型无消息体。
                 if (Head.Type != MessageType.CommandACK
                     && Head.Type != MessageType.EventACK)
                 {
@@ -115,10 +125,14 @@ namespace ThisCoder.CSA018
         /// 获取消息报文对象列表。
         /// </summary>
         /// <param name="dataArray">消息报文字节数组。</param>
+        /// <param name="desKey">
+        /// DES 密钥，默认不加密。
+        /// <para>该密钥运算模式采用 ECB 模式。</para>
+        /// </param>
         /// <param name="isTcpOrUdp">报文承载方式是否是TCP或UDP，默认为false。</param>
         /// <param name="isCheckCrc">是否校验CRC。</param>
         /// <returns>消息报文对象列表。</returns>
-        public static List<Datagram> GetDatagramList(byte[] dataArray, bool isTcpOrUdp = false, bool isCheckCrc = true)
+        public List<Datagram> GetDatagramList(byte[] dataArray, byte[] desKey = null, bool isTcpOrUdp = false, bool isCheckCrc = true)
         {
             List<byte> dataList = new List<byte>(dataArray);
 
@@ -195,26 +209,37 @@ namespace ThisCoder.CSA018
                     || mh.Type == MessageType.Event
                     || mh.Type == MessageType.CommandResult)
                 {
-                    if (tempByteArray.Length >= 30)
+                    byte[] newByteArray = tempByteArray.Where((b, index) => index >= 16 && index < 16 + mh.Length).ToArray();
+
+                    if (desKey?.Length == 8)
                     {
-                        if (!Enum.IsDefined(typeof(MessageId), (ushort)((tempByteArray[16] << 8) + tempByteArray[17])))
+                        DESHelper des = new DESHelper();
+                        newByteArray = des.Decrypt(desKey, newByteArray);
+
+                        // 设置一个值指示采用 DES 密钥加密。
+                        IsCryptographic = true;
+                    }
+
+                    if (newByteArray.Length > 13)
+                    {
+                        if (!Enum.IsDefined(typeof(MessageId), (ushort)((newByteArray[0] << 8) + newByteArray[1])))
                         {
                             throw new CsaException("消息ID未定义。", ErrorCode.MessageIdUndefined);
                         }
 
                         MessageBody mb = new MessageBody();
-                        mb.MessageId = (MessageId)((tempByteArray[16] << 8) + tempByteArray[17]);
-                        mb.GatewayId = ((uint)tempByteArray[18] << 24) + ((uint)tempByteArray[19] << 16) + ((uint)tempByteArray[20] << 8) + tempByteArray[21];
-                        mb.LuminaireId = ((uint)tempByteArray[22] << 24) + ((uint)tempByteArray[23] << 16) + ((uint)tempByteArray[24] << 8) + tempByteArray[25];
+                        mb.MessageId = (MessageId)((newByteArray[0] << 8) + newByteArray[1]);
+                        mb.GatewayId = ((uint)newByteArray[2] << 24) + ((uint)newByteArray[3] << 16) + ((uint)newByteArray[4] << 8) + newByteArray[5];
+                        mb.LuminaireId = ((uint)newByteArray[6] << 24) + ((uint)newByteArray[7] << 16) + ((uint)newByteArray[8] << 8) + newByteArray[9];
 
                         if (mh.Type == MessageType.CommandResult)
                         {
-                            mb.ErrorCode = (ErrorCode)((tempByteArray[26] << 24) + (tempByteArray[27] << 16) + (tempByteArray[28] << 8) + tempByteArray[29]);
+                            mb.ErrorCode = (ErrorCode)((newByteArray[10] << 24) + (newByteArray[11] << 16) + (newByteArray[12] << 8) + newByteArray[13]);
                             List<byte> errorInfoArrayList = new List<byte>();
 
-                            for (int i = 30; i < tempByteArray.Length; i++)
+                            for (int i = 13; i < newByteArray.Length; i++)
                             {
-                                errorInfoArrayList.Add(tempByteArray[i]);
+                                errorInfoArrayList.Add(newByteArray[i]);
                             }
 
                             if (errorInfoArrayList.Count > 0)
@@ -225,7 +250,7 @@ namespace ThisCoder.CSA018
                         else
                         {
                             List<Parameter> pmtList = new List<Parameter>();
-                            Parameter.GetParameterList(tempByteArray, 26, ref pmtList);
+                            Parameter.GetParameterList(newByteArray, 10, ref pmtList);
 
                             if (pmtList.Count > 0)
                             {
@@ -265,7 +290,7 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="byteArray">消息报文字节数组。</param>
         /// <returns>转义后的字节数组。</returns>
-        private static byte[] Escaping(byte[] byteArray)
+        private byte[] Escaping(byte[] byteArray)
         {
             List<byte> byteList = new List<byte>();
 
@@ -300,7 +325,7 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="byteArray">原消息报文字节数组。</param>
         /// <returns>去除转义字符的字节数组。</returns>
-        private static byte[] Descaping(byte[] byteArray)
+        private byte[] Descaping(byte[] byteArray)
         {
             List<byte> byteList = new List<byte>();
 
@@ -347,7 +372,7 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="byteArrayList">原消息报文字节数组列表。</param>
         /// <returns>去除转义字符的字节数组列表。</returns>
-        private static List<byte[]> Descaping(List<byte[]> byteArrayList)
+        private List<byte[]> Descaping(List<byte[]> byteArrayList)
         {
             List<byte[]> newByteArrayList = new List<byte[]>();
             byte[] byteArray;
@@ -368,7 +393,7 @@ namespace ThisCoder.CSA018
         /// <param name="dataArray">消息报文字节数组。</param>
         /// <param name="index">数组索引。</param>
         /// <param name="byteArrayList">消息报文字节数组列表。</param>
-        private static void GetByteArrayList(byte[] dataArray, int index, ref List<byte[]> byteArrayList)
+        private void GetByteArrayList(byte[] dataArray, int index, ref List<byte[]> byteArrayList)
         {
             bool isStx = false;
             List<byte> byteList = new List<byte>();
