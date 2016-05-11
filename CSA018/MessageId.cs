@@ -180,9 +180,14 @@
         /// 设置光衰补偿参数。
         /// </summary>
         SettingAttenuationCompensationParameter = 0x1404,
+        /// <summary>
+        /// 搜索设备。
+        /// </summary>
+        SearchDevice = 0x1405,
         #endregion
         #endregion
 
+        #region 事件列表
         #region 数据采集
         /// <summary>
         /// 数据采集。
@@ -191,13 +196,13 @@
 
         #region 厂商自定义
         /// <summary>
-        /// 搜索设备。
+        /// 搜索到设备。
         /// </summary>
-        SearchDevice = 0x2110,
+        DeviceDiscovered = 0x2110,
         #endregion
         #endregion
 
-        #region 事件列表
+        #region 故障告警事件
         /// <summary>
         /// 灯具重新启动。
         /// </summary>
@@ -237,12 +242,6 @@
         /// 灯具防盗告警。
         /// </summary>
         LuminaireBurglarAlarm = 0x2305,
-
-        #region 厂商自定义
-        /// <summary>
-        /// 搜索到设备。
-        /// </summary>
-        DeviceDiscovered = 0x2400,
         #endregion
         #endregion
 
