@@ -188,6 +188,13 @@
         /// 数据采集。
         /// </summary>
         DataCollection = 0x2101,
+
+        #region 厂商自定义
+        /// <summary>
+        /// 搜索设备。
+        /// </summary>
+        SearchDevice = 0x2110,
+        #endregion
         #endregion
 
         #region 事件列表
@@ -230,6 +237,13 @@
         /// 灯具防盗告警。
         /// </summary>
         LuminaireBurglarAlarm = 0x2305,
+
+        #region 厂商自定义
+        /// <summary>
+        /// 搜索到设备。
+        /// </summary>
+        DeviceDiscovered = 0x2400,
+        #endregion
         #endregion
 
         #region 远程升级

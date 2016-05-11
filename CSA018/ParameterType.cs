@@ -280,6 +280,16 @@
 
         #region 厂商自定义参数
         /// <summary>
+        /// 设备种类。
+        /// <para>参数值最大字节数：2。</para>
+        /// <para>网关：“01”。</para>
+        /// <para>灯具：“02”。</para>
+        /// <para>其他：“03”。</para>
+        /// <para>所有：“00”。</para>
+        /// </summary>
+        DeviceCategory = 0x0060,
+
+        /// <summary>
         /// 设备名称。
         /// </summary>
         DeviceName = 0x0062,
