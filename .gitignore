@@ -250,3 +250,5 @@ ModelManifest.xml
 
 # Sandcastle project file
 *.scproj
+
+%HOMEDRIVE%%HOMEPATH%
