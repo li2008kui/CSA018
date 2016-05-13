@@ -180,6 +180,7 @@
         /// 设置光衰补偿参数。
         /// </summary>
         SettingAttenuationCompensationParameter = 0x1404,
+
         /// <summary>
         /// 搜索设备。
         /// </summary>
