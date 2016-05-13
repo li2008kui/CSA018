@@ -65,24 +65,45 @@
         NotSupportedMessageType = 0x30313030,
 
         /// <summary>
+        /// 网关ID不存在。
+        /// </summary>
+        NoExistsGatewayId = 0x30313031,
+
+        /// <summary>
+        /// 序列号不存在。
+        /// </summary>
+        NoExistsSerialNumber = 0x30313032,
+
+        /// <summary>
+        /// 安全验证码错误。
+        /// </summary>
+        AccessCodeError = 0x30313033,
+
+        /// <summary>
         /// 网关尚未完成初始化。
         /// </summary>
-        NoInitialized = 0x30313031,
+        NoInitialized = 0x30313034,
 
         /// <summary>
         /// 网关尚未完成入网控制。
         /// </summary>
-        NoAuthorized = 0x30313032,
+        NoAuthorized = 0x30313035,
+
+        /// <summary>
+        /// 网关已经完成入网控制。
+        /// <para>无需重复进行入网控制操作。</para>
+        /// </summary>
+        IsAuthorized = 0x30313036,
 
         /// <summary>
         /// 网关不在线。
         /// </summary>
-        Offline = 0x30313033,
+        Offline = 0x30313037,
 
         /// <summary>
         /// 命令超时。
         /// </summary>
-        CommandTimeout = 0x30313034,
+        CommandTimeout = 0x30313038,
         #endregion
     }
 }
