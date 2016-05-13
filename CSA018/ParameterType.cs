@@ -171,15 +171,25 @@
         ThresholdValue = 0x0026,
 
         /// <summary>
-        /// 资源类型。
+        /// 表示 <see cref="CSA018.ResourceType"/> 资源类型。
         /// <para>参数值最大字节数：2。</para>
-        /// <para>温度：“01”。</para>
-        /// <para>湿度：“02”。</para>
-        /// <para>电流：“03”。</para>
-        /// <para>电压：“04”。</para>
-        /// <para>亮度：“05”。</para>
-        /// <para>环境亮度：“06”。</para>
-        /// <para>是否有人：“07”。</para>
+        /// <para>温度 <see cref="CSA018.ResourceType.Temperature"/> 为：“01”。</para>
+        /// <para>湿度 <see cref="CSA018.ResourceType.Humidity"/> 为：“02”。</para>
+        /// <para>电流 <see cref="CSA018.ResourceType.Current"/> 为：“03”。</para>
+        /// <para>电压 <see cref="CSA018.ResourceType.Voltage"/> 为：“04”。</para>
+        /// <para>亮度 <see cref="CSA018.ResourceType.Luminance"/> 为：“05”。</para>
+        /// <para>环境亮度 <see cref="CSA018.ResourceType.Brightness"/> 为：“06”。</para>
+        /// <para>是否有人 <see cref="CSA018.ResourceType.是否有人"/> 为：“07”。</para>
+        /// <para>灯具好坏 <see cref="CSA018.ResourceType.灯具好坏"/> 为：“10”。</para>
+        /// <para>功率 <see cref="CSA018.ResourceType.Power"/> 为：“11”。</para>
+        /// <para>功率因素 <see cref="CSA018.ResourceType.PowerFactor"/> 为：“12”。</para>
+        /// <para>电能 <see cref="CSA018.ResourceType.Energy"/> 为：“13”。</para>
+        /// <para>是否在线 <see cref="CSA018.ResourceType.是否在线"/> 为：“14”。</para>
+        /// <para>经度 <see cref="CSA018.ResourceType.Longitude"/> 为：“15”。</para>
+        /// <para>纬度 <see cref="CSA018.ResourceType.Latitude"/> 为：“16”。</para>
+        /// <para>海拔 <see cref="CSA018.ResourceType.Altitude"/> 为：“17”。</para>
+        /// <para>移动传感器是否存在 <see cref="CSA018.ResourceType.移动传感器是否存在"/> 为：“18”。</para>
+        /// <para>运行时间 <see cref="CSA018.ResourceType.RunTime"/> 为：“19”。</para>
         /// <para>所有：“00”。</para>
         /// </summary>
         ResourceType = 0x0025,
