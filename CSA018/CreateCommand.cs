@@ -98,6 +98,8 @@ namespace ThisCoder.CSA018
         /// <para>0xFFFFFF21~0xFFFFFF40分别对应组地址(组号)1～32。</para>
         /// <para>0xFFFFFF41~0xFFFFFFFE为保留地址。</para>
         /// <para>0xFFFFFFFF为广播地址，命令将下发到指定网关下的所有灯具设备。</para>
+        /// <exception cref="ArgumentNullException">当将空引用（在 Visual Basic 中为 Nothing）传递给不接受它作为有效参数的方法时引发的异常。</exception>
+        /// <exception cref="ArgumentException">当参数错误时引发的异常。</exception>
         /// </param>
         public CreateCommand(MessageType messageType, byte[] desKey, uint gatewayId, uint luminaireId = 0x0)
         {
@@ -108,7 +110,7 @@ namespace ThisCoder.CSA018
 
             if (desKey.Length != 8)
             {
-                throw new ArgumentNullException(nameof(desKey), $"{typeof(DES)} 密钥长度不正确。");
+                throw new ArgumentException(nameof(desKey), $"{typeof(DES)} 密钥长度不正确。");
             }
 
             MessageType = messageType;

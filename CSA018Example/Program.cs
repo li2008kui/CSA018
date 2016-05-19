@@ -28,7 +28,7 @@ namespace ThisCoder.CSA018Example
             byte[] cmd3 = ca3.GetRequestCommand(MessageId.RealTimeControlLuminaire, ParameterType.Brightness, "100");
             byte[] cmd4 = ca4.GetResponseCommand(0x0);
             byte[] cmd5 = ca5.GetResultCommand(0x0, MessageId.RealTimeControlLuminaire, ErrorCode.Succeed, "成功");
-            byte[] cmd6 = ca6.GetEventCommand(MessageId.DataCollection, new List<Parameter> { new Parameter(ParameterType.ResourceType, "05"), new Parameter(ParameterType.ResourceValue, "100") });
+            byte[] cmd6 = ca6.GetEventCommand(MessageId.DataCollection, new List<Parameter> { new Parameter(ParameterType.DeviceCategory, "02"), new Parameter(ParameterType.DeviceType, "01"), new Parameter(ParameterType.SerialNumber, 0x00000001), new Parameter(ParameterType.LuminaireId, "00000001".ToByteArray(true)) });
             byte[] cmd7 = ca7.GetEventResponseCommand(0x01);
 
             // 将字节数组转成十六进制字符串形式并打印。

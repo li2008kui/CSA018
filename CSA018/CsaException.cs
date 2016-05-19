@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace ThisCoder.CSA018
 {
     /// <summary>
-    /// 发生非致命应用程序错误时引发的Csa异常。
+    /// 发生非致命应用程序错误时引发的 Csa 异常。
     /// </summary>
     [Serializable]
     public class CsaException : ApplicationException

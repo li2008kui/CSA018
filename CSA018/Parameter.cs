@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace ThisCoder.CSA018
@@ -103,10 +104,16 @@ namespace ThisCoder.CSA018
         {
             if (byteArray.Length > index + 2)
             {
-                Parameter parameter = new Parameter(); ;
+                Parameter parameter = new Parameter();
                 List<byte> byteList = new List<byte>();
+                ushort pmtType = (ushort)((byteArray[index] << 8) + byteArray[index + 1]);
 
-                parameter.Type = (ParameterType)((byteArray[index] << 8) + byteArray[index + 1]);
+                if (!Enum.IsDefined(typeof(ParameterType), pmtType))
+                {
+                    throw new CsaException("参数类型未定义。", new Exception("若参数类型确实已经定义，请查看参数值是否包含参数结束符0x00。"), ErrorCode.ParameterTypeUndefined);
+                }
+
+                parameter.Type = (ParameterType)(pmtType);
                 byte indexByte = byteArray[index + 2];
 
                 while (indexByte != 0x00)

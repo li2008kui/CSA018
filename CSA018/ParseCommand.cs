@@ -42,6 +42,7 @@ namespace ThisCoder.CSA018
         /// <param name="dataArray">消息报文字节数组。</param>
         /// <param name="isTcpOrUdp">报文承载方式是否是TCP或UDP，默认为false。</param>
         /// <param name="isCheckCrc">是否校验CRC。</param>
+        /// <exception cref="CsaException">发生非致命应用程序错误时引发的 Csa 异常。</exception>
         public ParseCommand(byte[] dataArray, bool isTcpOrUdp = false, bool isCheckCrc = true)
         {
             datagramEventArgs = new DatagramEventArgs(
@@ -64,6 +65,9 @@ namespace ThisCoder.CSA018
         /// </param>
         /// <param name="isTcpOrUdp">报文承载方式是否是TCP或UDP，默认为false。</param>
         /// <param name="isCheckCrc">是否校验CRC。</param>
+        /// <exception cref="CsaException">发生非致命应用程序错误时引发的 Csa 异常。</exception>
+        /// <exception cref="ArgumentNullException">当将空引用（在 Visual Basic 中为 Nothing）传递给不接受它作为有效参数的方法时引发的异常。</exception>
+        /// <exception cref="ArgumentException">当参数错误时引发的异常。</exception>
         public ParseCommand(byte[] dataArray, byte[] desKey, bool isTcpOrUdp = false, bool isCheckCrc = true)
         {
             if (desKey == null)
@@ -73,7 +77,7 @@ namespace ThisCoder.CSA018
 
             if (desKey.Length != 8)
             {
-                throw new ArgumentNullException(nameof(desKey), $"{typeof(DES)} 密钥长度不正确。");
+                throw new ArgumentException(nameof(desKey), $"{typeof(DES)} 密钥长度不正确。");
             }
 
             datagramEventArgs = new DatagramEventArgs(dataArray, desKey, IsTcpOrUdp, IsCheckCrc);
