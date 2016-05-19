@@ -300,14 +300,29 @@
         DeviceCategory = 0x0060,
 
         /// <summary>
+        /// 设备类型。
+        /// <para>参数值最大字节数：2。</para>
+        /// <para>根据 <see cref="DeviceCategory"/> 进行复用。</para>
+        /// <para>当 <see cref="DeviceCategory"/> 为“01”时：</para>
+        /// <para>A型网关：“01”。</para>
+        /// <para>B型网关：“02”。</para>
+        /// <para>...</para>
+        /// <para>当 <see cref="DeviceCategory"/> 为“02”时：</para>
+        /// <para>A型灯具：“01”。</para>
+        /// <para>B型灯具：“02”。</para>
+        /// <para>...</para>
+        /// </summary>
+        DeviceType = 0x0061,
+
+        /// <summary>
         /// 设备名称。
         /// </summary>
         DeviceName = 0x0062,
 
         /// <summary>
-        /// 设备类型。
+        /// 设备描述。
         /// </summary>
-        DeviceType = 0x0063,
+        Description = 0x0063,
 
         /// <summary>
         /// 负载功率。
