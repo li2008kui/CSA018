@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThisCoder.CSA018", "CSA018\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThisCoder.CSA018Example", "CSA018Example\ThisCoder.CSA018Example.csproj", "{E562D6E3-32CB-438C-A58A-765D05AEC0AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThisCoder.CSA018WinExample", "CSA018WinExample\ThisCoder.CSA018WinExample.csproj", "{C37C1D6C-CF3D-4026-874B-1610B38F68BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E562D6E3-32CB-438C-A58A-765D05AEC0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E562D6E3-32CB-438C-A58A-765D05AEC0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E562D6E3-32CB-438C-A58A-765D05AEC0AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C37C1D6C-CF3D-4026-874B-1610B38F68BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C37C1D6C-CF3D-4026-874B-1610B38F68BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C37C1D6C-CF3D-4026-874B-1610B38F68BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C37C1D6C-CF3D-4026-874B-1610B38F68BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
