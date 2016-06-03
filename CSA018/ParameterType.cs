@@ -180,6 +180,7 @@
         /// <para>亮度 <see cref="CSA018.ResourceType.Luminance"/> 为：“05”。</para>
         /// <para>环境亮度 <see cref="CSA018.ResourceType.Brightness"/> 为：“06”。</para>
         /// <para>是否有人 <see cref="CSA018.ResourceType.是否有人"/> 为：“07”。</para>
+        /// <para>以下为厂商自定义资源类型值：</para>
         /// <para>灯具好坏 <see cref="CSA018.ResourceType.灯具好坏"/> 为：“10”。</para>
         /// <para>功率 <see cref="CSA018.ResourceType.Power"/> 为：“11”。</para>
         /// <para>功率因素 <see cref="CSA018.ResourceType.PowerFactor"/> 为：“12”。</para>
@@ -373,6 +374,17 @@
         /// 小时。
         /// </summary>
         Hour = 0x006D,
+
+        /// <summary>
+        /// 星期。
+        /// <para>用十六进制的字符串表示，使用时直接转换为二进制形式，从低位到高位分别表示周一到周日，最高位表示启用或禁用。</para>
+        /// <para>如：十六进制字符串"81"->二进制0x10000001表示星期1。</para>
+        /// <para>十六进制字符串"9F"->二进制0x10011111表示工作日。</para>
+        /// <para>十六进制字符串"D5"->二进制0x11010101表示星期1、星期3、星期5和星期日。</para>
+        /// <para>十六进制字符串"E0"->二进制0x11100000表示周末。</para>
+        /// <para>十六进制字符串"FF"->二进制0x11111111表示每天。</para>
+        /// </summary>
+        Week = 0x006E,
 
         /// <summary>
         /// 防盗。
