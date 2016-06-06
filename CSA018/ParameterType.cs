@@ -388,6 +388,11 @@
         WeekRepeat = 0x006E,
 
         /// <summary>
+        /// 编号。
+        /// </summary>
+        Number = 0x006F,
+
+        /// <summary>
         /// 防盗。
         /// </summary>
         SwitchBurglarAlarm = 0x0070,
