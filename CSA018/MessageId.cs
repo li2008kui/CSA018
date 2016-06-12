@@ -185,6 +185,16 @@
         /// 搜索设备。
         /// </summary>
         SearchDevice = 0x1405,
+
+        /// <summary>
+        /// 查询计划定时任务。
+        /// </summary>
+        QueryPlanTimingTask = 0x1406,
+
+        /// <summary>
+        /// 删除计划定时任务。
+        /// </summary>
+        RemovePlanTimingTask = 0x1407,
         #endregion
         #endregion
 
@@ -200,6 +210,11 @@
         /// 搜索到设备。
         /// </summary>
         DeviceDiscovered = 0x2110,
+
+        /// <summary>
+        /// 上报计划定时任务。
+        /// </summary>
+        ReportPlanTimingTask = 0x2111,
         #endregion
         #endregion
 
