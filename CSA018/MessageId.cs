@@ -195,6 +195,11 @@
         /// 删除计划定时任务。
         /// </summary>
         RemovePlanTimingTask = 0x1407,
+
+        /// <summary>
+        /// 查询资源2状态。
+        /// </summary>
+        QueryResource2Status = 0x1408,
         #endregion
         #endregion
 
@@ -215,6 +220,11 @@
         /// 上报计划定时任务。
         /// </summary>
         ReportPlanTimingTask = 0x2111,
+
+        /// <summary>
+        /// 上报资源2状态。
+        /// </summary>
+        ReportResource2Status = 0x2112,
         #endregion
         #endregion
 
