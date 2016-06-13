@@ -136,11 +136,12 @@
         Time = 0x0020,
 
         /// <summary>
-        /// 照度。
+        /// 亮度。
+        /// <para>即灯具的照度</para>
         /// <para>参数值最大字节数：3。</para>
         /// <para>亮度值，使用十进制表示，00-100。</para>
         /// </summary>
-        Brightness = 0x0021,
+        Luminance = 0x0021,
 
         /// <summary>
         /// 开始日期。
@@ -326,9 +327,9 @@
         Description = 0x0063,
 
         /// <summary>
-        /// 负载功率。
+        /// 信号强度。
         /// </summary>
-        LoadPower = 0x0064,
+        信号强度 = 0x0064,
 
         /// <summary>
         /// 半径。
@@ -440,6 +441,117 @@
         /// 黑夜最大临界值。
         /// </summary>
         NightMaxThreshold = 0x0081,
+
+        /// <summary>
+        /// 是否被触发。
+        /// </summary>
+        IsTriggered = 0x0081,
+
+        /// <summary>
+        /// 等待时间。
+        /// <para>单位：秒钟。</para>
+        /// </summary>
+        WaitingTime = 0x0082,
+
+        /// <summary>
+        /// 环境亮度。
+        /// </summary>
+        Brightness = 0x0083,
+
+        /// <summary>
+        /// 等待亮度。
+        /// </summary>
+        WaitingLuminance = 0x0084,
+
+        /// <summary>
+        /// 设备好坏。
+        /// </summary>
+        设备好坏 = 0x0085,
+
+        /// <summary>
+        /// GPS是否有效。
+        /// </summary>
+        GpsValid = 0x0090,
+
+        /// <summary>
+        /// 经度。
+        /// </summary>
+        经度 = 0x0090,
+
+        /// <summary>
+        /// 纬度。
+        /// </summary>
+        纬度 = 0x0091,
+
+        /// <summary>
+        /// 海拔。
+        /// </summary>
+        海拔 = 0x0092,
+
+        /// <summary>
+        /// 温度。
+        /// </summary>
+        温度 = 0x00A0,
+
+        /// <summary>
+        /// 湿度。
+        /// </summary>
+        湿度 = 0x00A1,
+
+        /// <summary>
+        /// 电流。
+        /// </summary>
+        电流 = 0x00A2,
+
+        /// <summary>
+        /// 电压。
+        /// </summary>
+        电压 = 0x00A3,
+
+        /// <summary>
+        /// 功率。
+        /// </summary>
+        功率 = 0x00A4,
+
+        /// <summary>
+        /// 功率因数。
+        /// </summary>
+        功率因数 = 0x00A5,
+
+        /// <summary>
+        /// 电能。
+        /// </summary>
+        电能 = 0x00A6,
+
+        /// <summary>
+        /// 温度阈值。
+        /// </summary>
+        温度阈值 = 0x00B0,
+
+        /// <summary>
+        /// 湿度阈值。
+        /// </summary>
+        湿度阈值 = 0x00B1,
+
+        /// <summary>
+        /// 电流阈值。
+        /// </summary>
+        电流阈值 = 0x00B2,
+
+        /// <summary>
+        /// 电压阈值。
+        /// </summary>
+        电压阈值 = 0x00B3,
+
+        /// <summary>
+        /// 功率阈值。
+        /// </summary>
+        功率阈值 = 0x00B4,
+
+        /// <summary>
+        /// 功率因数阈值。
+        /// </summary>
+        功率因数阈值 = 0x00B5,
         #endregion
     }
 }
