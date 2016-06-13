@@ -359,9 +359,9 @@
         DigitFilterParameter = 0x006A,
 
         /// <summary>
-        /// 白天黑夜临界值。
+        /// 白天最小临界值。
         /// </summary>
-        DayNightThreshold = 0x006B,
+        DayMinThreshold = 0x006B,
 
         /// <summary>
         /// 频点。
@@ -435,6 +435,11 @@
         /// <para>移动传感器 <see cref="ResourceType2.电参数"/> 为：“04”</para>
         /// </summary>
         ResourceType2 = 0x0080,
+
+        /// <summary>
+        /// 黑夜最大临界值。
+        /// </summary>
+        NightMaxThreshold = 0x0081,
         #endregion
     }
 }
