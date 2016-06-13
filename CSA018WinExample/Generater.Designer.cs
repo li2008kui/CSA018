@@ -116,7 +116,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnCheck
             // 
-            this.btnCheck.Location = new System.Drawing.Point(707, 153);
+            this.btnCheck.Location = new System.Drawing.Point(706, 153);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(30, 40);
             this.btnCheck.TabIndex = 32;
@@ -127,7 +127,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(592, 153);
+            this.btnGenerate.Location = new System.Drawing.Point(570, 153);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(75, 40);
             this.btnGenerate.TabIndex = 31;
@@ -137,7 +137,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(499, 153);
+            this.btnReset.Location = new System.Drawing.Point(434, 153);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 40);
             this.btnReset.TabIndex = 30;
@@ -147,11 +147,11 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtMessage2
             // 
-            this.txtMessage2.Location = new System.Drawing.Point(499, 200);
+            this.txtMessage2.Location = new System.Drawing.Point(382, 200);
             this.txtMessage2.Multiline = true;
             this.txtMessage2.Name = "txtMessage2";
             this.txtMessage2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMessage2.Size = new System.Drawing.Size(273, 350);
+            this.txtMessage2.Size = new System.Drawing.Size(390, 350);
             this.txtMessage2.TabIndex = 29;
             // 
             // txtMessage1
@@ -166,7 +166,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnAddOrMoveParameter10
             // 
-            this.btnAddOrMoveParameter10.Location = new System.Drawing.Point(410, 369);
+            this.btnAddOrMoveParameter10.Location = new System.Drawing.Point(314, 368);
             this.btnAddOrMoveParameter10.Name = "btnAddOrMoveParameter10";
             this.btnAddOrMoveParameter10.Size = new System.Drawing.Size(27, 23);
             this.btnAddOrMoveParameter10.TabIndex = 52;
@@ -177,7 +177,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnAddOrMoveParameter9
             // 
-            this.btnAddOrMoveParameter9.Location = new System.Drawing.Point(410, 334);
+            this.btnAddOrMoveParameter9.Location = new System.Drawing.Point(314, 333);
             this.btnAddOrMoveParameter9.Name = "btnAddOrMoveParameter9";
             this.btnAddOrMoveParameter9.Size = new System.Drawing.Size(27, 23);
             this.btnAddOrMoveParameter9.TabIndex = 51;
@@ -189,7 +189,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameterHex10
             // 
             this.ckbParameterHex10.AutoSize = true;
-            this.ckbParameterHex10.Location = new System.Drawing.Point(362, 373);
+            this.ckbParameterHex10.Location = new System.Drawing.Point(266, 372);
             this.ckbParameterHex10.Name = "ckbParameterHex10";
             this.ckbParameterHex10.Size = new System.Drawing.Size(42, 16);
             this.ckbParameterHex10.TabIndex = 50;
@@ -213,7 +213,7 @@ namespace ThisCoder.CSA018WinExample
             this.txtParameterValue10.Location = new System.Drawing.Point(160, 369);
             this.txtParameterValue10.MaxLength = 256;
             this.txtParameterValue10.Name = "txtParameterValue10";
-            this.txtParameterValue10.Size = new System.Drawing.Size(196, 21);
+            this.txtParameterValue10.Size = new System.Drawing.Size(100, 21);
             this.txtParameterValue10.TabIndex = 48;
             this.txtParameterValue10.Visible = false;
             this.txtParameterValue10.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -233,7 +233,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameterHex9
             // 
             this.ckbParameterHex9.AutoSize = true;
-            this.ckbParameterHex9.Location = new System.Drawing.Point(362, 338);
+            this.ckbParameterHex9.Location = new System.Drawing.Point(266, 337);
             this.ckbParameterHex9.Name = "ckbParameterHex9";
             this.ckbParameterHex9.Size = new System.Drawing.Size(42, 16);
             this.ckbParameterHex9.TabIndex = 46;
@@ -257,7 +257,7 @@ namespace ThisCoder.CSA018WinExample
             this.txtParameterValue9.Location = new System.Drawing.Point(160, 334);
             this.txtParameterValue9.MaxLength = 256;
             this.txtParameterValue9.Name = "txtParameterValue9";
-            this.txtParameterValue9.Size = new System.Drawing.Size(196, 21);
+            this.txtParameterValue9.Size = new System.Drawing.Size(100, 21);
             this.txtParameterValue9.TabIndex = 44;
             this.txtParameterValue9.Visible = false;
             this.txtParameterValue9.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -276,7 +276,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnAddOrMoveParameter8
             // 
-            this.btnAddOrMoveParameter8.Location = new System.Drawing.Point(410, 299);
+            this.btnAddOrMoveParameter8.Location = new System.Drawing.Point(314, 298);
             this.btnAddOrMoveParameter8.Name = "btnAddOrMoveParameter8";
             this.btnAddOrMoveParameter8.Size = new System.Drawing.Size(27, 23);
             this.btnAddOrMoveParameter8.TabIndex = 42;
@@ -287,7 +287,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnAddOrMoveParameter7
             // 
-            this.btnAddOrMoveParameter7.Location = new System.Drawing.Point(410, 264);
+            this.btnAddOrMoveParameter7.Location = new System.Drawing.Point(314, 263);
             this.btnAddOrMoveParameter7.Name = "btnAddOrMoveParameter7";
             this.btnAddOrMoveParameter7.Size = new System.Drawing.Size(27, 23);
             this.btnAddOrMoveParameter7.TabIndex = 41;
@@ -331,7 +331,7 @@ namespace ThisCoder.CSA018WinExample
             this.gbErrorCodeAndInfo.Controls.Add(this.cboxErrorCode);
             this.gbErrorCodeAndInfo.Location = new System.Drawing.Point(14, 143);
             this.gbErrorCodeAndInfo.Name = "gbErrorCodeAndInfo";
-            this.gbErrorCodeAndInfo.Size = new System.Drawing.Size(448, 407);
+            this.gbErrorCodeAndInfo.Size = new System.Drawing.Size(350, 407);
             this.gbErrorCodeAndInfo.TabIndex = 34;
             this.gbErrorCodeAndInfo.TabStop = false;
             this.gbErrorCodeAndInfo.Text = "返回结果";
@@ -349,7 +349,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameterHex8
             // 
             this.ckbParameterHex8.AutoSize = true;
-            this.ckbParameterHex8.Location = new System.Drawing.Point(362, 303);
+            this.ckbParameterHex8.Location = new System.Drawing.Point(266, 302);
             this.ckbParameterHex8.Name = "ckbParameterHex8";
             this.ckbParameterHex8.Size = new System.Drawing.Size(42, 16);
             this.ckbParameterHex8.TabIndex = 40;
@@ -373,7 +373,7 @@ namespace ThisCoder.CSA018WinExample
             this.txtParameterValue8.Location = new System.Drawing.Point(160, 299);
             this.txtParameterValue8.MaxLength = 256;
             this.txtParameterValue8.Name = "txtParameterValue8";
-            this.txtParameterValue8.Size = new System.Drawing.Size(196, 21);
+            this.txtParameterValue8.Size = new System.Drawing.Size(100, 21);
             this.txtParameterValue8.TabIndex = 38;
             this.txtParameterValue8.Visible = false;
             this.txtParameterValue8.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -393,7 +393,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameterHex7
             // 
             this.ckbParameterHex7.AutoSize = true;
-            this.ckbParameterHex7.Location = new System.Drawing.Point(362, 268);
+            this.ckbParameterHex7.Location = new System.Drawing.Point(266, 267);
             this.ckbParameterHex7.Name = "ckbParameterHex7";
             this.ckbParameterHex7.Size = new System.Drawing.Size(42, 16);
             this.ckbParameterHex7.TabIndex = 36;
@@ -417,7 +417,7 @@ namespace ThisCoder.CSA018WinExample
             this.txtParameterValue7.Location = new System.Drawing.Point(160, 264);
             this.txtParameterValue7.MaxLength = 256;
             this.txtParameterValue7.Name = "txtParameterValue7";
-            this.txtParameterValue7.Size = new System.Drawing.Size(196, 21);
+            this.txtParameterValue7.Size = new System.Drawing.Size(100, 21);
             this.txtParameterValue7.TabIndex = 34;
             this.txtParameterValue7.Visible = false;
             this.txtParameterValue7.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -436,7 +436,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnAddOrMoveParameter6
             // 
-            this.btnAddOrMoveParameter6.Location = new System.Drawing.Point(410, 229);
+            this.btnAddOrMoveParameter6.Location = new System.Drawing.Point(314, 228);
             this.btnAddOrMoveParameter6.Name = "btnAddOrMoveParameter6";
             this.btnAddOrMoveParameter6.Size = new System.Drawing.Size(27, 23);
             this.btnAddOrMoveParameter6.TabIndex = 32;
@@ -447,7 +447,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnAddOrMoveParameter5
             // 
-            this.btnAddOrMoveParameter5.Location = new System.Drawing.Point(410, 194);
+            this.btnAddOrMoveParameter5.Location = new System.Drawing.Point(314, 193);
             this.btnAddOrMoveParameter5.Name = "btnAddOrMoveParameter5";
             this.btnAddOrMoveParameter5.Size = new System.Drawing.Size(27, 23);
             this.btnAddOrMoveParameter5.TabIndex = 31;
@@ -458,7 +458,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnAddOrMoveParameter4
             // 
-            this.btnAddOrMoveParameter4.Location = new System.Drawing.Point(410, 159);
+            this.btnAddOrMoveParameter4.Location = new System.Drawing.Point(314, 158);
             this.btnAddOrMoveParameter4.Name = "btnAddOrMoveParameter4";
             this.btnAddOrMoveParameter4.Size = new System.Drawing.Size(27, 23);
             this.btnAddOrMoveParameter4.TabIndex = 30;
@@ -470,7 +470,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameterHex6
             // 
             this.ckbParameterHex6.AutoSize = true;
-            this.ckbParameterHex6.Location = new System.Drawing.Point(362, 233);
+            this.ckbParameterHex6.Location = new System.Drawing.Point(266, 232);
             this.ckbParameterHex6.Name = "ckbParameterHex6";
             this.ckbParameterHex6.Size = new System.Drawing.Size(42, 16);
             this.ckbParameterHex6.TabIndex = 29;
@@ -494,7 +494,7 @@ namespace ThisCoder.CSA018WinExample
             this.txtParameterValue6.Location = new System.Drawing.Point(160, 229);
             this.txtParameterValue6.MaxLength = 256;
             this.txtParameterValue6.Name = "txtParameterValue6";
-            this.txtParameterValue6.Size = new System.Drawing.Size(196, 21);
+            this.txtParameterValue6.Size = new System.Drawing.Size(100, 21);
             this.txtParameterValue6.TabIndex = 27;
             this.txtParameterValue6.Visible = false;
             this.txtParameterValue6.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -514,7 +514,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameterHex5
             // 
             this.ckbParameterHex5.AutoSize = true;
-            this.ckbParameterHex5.Location = new System.Drawing.Point(362, 198);
+            this.ckbParameterHex5.Location = new System.Drawing.Point(266, 197);
             this.ckbParameterHex5.Name = "ckbParameterHex5";
             this.ckbParameterHex5.Size = new System.Drawing.Size(42, 16);
             this.ckbParameterHex5.TabIndex = 25;
@@ -526,7 +526,7 @@ namespace ThisCoder.CSA018WinExample
             // rb0x
             // 
             this.rb0x.AutoSize = true;
-            this.rb0x.Location = new System.Drawing.Point(155, 5);
+            this.rb0x.Location = new System.Drawing.Point(191, 5);
             this.rb0x.Name = "rb0x";
             this.rb0x.Size = new System.Drawing.Size(35, 16);
             this.rb0x.TabIndex = 17;
@@ -540,15 +540,15 @@ namespace ThisCoder.CSA018WinExample
             this.panel1.Controls.Add(this.rbComma);
             this.panel1.Controls.Add(this.rbNone);
             this.panel1.Controls.Add(this.rbBlank);
-            this.panel1.Location = new System.Drawing.Point(499, 114);
+            this.panel1.Location = new System.Drawing.Point(434, 114);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(273, 26);
+            this.panel1.Size = new System.Drawing.Size(338, 26);
             this.panel1.TabIndex = 33;
             // 
             // rbComma
             // 
             this.rbComma.AutoSize = true;
-            this.rbComma.Location = new System.Drawing.Point(84, 5);
+            this.rbComma.Location = new System.Drawing.Point(105, 5);
             this.rbComma.Name = "rbComma";
             this.rbComma.Size = new System.Drawing.Size(47, 16);
             this.rbComma.TabIndex = 15;
@@ -558,7 +558,7 @@ namespace ThisCoder.CSA018WinExample
             // rbNone
             // 
             this.rbNone.AutoSize = true;
-            this.rbNone.Location = new System.Drawing.Point(222, 5);
+            this.rbNone.Location = new System.Drawing.Point(265, 5);
             this.rbNone.Name = "rbNone";
             this.rbNone.Size = new System.Drawing.Size(35, 16);
             this.rbNone.TabIndex = 16;
@@ -643,7 +643,7 @@ namespace ThisCoder.CSA018WinExample
             this.gbParameterList.Controls.Add(this.label5);
             this.gbParameterList.Location = new System.Drawing.Point(14, 143);
             this.gbParameterList.Name = "gbParameterList";
-            this.gbParameterList.Size = new System.Drawing.Size(448, 407);
+            this.gbParameterList.Size = new System.Drawing.Size(350, 407);
             this.gbParameterList.TabIndex = 27;
             this.gbParameterList.TabStop = false;
             this.gbParameterList.Text = "参数列表";
@@ -653,7 +653,7 @@ namespace ThisCoder.CSA018WinExample
             this.txtParameterValue5.Location = new System.Drawing.Point(160, 194);
             this.txtParameterValue5.MaxLength = 256;
             this.txtParameterValue5.Name = "txtParameterValue5";
-            this.txtParameterValue5.Size = new System.Drawing.Size(196, 21);
+            this.txtParameterValue5.Size = new System.Drawing.Size(100, 21);
             this.txtParameterValue5.TabIndex = 23;
             this.txtParameterValue5.Visible = false;
             this.txtParameterValue5.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -673,7 +673,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameterHex4
             // 
             this.ckbParameterHex4.AutoSize = true;
-            this.ckbParameterHex4.Location = new System.Drawing.Point(362, 163);
+            this.ckbParameterHex4.Location = new System.Drawing.Point(266, 162);
             this.ckbParameterHex4.Name = "ckbParameterHex4";
             this.ckbParameterHex4.Size = new System.Drawing.Size(42, 16);
             this.ckbParameterHex4.TabIndex = 21;
@@ -697,7 +697,7 @@ namespace ThisCoder.CSA018WinExample
             this.txtParameterValue4.Location = new System.Drawing.Point(160, 159);
             this.txtParameterValue4.MaxLength = 256;
             this.txtParameterValue4.Name = "txtParameterValue4";
-            this.txtParameterValue4.Size = new System.Drawing.Size(196, 21);
+            this.txtParameterValue4.Size = new System.Drawing.Size(100, 21);
             this.txtParameterValue4.TabIndex = 19;
             this.txtParameterValue4.Visible = false;
             this.txtParameterValue4.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -716,7 +716,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnAddOrMoveParameter3
             // 
-            this.btnAddOrMoveParameter3.Location = new System.Drawing.Point(410, 124);
+            this.btnAddOrMoveParameter3.Location = new System.Drawing.Point(314, 123);
             this.btnAddOrMoveParameter3.Name = "btnAddOrMoveParameter3";
             this.btnAddOrMoveParameter3.Size = new System.Drawing.Size(27, 23);
             this.btnAddOrMoveParameter3.TabIndex = 16;
@@ -727,7 +727,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnAddOrMoveParameter2
             // 
-            this.btnAddOrMoveParameter2.Location = new System.Drawing.Point(410, 89);
+            this.btnAddOrMoveParameter2.Location = new System.Drawing.Point(314, 88);
             this.btnAddOrMoveParameter2.Name = "btnAddOrMoveParameter2";
             this.btnAddOrMoveParameter2.Size = new System.Drawing.Size(27, 23);
             this.btnAddOrMoveParameter2.TabIndex = 15;
@@ -737,7 +737,7 @@ namespace ThisCoder.CSA018WinExample
             // 
             // btnAddOrMoveParameter1
             // 
-            this.btnAddOrMoveParameter1.Location = new System.Drawing.Point(410, 54);
+            this.btnAddOrMoveParameter1.Location = new System.Drawing.Point(314, 53);
             this.btnAddOrMoveParameter1.Name = "btnAddOrMoveParameter1";
             this.btnAddOrMoveParameter1.Size = new System.Drawing.Size(27, 23);
             this.btnAddOrMoveParameter1.TabIndex = 14;
@@ -748,7 +748,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameterHex3
             // 
             this.ckbParameterHex3.AutoSize = true;
-            this.ckbParameterHex3.Location = new System.Drawing.Point(362, 128);
+            this.ckbParameterHex3.Location = new System.Drawing.Point(266, 127);
             this.ckbParameterHex3.Name = "ckbParameterHex3";
             this.ckbParameterHex3.Size = new System.Drawing.Size(42, 16);
             this.ckbParameterHex3.TabIndex = 13;
@@ -772,7 +772,7 @@ namespace ThisCoder.CSA018WinExample
             this.txtParameterValue3.Location = new System.Drawing.Point(160, 124);
             this.txtParameterValue3.MaxLength = 256;
             this.txtParameterValue3.Name = "txtParameterValue3";
-            this.txtParameterValue3.Size = new System.Drawing.Size(196, 21);
+            this.txtParameterValue3.Size = new System.Drawing.Size(100, 21);
             this.txtParameterValue3.TabIndex = 11;
             this.txtParameterValue3.Visible = false;
             this.txtParameterValue3.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -792,7 +792,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameterHex2
             // 
             this.ckbParameterHex2.AutoSize = true;
-            this.ckbParameterHex2.Location = new System.Drawing.Point(362, 93);
+            this.ckbParameterHex2.Location = new System.Drawing.Point(266, 92);
             this.ckbParameterHex2.Name = "ckbParameterHex2";
             this.ckbParameterHex2.Size = new System.Drawing.Size(42, 16);
             this.ckbParameterHex2.TabIndex = 9;
@@ -816,7 +816,7 @@ namespace ThisCoder.CSA018WinExample
             this.txtParameterValue2.Location = new System.Drawing.Point(160, 89);
             this.txtParameterValue2.MaxLength = 256;
             this.txtParameterValue2.Name = "txtParameterValue2";
-            this.txtParameterValue2.Size = new System.Drawing.Size(196, 21);
+            this.txtParameterValue2.Size = new System.Drawing.Size(100, 21);
             this.txtParameterValue2.TabIndex = 7;
             this.txtParameterValue2.Visible = false;
             this.txtParameterValue2.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -836,7 +836,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameterHex1
             // 
             this.ckbParameterHex1.AutoSize = true;
-            this.ckbParameterHex1.Location = new System.Drawing.Point(362, 58);
+            this.ckbParameterHex1.Location = new System.Drawing.Point(266, 57);
             this.ckbParameterHex1.Name = "ckbParameterHex1";
             this.ckbParameterHex1.Size = new System.Drawing.Size(42, 16);
             this.ckbParameterHex1.TabIndex = 5;
@@ -858,7 +858,7 @@ namespace ThisCoder.CSA018WinExample
             this.txtParameterValue1.Location = new System.Drawing.Point(160, 54);
             this.txtParameterValue1.MaxLength = 256;
             this.txtParameterValue1.Name = "txtParameterValue1";
-            this.txtParameterValue1.Size = new System.Drawing.Size(196, 21);
+            this.txtParameterValue1.Size = new System.Drawing.Size(100, 21);
             this.txtParameterValue1.TabIndex = 3;
             this.txtParameterValue1.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
             this.txtParameterValue1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.checkHexString_KeyPress);
