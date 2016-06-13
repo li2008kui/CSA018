@@ -200,6 +200,31 @@
         /// 查询资源2状态。
         /// </summary>
         QueryResource2Status = 0x1408,
+
+        /// <summary>
+        /// 设置移动传感器参数。
+        /// </summary>
+        设置移动传感器参数 = 0x1409,
+
+        /// <summary>
+        /// 设置亮度传感器参数。
+        /// </summary>
+        设置亮度传感器参数 = 0x140A,
+
+        /// <summary>
+        /// 设置经纬度参数。
+        /// </summary>
+        设置经纬度参数 = 0x140B,
+
+        /// <summary>
+        /// 校准电参数。
+        /// </summary>
+        校准电参数 = 0x140C,
+
+        /// <summary>
+        /// 设置电参数阈值
+        /// </summary>
+        设置电参数阈值 = 0x140D,
         #endregion
         #endregion
 
@@ -222,9 +247,29 @@
         ReportPlanTimingTask = 0x2111,
 
         /// <summary>
-        /// 上报资源2状态。
+        /// 上报移动传感器状态。
         /// </summary>
-        ReportResource2Status = 0x2112,
+        上报移动传感器状态 = 0x2112,
+
+        /// <summary>
+        /// 上报亮度传感器状态。
+        /// </summary>
+        上报亮度传感器状态 = 0x2113,
+
+        /// <summary>
+        /// 上报经纬度参数。
+        /// </summary>
+        上报经纬度参数 = 0x2114,
+
+        /// <summary>
+        /// 上报电参数。
+        /// </summary>
+        上报电参数 = 0x2115,
+
+        /// <summary>
+        /// 上报电参数阈值。
+        /// </summary>
+        上报电参数阈值 = 0x2116,
         #endregion
         #endregion
 
