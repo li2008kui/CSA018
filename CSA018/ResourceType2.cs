@@ -31,6 +31,11 @@ namespace ThisCoder.CSA018
         /// <summary>
         /// 电参数。
         /// </summary>
-        电参数 = 0x3034
+        电参数 = 0x3034,
+
+        /// <summary>
+        /// 电参数阈值。
+        /// </summary>
+        电参数阈值 = 0x3035,
     }
 }
