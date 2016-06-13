@@ -1,8 +1,11 @@
-﻿namespace ThisCoder.CSA018
+﻿using System.ComponentModel;
+
+namespace ThisCoder.CSA018
 {
     /// <summary>
     /// 参数类型枚举。
     /// </summary>
+    [Description("参数类型")]
     public enum ParameterType : ushort
     {
         #region 配置命令参数
@@ -13,6 +16,7 @@
         /// <para>十进制范围为1～4294967295(2^32-1)。</para>
         /// <para>十六进制形式范围为0x00000001~0xffffffff。</para>
         /// </summary>
+        [Description("网关ID")]
         GatewayId = 0x0001,
 
         /// <summary>
@@ -20,28 +24,32 @@
         /// <para>参数值最大字节数：16。</para>
         /// <para>也可以使用域名的方式。</para>
         /// </summary>
+        [Description("服务器IP地址")]
         ServerIP = 0x0002,
 
         /// <summary>
         /// 服务器端口号。
         /// <para>参数值最大字节数：4。</para>
         /// </summary>
+        [Description("服务器端口号")]
         ServerPort = 0x0003,
 
         /// <summary>
         /// 通信协议。
         /// <para>参数值最大字节数：1。</para>
-        /// <para>“1”：UDP。</para>
-        /// <para>“2”：TCP。</para>
+        /// <para>“01”：UDP。</para>
+        /// <para>“02”：TCP。</para>
         /// </summary>
+        [Description("通信协议")]
         Protocol = 0x0004,
 
         /// <summary>
         /// 日志级别。
         /// <para>参数值最大字节数：1。</para>
-        /// <para>“1”：Debug。</para>
-        /// <para>“2”：Error。</para>
+        /// <para>“01”：Debug。</para>
+        /// <para>“02”：Error。</para>
         /// </summary>
+        [Description("日志级别")]
         LogLevel = 0x0005,
 
         /// <summary>
@@ -51,6 +59,7 @@
         /// <para>“APP” ：应用层的日志类别。</para>
         /// <para>灯具厂商可以自己定义日志类别。</para>
         /// </summary>
+        [Description("日志类别")]
         LogCategory = 0x0006,
 
         /// <summary>
@@ -58,6 +67,7 @@
         /// <para>参数值最大字节数：4。，</para>
         /// <para>命令响应的最大时间，单位为秒。</para>
         /// </summary>
+        [Description("命令响应时间")]
         CommandACKTimeout = 0x0007,
 
         /// <summary>
@@ -65,6 +75,7 @@
         /// <para>参数值最大字节数：2。</para>
         /// <para>接收不到命令响应或者命令发送失败以后重发的次数。</para>
         /// </summary>
+        [Description("命令重试次数")]
         CommandRetryTimes = 0x0008,
 
         /// <summary>
@@ -72,6 +83,7 @@
         /// <para>参数值最大字节数：4。</para>
         /// <para>等待命令执行结果的最大时间，单位为秒。</para>
         /// </summary>
+        [Description("命令结果时间")]
         CommandResultTimeout = 0x0009,
 
         /// <summary>
@@ -79,6 +91,7 @@
         /// <para>参数值最大字节数：4，</para>
         /// <para>事件的最大响应时间，单位为秒。</para>
         /// </summary>
+        [Description("事件响应时间")]
         EventACKTimeout = 0x00A,
 
         /// <summary>
@@ -86,6 +99,7 @@
         /// <para>参数值最大字节数：2。</para>
         /// <para>接受不到事件响应或者事件发送失败后重发的次数。</para>
         /// </summary>
+        [Description("事件重试次数")]
         EventRetryTimes = 0x00B,
 
         /// <summary>
@@ -93,6 +107,7 @@
         /// <para>参数值最大字节数：4。</para>
         /// <para>通讯链路上发送心跳包的空闲时间，单位为秒。</para>
         /// </summary>
+        [Description("链路空闲时间")]
         LinkIdleTime = 0x000C,
 
         /// <summary>
@@ -100,6 +115,7 @@
         /// <para>参数值最大字节数：4。</para>
         /// <para>心跳包响应超时时间。</para>
         /// </summary>
+        [Description("心跳包响应超时时间")]
         HeartbeatACKTimeout = 0x000D,
 
         /// <summary>
@@ -107,6 +123,7 @@
         /// <para>参数值最大字节数：2。</para>
         /// <para>收不到心跳包响应重发的次数-100。</para>
         /// </summary>
+        [Description("心跳包重试次数")]
         HeatBeatRetryTimes = 0x000E,
 
         /// <summary>
@@ -115,6 +132,7 @@
         /// <para>网关所管理的灯具ID，用十进制的数字表示，由服务器分配，范围为0x00000001~0xffffff00。</para>
         /// <para>这个参数在命令中可以包含一个或者多个。</para>
         /// </summary>
+        [Description("网关所管理的灯具ID")]
         LuminaireId = 0x000F,
         #endregion
 
@@ -124,6 +142,7 @@
         /// <para>参数值最大字节数：128。</para>
         /// <para>操作维护的信息。</para>
         /// </summary>
+        [Description("操作维护信息")]
         MaintainanceInfo = 0x0011,
         #endregion
 
@@ -133,6 +152,7 @@
         /// <para>参数值最大字节数：2。</para>
         /// <para>使用24时的HHmm表示。</para>
         /// </summary>
+        [Description("时间")]
         Time = 0x0020,
 
         /// <summary>
@@ -141,6 +161,7 @@
         /// <para>参数值最大字节数：3。</para>
         /// <para>亮度值，使用十进制表示，00-100。</para>
         /// </summary>
+        [Description("亮度")]
         Luminance = 0x0021,
 
         /// <summary>
@@ -148,6 +169,7 @@
         /// <para>参数值最大字节数：8。</para>
         /// <para>开始日期，yyyyMMdd。</para>
         /// </summary>
+        [Description("开始日期")]
         BeginDate = 0x0022,
 
         /// <summary>
@@ -155,6 +177,7 @@
         /// <para>参数值最大字节数：8。</para>
         /// <para>结束日期，yyyyMMdd。</para>
         /// </summary>
+        [Description("结束日期")]
         EndDate = 0x0023,
 
         /// <summary>
@@ -162,6 +185,7 @@
         /// <para>参数值最大字节数：5。</para>
         /// <para>资源数值。</para>
         /// </summary>
+        [Description("资源值")]
         ResourceValue = 0x0024,
 
         /// <summary>
@@ -169,6 +193,7 @@
         /// <para>参数值最大字节数：8。</para>
         /// <para>阈值范围。</para>
         /// </summary>
+        [Description("门限值")]
         ThresholdValue = 0x0026,
 
         /// <summary>
@@ -194,6 +219,7 @@
         /// <para>运行时间 <see cref="ResourceType.RunTime"/> 为：“19”。</para>
         /// <para>所有：“00”。</para>
         /// </summary>
+        [Description("资源类型")]
         ResourceType = 0x0025,
 
         /// <summary>
@@ -202,19 +228,22 @@
         /// <para>0x01：自动运行模式。</para>
         /// <para>0x02：手工模式。</para>
         /// </summary>
+        [Description("运行模式")]
         OperationMode = 0x0027,
 
         /// <summary>
         /// 延时。
         /// <para>参数值最大字节数：5。</para>
-        /// <para>延迟的时间（秒为单位）。</para>
+        /// <para>延迟的时间，单位：秒钟。</para>
         /// </summary>
+        [Description("延时")]
         DelayTime = 0x0028,
 
         /// <summary>
         /// 采集周期。
         /// <para>采集周期（分钟为单位）。</para>
         /// </summary>
+        [Description("采集周期")]
         Interval = 0x0029,
 
         /// <summary>
@@ -222,6 +251,7 @@
         /// <para>参数值最大字节数：2。</para>
         /// <para>组号（1~32）。</para>
         /// </summary>
+        [Description("分组组号")]
         Group = 0x002A,
 
         /// <summary>
@@ -229,6 +259,7 @@
         /// <para>参数值最大字节数：2。</para>
         /// <para>场景值。</para>
         /// </summary>
+        [Description("调光场景")]
         Scene = 0x002B,
 
         /// <summary>
@@ -236,6 +267,7 @@
         /// <para>参数值最大字节数：16。</para>
         /// <para>安全认证码。</para>
         /// </summary>
+        [Description("访问码")]
         AccessCode = 0x0030,
 
         /// <summary>
@@ -243,6 +275,7 @@
         /// <para>参数值最大字节数：32。</para>
         /// <para>灯具的序列号。</para>
         /// </summary>
+        [Description("序列码")]
         SerialNumber = 0x0031,
 
         /// <summary>
@@ -251,6 +284,7 @@
         /// <para>参数值最大字节数：128。</para>
         /// <para>使用base64转码的密钥。</para>
         /// </summary>
+        [Description("RSA密钥")]
         RSAKey = 0x0040,
 
         /// <summary>
@@ -259,6 +293,7 @@
         /// <para>参数值最大字节数：128。</para>
         /// <para>使用base64转码的密钥。</para>
         /// </summary>
+        [Description("DES密钥")]
         DESKey = 0x0041,
 
         /// <summary>
@@ -266,6 +301,7 @@
         /// <para>参数值最大字节数：14。</para>
         /// <para>yyyyMMddHHmmss。</para>
         /// </summary>
+        [Description("系统时间")]
         SystemTime = 0x0042,
 
         /// <summary>
@@ -273,6 +309,7 @@
         /// <para>参数值最大字节数：5。</para>
         /// <para>升级文件的大小。</para>
         /// </summary>
+        [Description("文件大小")]
         FileSize = 0x0050,
 
         /// <summary>
@@ -280,6 +317,7 @@
         /// <para>参数值最大字节数：2。</para>
         /// <para>每段文件大小。</para>
         /// </summary>
+        [Description("文件段大小")]
         SegmentSize = 0x0051,
 
         /// <summary>
@@ -287,6 +325,7 @@
         /// <para>参数值最大字节数：2。</para>
         /// <para>总段数。</para>
         /// </summary>
+        [Description("段的数量")]
         SegmentCount = 0x0052,
         #endregion
 
@@ -299,6 +338,7 @@
         /// <para>其他：“03”。</para>
         /// <para>所有：“00”。</para>
         /// </summary>
+        [Description("设备种类")]
         DeviceCategory = 0x0060,
 
         /// <summary>
@@ -314,66 +354,78 @@
         /// <para>B型灯具：“02”。</para>
         /// <para>...</para>
         /// </summary>
+        [Description("设备类型")]
         DeviceType = 0x0061,
 
         /// <summary>
         /// 设备名称。
         /// </summary>
+        [Description("设备名称")]
         DeviceName = 0x0062,
 
         /// <summary>
         /// 设备描述。
         /// </summary>
+        [Description("设备描述")]
         Description = 0x0063,
 
         /// <summary>
         /// 信号强度。
         /// </summary>
+        [Description("信号强度")]
         信号强度 = 0x0064,
 
         /// <summary>
         /// 半径。
         /// <para>单位：米。</para>
         /// </summary>
+        [Description("半径")]
         Radius = 0x0066,
 
         /// <summary>
         /// 数量。
         /// <para>单位：个。</para>
         /// </summary>
+        [Description("数量")]
         Quantity = 0x0067,
 
         /// <summary>
         /// 持续时间。
         /// <para>单位：秒钟。</para>
         /// </summary>
+        [Description("持续时间")]
         Duration = 0x0068,
 
         /// <summary>
         /// 灵敏度。
         /// </summary>
+        [Description("灵敏度")]
         Sensitivity = 0x0069,
 
         /// <summary>
         /// 数字滤波参数。
         /// </summary>
+        [Description("数字滤波参数")]
         DigitFilterParameter = 0x006A,
 
         /// <summary>
         /// 白天最小临界值。
         /// </summary>
+        [Description("白天最小临界值")]
         DayMinThreshold = 0x006B,
 
         /// <summary>
-        /// 频点。
+        /// 无线频点。
         /// <para>ZigBee无线通信的信道。</para>
         /// <para>取值范围：[01,16]。</para>
         /// </summary>
+        [Description("无线频点")]
         FrequencyPoint = 0x006C,
 
         /// <summary>
         /// 小时。
         /// </summary>
+        [Description("小时")]
         Hour = 0x006D,
 
         /// <summary>
@@ -386,46 +438,55 @@
         /// <para>16进制字符串"FF"->2进制0x11111111表示每天执行。</para>
         /// <para>16进制字符串"80"->2进制0x10000000表示只执行一次。</para>
         /// </summary>
+        [Description("按星期重复")]
         WeekRepeat = 0x006E,
 
         /// <summary>
         /// 编号。
         /// </summary>
+        [Description("编号")]
         Number = 0x006F,
 
         /// <summary>
         /// 防盗。
         /// </summary>
+        [Description("防盗")]
         SwitchBurglarAlarm = 0x0070,
 
         /// <summary>
         /// 移动传感器。
         /// </summary>
+        [Description("移动传感器")]
         SwitchMoveSensor = 0x0071,
 
         /// <summary>
         /// 亮度传感器。
         /// </summary>
+        [Description("亮度传感器")]
         SwitchLightSensor = 0x0072,
 
         /// <summary>
         /// 天气状况。
         /// </summary>
+        [Description("天气状况")]
         SwitchWeather = 0x0073,
 
         /// <summary>
         /// 交通量。
         /// </summary>
+        [Description("交通量")]
         SwitchTrafficFlow = 0x0074,
 
         /// <summary>
         /// 经纬度。
         /// </summary>
+        [Description("经纬度")]
         SwitchLongitudeLatitude = 0x0075,
 
         /// <summary>
         /// 光衰补偿。
         /// </summary>
+        [Description("光衰补偿")]
         SwitchAttenuationCompensation = 0x0076,
 
         /// <summary>
@@ -435,123 +496,111 @@
         /// <para>移动传感器 <see cref="ResourceType2.经纬度"/> 为：“03”</para>
         /// <para>移动传感器 <see cref="ResourceType2.电参数"/> 为：“04”</para>
         /// </summary>
+        [Description("资源类型2")]
         ResourceType2 = 0x0080,
 
         /// <summary>
         /// 黑夜最大临界值。
         /// </summary>
+        [Description("黑夜最大临界值")]
         NightMaxThreshold = 0x0081,
 
         /// <summary>
         /// 是否被触发。
         /// </summary>
+        [Description("是否被触发")]
         IsTriggered = 0x0081,
 
         /// <summary>
         /// 等待时间。
         /// <para>单位：秒钟。</para>
         /// </summary>
+        [Description("等待时间")]
         WaitingTime = 0x0082,
 
         /// <summary>
         /// 环境亮度。
         /// </summary>
+        [Description("环境亮度")]
         Brightness = 0x0083,
 
         /// <summary>
         /// 等待亮度。
         /// </summary>
+        [Description("等待亮度")]
         WaitingLuminance = 0x0084,
 
         /// <summary>
         /// 设备好坏。
         /// </summary>
+        [Description("设备好坏")]
         设备好坏 = 0x0085,
 
         /// <summary>
         /// GPS是否有效。
         /// </summary>
+        [Description("GPS是否有效")]
         GpsValid = 0x0090,
 
         /// <summary>
         /// 经度。
         /// </summary>
+        [Description("经度")]
         经度 = 0x0090,
 
         /// <summary>
         /// 纬度。
         /// </summary>
+        [Description("纬度")]
         纬度 = 0x0091,
 
         /// <summary>
         /// 海拔。
         /// </summary>
+        [Description("海拔")]
         海拔 = 0x0092,
 
         /// <summary>
         /// 温度。
         /// </summary>
+        [Description("温度")]
         温度 = 0x00A0,
 
         /// <summary>
         /// 湿度。
         /// </summary>
+        [Description("湿度")]
         湿度 = 0x00A1,
 
         /// <summary>
         /// 电流。
         /// </summary>
+        [Description("电流")]
         电流 = 0x00A2,
 
         /// <summary>
         /// 电压。
         /// </summary>
+        [Description("电压")]
         电压 = 0x00A3,
 
         /// <summary>
         /// 功率。
         /// </summary>
+        [Description("功率")]
         功率 = 0x00A4,
 
         /// <summary>
         /// 功率因数。
         /// </summary>
+        [Description("功率因数")]
         功率因数 = 0x00A5,
 
         /// <summary>
         /// 电能。
         /// </summary>
+        [Description("电能")]
         电能 = 0x00A6,
-
-        /// <summary>
-        /// 温度阈值。
-        /// </summary>
-        温度阈值 = 0x00B0,
-
-        /// <summary>
-        /// 湿度阈值。
-        /// </summary>
-        湿度阈值 = 0x00B1,
-
-        /// <summary>
-        /// 电流阈值。
-        /// </summary>
-        电流阈值 = 0x00B2,
-
-        /// <summary>
-        /// 电压阈值。
-        /// </summary>
-        电压阈值 = 0x00B3,
-
-        /// <summary>
-        /// 功率阈值。
-        /// </summary>
-        功率阈值 = 0x00B4,
-
-        /// <summary>
-        /// 功率因数阈值。
-        /// </summary>
-        功率因数阈值 = 0x00B5,
         #endregion
     }
 }

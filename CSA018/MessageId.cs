@@ -1,14 +1,18 @@
-﻿namespace ThisCoder.CSA018
+﻿using System.ComponentModel;
+
+namespace ThisCoder.CSA018
 {
     /// <summary>
     /// 消息ID枚举。
     /// </summary>
+    [Description("消息ID")]
     public enum MessageId : ushort
     {
         #region 配置命令
         /// <summary>
         /// 配置命令。
         /// </summary>
+        [Description("配置")]
         ConfigurationCommand = 0x1001,
         #endregion
 
@@ -16,6 +20,7 @@
         /// <summary>
         /// 操作维护。
         /// </summary>
+        [Description("维护")]
         OperationMaintenance = 0x1002,
         #endregion
 
@@ -23,118 +28,141 @@
         /// <summary>
         /// 设置默认开灯时间。
         /// </summary>
+        [Description("设置默认开灯时间")]
         SettingDefaultTurnOnTime = 0x1201,
 
         /// <summary>
         /// 设置默认关灯时间。
         /// </summary>
+        [Description("设置默认关灯时间")]
         SettingDefaultTurnOffTime = 0x1202,
 
         /// <summary>
         /// 设置默认调整亮度时间。
         /// </summary>
+        [Description("设置默认调整亮度时间")]
         SettingDefaultAdjustBrightnessTime = 0x1203,
 
         /// <summary>
         /// 设置计划开灯时间。
         /// </summary>
+        [Description("设置计划开灯时间")]
         SettingPlanTurnOnTime = 0x1204,
 
         /// <summary>
         /// 设置计划关灯时间。
         /// </summary>
+        [Description("设置计划关灯时间")]
         SettingPlanTurnOffTime = 0x1205,
 
         /// <summary>
         /// 设置灯具调光计划。
         /// </summary>
+        [Description("设置灯具调光计划")]
         SettingLuminaireDimmingPlan = 0x1206,
 
         /// <summary>
         /// 设置触发告警阈值。
         /// </summary>
+        [Description("设置触发告警阈值")]
         SettingTriggerAlarmThreshold = 0x1207,
 
         /// <summary>
         /// 实时开/关灯和调整亮度。
         /// </summary>
+        [Description("实时开/关灯和调整亮度")]
         RealTimeControlLuminaire = 0x1208,
 
         /// <summary>
         /// 实时查询灯具状态。
         /// </summary>
+        [Description("实时查询灯具状态")]
         RealTimeQueryLuminaireStatus = 0x1209,
 
         /// <summary>
         /// 设置灯具数据采集周期。
         /// </summary>
+        [Description("设置灯具数据采集周期")]
         SettingLuminaireDataCollectionPeriod = 0x120A,
 
         /// <summary>
         /// 设置灯具分组。
         /// </summary>
+        [Description("设置灯具分组")]
         SettingLuminaireGroup = 0x120B,
 
         /// <summary>
         /// 删除灯具分组。
         /// </summary>
+        [Description("删除灯具分组")]
         RemoveLuminaireGroup = 0x120C,
 
         /// <summary>
         /// 设置灯具场景。
         /// </summary>
+        [Description("设置灯具场景")]
         SettingLuminaireScene = 0x120D,
 
         /// <summary>
         /// 删除灯具场景。
         /// </summary>
+        [Description("删除灯具场景")]
         RemoveLuminaireScene = 0x120E,
 
         /// <summary>
         /// 设置灯具运行模式。
         /// <para>自动或手动。</para>
         /// </summary>
+        [Description("设置灯具运行模式")]
         SettingRunningMode = 0x120F,
 
         /// <summary>
         /// 要求上传灯具日志。
         /// </summary>
+        [Description("要求上传灯具日志")]
         RequireReportLuminaireLog = 0x1210,
 
         /// <summary>
         /// 灯具恢复出厂状态。
         /// </summary>
+        [Description("灯具恢复出厂状态")]
         LuminaireFactoryReset = 0x1211,
 
         /// <summary>
         /// 更新RSA密钥。
         /// </summary>
+        [Description("更新RSA密钥")]
         UpdateRSAKey = 0x1212,
 
         /// <summary>
         /// 更新DES密钥。
         /// </summary>
+        [Description("更新DES密钥")]
         UpdateDESKey = 0x1213,
 
         /// <summary>
         /// 同步时间。
         /// </summary>
+        [Description("同步时间")]
         SynchronizeTime = 0x1214,
 
         /// <summary>
         /// 设置通信故障下灯具默认亮度。
         /// </summary>
+        [Description("设置通信故障下灯具默认亮度")]
         SettingCommunicationFailureDefaultBrightness = 0x1215,
 
         /// <summary>
         /// 设置灯具默认上电亮度。
         /// </summary>
+        [Description("设置灯具默认上电亮度")]
         SettingPowerOnDefaultBrightness = 0x1216,
 
         /// <summary>
         /// 接入认证请求。
         /// <para>由网关向服务器发起。</para>
         /// </summary>
+        [Description("接入认证请求")]
         AccessAuthenticationRequest = 0x1300,
 
         #region 厂商自定义
@@ -148,6 +176,7 @@
         /// <para>经纬度。</para>
         /// <para>光衰补偿。</para>
         /// </summary>
+        [Description("启用或禁用功能")]
         SettingEnableFunction = 0x1400,
 
         /// <summary>
@@ -159,6 +188,7 @@
         /// <para>灵敏度。</para>
         /// <para>数字滤波参数。</para>
         /// </summary>
+        [Description("设置移动传感器参数")]
         SettingMoveSensorParameter = 0x1401,
 
         /// <summary>
@@ -167,6 +197,7 @@
         /// <para>启动所需要的感应数目，单位：个。</para>
         /// <para>白天黑夜临界值。</para>
         /// </summary>
+        [Description("设置亮度传感器参数")]
         SettingLightSensorParameter = 0x1402,
 
         /// <summary>
@@ -174,56 +205,55 @@
         /// <para>无线频点，即ZigBee无线通信的信道，取值范围：[01,16]。</para>
         /// <para>其他参数待定。</para>
         /// </summary>
+        [Description("设置ZigBee无线网络参数")]
         SettingZigBeeParameter = 0x1403,
 
         /// <summary>
         /// 设置光衰补偿参数。
         /// </summary>
+        [Description("设置光衰补偿参数")]
         SettingAttenuationCompensationParameter = 0x1404,
 
         /// <summary>
         /// 搜索设备。
         /// </summary>
+        [Description("搜索设备")]
         SearchDevice = 0x1405,
 
         /// <summary>
         /// 查询计划定时任务。
         /// </summary>
+        [Description("查询计划定时任务")]
         QueryPlanTimingTask = 0x1406,
 
         /// <summary>
         /// 删除计划定时任务。
         /// </summary>
+        [Description("删除计划定时任务")]
         RemovePlanTimingTask = 0x1407,
 
         /// <summary>
-        /// 查询资源2状态。
+        /// 查询资源2状态参数。
         /// </summary>
+        [Description("查询资源2状态参数")]
         QueryResource2Status = 0x1408,
-
-        /// <summary>
-        /// 设置移动传感器参数。
-        /// </summary>
-        设置移动传感器参数 = 0x1409,
-
-        /// <summary>
-        /// 设置亮度传感器参数。
-        /// </summary>
-        设置亮度传感器参数 = 0x140A,
 
         /// <summary>
         /// 设置经纬度参数。
         /// </summary>
+        [Description("设置经纬度参数")]
         设置经纬度参数 = 0x140B,
 
         /// <summary>
         /// 校准电参数。
         /// </summary>
+        [Description("校准电参数")]
         校准电参数 = 0x140C,
 
         /// <summary>
         /// 设置电参数阈值
         /// </summary>
+        [Description("设置电参数阈值")]
         设置电参数阈值 = 0x140D,
         #endregion
         #endregion
@@ -233,42 +263,50 @@
         /// <summary>
         /// 数据采集。
         /// </summary>
+        [Description("数据采集")]
         DataCollection = 0x2101,
 
         #region 厂商自定义
         /// <summary>
         /// 搜索到设备。
         /// </summary>
+        [Description("搜索到设备")]
         DeviceDiscovered = 0x2110,
 
         /// <summary>
         /// 上报计划定时任务。
         /// </summary>
+        [Description("上报计划定时任务")]
         ReportPlanTimingTask = 0x2111,
 
         /// <summary>
-        /// 上报移动传感器状态。
+        /// 上报移动传感器参数。
         /// </summary>
-        上报移动传感器状态 = 0x2112,
+        [Description("上报移动传感器参数")]
+        上报移动传感器参数 = 0x2112,
 
         /// <summary>
         /// 上报亮度传感器状态。
         /// </summary>
-        上报亮度传感器状态 = 0x2113,
+        [Description("上报亮度传感器参数")]
+        上报亮度传感器参数 = 0x2113,
 
         /// <summary>
         /// 上报经纬度参数。
         /// </summary>
+        [Description("上报经纬度参数")]
         上报经纬度参数 = 0x2114,
 
         /// <summary>
         /// 上报电参数。
         /// </summary>
+        [Description("上报电参数")]
         上报电参数 = 0x2115,
 
         /// <summary>
         /// 上报电参数阈值。
         /// </summary>
+        [Description("上报电参数阈值")]
         上报电参数阈值 = 0x2116,
         #endregion
         #endregion
@@ -277,41 +315,49 @@
         /// <summary>
         /// 灯具重新启动。
         /// </summary>
+        [Description("灯具重新启动")]
         LuminaireRestart = 0x2200,
 
         /// <summary>
         /// 灯具临界告警消除。
         /// </summary>
+        [Description("灯具临界告警消除")]
         LuminaireThresholdEliminateAlarm = 0x2202,
 
         /// <summary>
         /// 灯具临界告警。
         /// </summary>
+        [Description("灯具临界告警")]
         LuminaireThresholdAlarm = 0x2302,
 
         /// <summary>
         /// 网关与灯具通信故障告警。
         /// </summary>
+        [Description("网关与灯具通信故障告警")]
         CommunicationFailureAlarm = 0x2303,
 
         /// <summary>
         /// 网关与灯具通信故障告警消除。
         /// </summary>
+        [Description("网关与灯具通信故障告警消除")]
         CommunicationFailureEliminateAlarm = 0x2203,
 
         /// <summary>
         /// 灯具未按控制设定工作告警。
         /// </summary>
+        [Description("灯具未按控制设定工作告警")]
         LuminaireRunExceptionAlarm = 0x2304,
 
         /// <summary>
         /// 灯具未按控制设定工作告警消除。
         /// </summary>
+        [Description("灯具未按控制设定工作告警消除")]
         LuminaireRunExceptionEliminateAlarm = 0x2204,
 
         /// <summary>
         /// 灯具防盗告警。
         /// </summary>
+        [Description("灯具防盗告警")]
         LuminaireBurglarAlarm = 0x2305,
         #endregion
         #endregion
@@ -320,11 +366,13 @@
         /// <summary>
         /// 远程升级。
         /// </summary>
+        [Description("远程升级")]
         RemoteUpgrade = 0x1100,
 
         /// <summary>
         /// 请求第N段文件。
         /// </summary>
+        [Description("请求第N段文件")]
         RequestNthSegmentFile = 0x1101
         #endregion
     }
