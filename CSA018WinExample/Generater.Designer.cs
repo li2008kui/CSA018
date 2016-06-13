@@ -156,11 +156,11 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtMessage1
             // 
-            this.txtMessage1.Location = new System.Drawing.Point(318, 12);
+            this.txtMessage1.Location = new System.Drawing.Point(322, 10);
             this.txtMessage1.Multiline = true;
             this.txtMessage1.Name = "txtMessage1";
             this.txtMessage1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMessage1.Size = new System.Drawing.Size(454, 96);
+            this.txtMessage1.Size = new System.Drawing.Size(450, 96);
             this.txtMessage1.TabIndex = 28;
             this.txtMessage1.TextChanged += new System.EventHandler(this.txtMessage1_TextChanged);
             // 
@@ -201,7 +201,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameter10
             // 
             this.ckbParameter10.AutoSize = true;
-            this.ckbParameter10.Location = new System.Drawing.Point(13, 373);
+            this.ckbParameter10.Location = new System.Drawing.Point(10, 373);
             this.ckbParameter10.Name = "ckbParameter10";
             this.ckbParameter10.Size = new System.Drawing.Size(15, 14);
             this.ckbParameter10.TabIndex = 49;
@@ -210,10 +210,10 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtParameterValue10
             // 
-            this.txtParameterValue10.Location = new System.Drawing.Point(160, 369);
+            this.txtParameterValue10.Location = new System.Drawing.Point(180, 369);
             this.txtParameterValue10.MaxLength = 256;
             this.txtParameterValue10.Name = "txtParameterValue10";
-            this.txtParameterValue10.Size = new System.Drawing.Size(100, 21);
+            this.txtParameterValue10.Size = new System.Drawing.Size(80, 21);
             this.txtParameterValue10.TabIndex = 48;
             this.txtParameterValue10.Visible = false;
             this.txtParameterValue10.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -223,9 +223,9 @@ namespace ThisCoder.CSA018WinExample
             // 
             this.cboxParameterType10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxParameterType10.FormattingEnabled = true;
-            this.cboxParameterType10.Location = new System.Drawing.Point(34, 370);
+            this.cboxParameterType10.Location = new System.Drawing.Point(30, 370);
             this.cboxParameterType10.Name = "cboxParameterType10";
-            this.cboxParameterType10.Size = new System.Drawing.Size(120, 20);
+            this.cboxParameterType10.Size = new System.Drawing.Size(144, 20);
             this.cboxParameterType10.TabIndex = 47;
             this.cboxParameterType10.Visible = false;
             this.cboxParameterType10.SelectedIndexChanged += new System.EventHandler(this.cboxParameterType_SelectedIndexChanged);
@@ -245,7 +245,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameter9
             // 
             this.ckbParameter9.AutoSize = true;
-            this.ckbParameter9.Location = new System.Drawing.Point(13, 338);
+            this.ckbParameter9.Location = new System.Drawing.Point(10, 338);
             this.ckbParameter9.Name = "ckbParameter9";
             this.ckbParameter9.Size = new System.Drawing.Size(15, 14);
             this.ckbParameter9.TabIndex = 45;
@@ -254,10 +254,10 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtParameterValue9
             // 
-            this.txtParameterValue9.Location = new System.Drawing.Point(160, 334);
+            this.txtParameterValue9.Location = new System.Drawing.Point(180, 334);
             this.txtParameterValue9.MaxLength = 256;
             this.txtParameterValue9.Name = "txtParameterValue9";
-            this.txtParameterValue9.Size = new System.Drawing.Size(100, 21);
+            this.txtParameterValue9.Size = new System.Drawing.Size(80, 21);
             this.txtParameterValue9.TabIndex = 44;
             this.txtParameterValue9.Visible = false;
             this.txtParameterValue9.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -267,9 +267,9 @@ namespace ThisCoder.CSA018WinExample
             // 
             this.cboxParameterType9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxParameterType9.FormattingEnabled = true;
-            this.cboxParameterType9.Location = new System.Drawing.Point(34, 335);
+            this.cboxParameterType9.Location = new System.Drawing.Point(30, 335);
             this.cboxParameterType9.Name = "cboxParameterType9";
-            this.cboxParameterType9.Size = new System.Drawing.Size(120, 20);
+            this.cboxParameterType9.Size = new System.Drawing.Size(144, 20);
             this.cboxParameterType9.TabIndex = 43;
             this.cboxParameterType9.Visible = false;
             this.cboxParameterType9.SelectedIndexChanged += new System.EventHandler(this.cboxParameterType_SelectedIndexChanged);
@@ -310,7 +310,7 @@ namespace ThisCoder.CSA018WinExample
             this.txtErrorInfo.Location = new System.Drawing.Point(93, 86);
             this.txtErrorInfo.Multiline = true;
             this.txtErrorInfo.Name = "txtErrorInfo";
-            this.txtErrorInfo.Size = new System.Drawing.Size(176, 68);
+            this.txtErrorInfo.Size = new System.Drawing.Size(209, 68);
             this.txtErrorInfo.TabIndex = 3;
             // 
             // cboxErrorCode
@@ -319,7 +319,7 @@ namespace ThisCoder.CSA018WinExample
             this.cboxErrorCode.FormattingEnabled = true;
             this.cboxErrorCode.Location = new System.Drawing.Point(93, 52);
             this.cboxErrorCode.Name = "cboxErrorCode";
-            this.cboxErrorCode.Size = new System.Drawing.Size(176, 20);
+            this.cboxErrorCode.Size = new System.Drawing.Size(209, 20);
             this.cboxErrorCode.TabIndex = 2;
             this.cboxErrorCode.SelectedIndexChanged += new System.EventHandler(this.cboxErrorCode_SelectedIndexChanged);
             // 
@@ -361,7 +361,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameter8
             // 
             this.ckbParameter8.AutoSize = true;
-            this.ckbParameter8.Location = new System.Drawing.Point(13, 303);
+            this.ckbParameter8.Location = new System.Drawing.Point(10, 303);
             this.ckbParameter8.Name = "ckbParameter8";
             this.ckbParameter8.Size = new System.Drawing.Size(15, 14);
             this.ckbParameter8.TabIndex = 39;
@@ -370,10 +370,10 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtParameterValue8
             // 
-            this.txtParameterValue8.Location = new System.Drawing.Point(160, 299);
+            this.txtParameterValue8.Location = new System.Drawing.Point(180, 299);
             this.txtParameterValue8.MaxLength = 256;
             this.txtParameterValue8.Name = "txtParameterValue8";
-            this.txtParameterValue8.Size = new System.Drawing.Size(100, 21);
+            this.txtParameterValue8.Size = new System.Drawing.Size(80, 21);
             this.txtParameterValue8.TabIndex = 38;
             this.txtParameterValue8.Visible = false;
             this.txtParameterValue8.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -383,9 +383,9 @@ namespace ThisCoder.CSA018WinExample
             // 
             this.cboxParameterType8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxParameterType8.FormattingEnabled = true;
-            this.cboxParameterType8.Location = new System.Drawing.Point(34, 300);
+            this.cboxParameterType8.Location = new System.Drawing.Point(30, 300);
             this.cboxParameterType8.Name = "cboxParameterType8";
-            this.cboxParameterType8.Size = new System.Drawing.Size(120, 20);
+            this.cboxParameterType8.Size = new System.Drawing.Size(144, 20);
             this.cboxParameterType8.TabIndex = 37;
             this.cboxParameterType8.Visible = false;
             this.cboxParameterType8.SelectedIndexChanged += new System.EventHandler(this.cboxParameterType_SelectedIndexChanged);
@@ -405,7 +405,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameter7
             // 
             this.ckbParameter7.AutoSize = true;
-            this.ckbParameter7.Location = new System.Drawing.Point(13, 268);
+            this.ckbParameter7.Location = new System.Drawing.Point(10, 268);
             this.ckbParameter7.Name = "ckbParameter7";
             this.ckbParameter7.Size = new System.Drawing.Size(15, 14);
             this.ckbParameter7.TabIndex = 35;
@@ -414,10 +414,10 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtParameterValue7
             // 
-            this.txtParameterValue7.Location = new System.Drawing.Point(160, 264);
+            this.txtParameterValue7.Location = new System.Drawing.Point(180, 264);
             this.txtParameterValue7.MaxLength = 256;
             this.txtParameterValue7.Name = "txtParameterValue7";
-            this.txtParameterValue7.Size = new System.Drawing.Size(100, 21);
+            this.txtParameterValue7.Size = new System.Drawing.Size(80, 21);
             this.txtParameterValue7.TabIndex = 34;
             this.txtParameterValue7.Visible = false;
             this.txtParameterValue7.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -427,9 +427,9 @@ namespace ThisCoder.CSA018WinExample
             // 
             this.cboxParameterType7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxParameterType7.FormattingEnabled = true;
-            this.cboxParameterType7.Location = new System.Drawing.Point(34, 265);
+            this.cboxParameterType7.Location = new System.Drawing.Point(30, 265);
             this.cboxParameterType7.Name = "cboxParameterType7";
-            this.cboxParameterType7.Size = new System.Drawing.Size(120, 20);
+            this.cboxParameterType7.Size = new System.Drawing.Size(144, 20);
             this.cboxParameterType7.TabIndex = 33;
             this.cboxParameterType7.Visible = false;
             this.cboxParameterType7.SelectedIndexChanged += new System.EventHandler(this.cboxParameterType_SelectedIndexChanged);
@@ -482,7 +482,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameter6
             // 
             this.ckbParameter6.AutoSize = true;
-            this.ckbParameter6.Location = new System.Drawing.Point(13, 233);
+            this.ckbParameter6.Location = new System.Drawing.Point(10, 233);
             this.ckbParameter6.Name = "ckbParameter6";
             this.ckbParameter6.Size = new System.Drawing.Size(15, 14);
             this.ckbParameter6.TabIndex = 28;
@@ -491,10 +491,10 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtParameterValue6
             // 
-            this.txtParameterValue6.Location = new System.Drawing.Point(160, 229);
+            this.txtParameterValue6.Location = new System.Drawing.Point(180, 229);
             this.txtParameterValue6.MaxLength = 256;
             this.txtParameterValue6.Name = "txtParameterValue6";
-            this.txtParameterValue6.Size = new System.Drawing.Size(100, 21);
+            this.txtParameterValue6.Size = new System.Drawing.Size(80, 21);
             this.txtParameterValue6.TabIndex = 27;
             this.txtParameterValue6.Visible = false;
             this.txtParameterValue6.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -504,9 +504,9 @@ namespace ThisCoder.CSA018WinExample
             // 
             this.cboxParameterType6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxParameterType6.FormattingEnabled = true;
-            this.cboxParameterType6.Location = new System.Drawing.Point(34, 230);
+            this.cboxParameterType6.Location = new System.Drawing.Point(30, 230);
             this.cboxParameterType6.Name = "cboxParameterType6";
-            this.cboxParameterType6.Size = new System.Drawing.Size(120, 20);
+            this.cboxParameterType6.Size = new System.Drawing.Size(144, 20);
             this.cboxParameterType6.TabIndex = 26;
             this.cboxParameterType6.Visible = false;
             this.cboxParameterType6.SelectedIndexChanged += new System.EventHandler(this.cboxParameterType_SelectedIndexChanged);
@@ -580,7 +580,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameter5
             // 
             this.ckbParameter5.AutoSize = true;
-            this.ckbParameter5.Location = new System.Drawing.Point(13, 198);
+            this.ckbParameter5.Location = new System.Drawing.Point(10, 198);
             this.ckbParameter5.Name = "ckbParameter5";
             this.ckbParameter5.Size = new System.Drawing.Size(15, 14);
             this.ckbParameter5.TabIndex = 24;
@@ -650,10 +650,10 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtParameterValue5
             // 
-            this.txtParameterValue5.Location = new System.Drawing.Point(160, 194);
+            this.txtParameterValue5.Location = new System.Drawing.Point(180, 194);
             this.txtParameterValue5.MaxLength = 256;
             this.txtParameterValue5.Name = "txtParameterValue5";
-            this.txtParameterValue5.Size = new System.Drawing.Size(100, 21);
+            this.txtParameterValue5.Size = new System.Drawing.Size(80, 21);
             this.txtParameterValue5.TabIndex = 23;
             this.txtParameterValue5.Visible = false;
             this.txtParameterValue5.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -663,9 +663,9 @@ namespace ThisCoder.CSA018WinExample
             // 
             this.cboxParameterType5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxParameterType5.FormattingEnabled = true;
-            this.cboxParameterType5.Location = new System.Drawing.Point(34, 195);
+            this.cboxParameterType5.Location = new System.Drawing.Point(30, 195);
             this.cboxParameterType5.Name = "cboxParameterType5";
-            this.cboxParameterType5.Size = new System.Drawing.Size(120, 20);
+            this.cboxParameterType5.Size = new System.Drawing.Size(144, 20);
             this.cboxParameterType5.TabIndex = 22;
             this.cboxParameterType5.Visible = false;
             this.cboxParameterType5.SelectedIndexChanged += new System.EventHandler(this.cboxParameterType_SelectedIndexChanged);
@@ -685,7 +685,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameter4
             // 
             this.ckbParameter4.AutoSize = true;
-            this.ckbParameter4.Location = new System.Drawing.Point(13, 163);
+            this.ckbParameter4.Location = new System.Drawing.Point(10, 163);
             this.ckbParameter4.Name = "ckbParameter4";
             this.ckbParameter4.Size = new System.Drawing.Size(15, 14);
             this.ckbParameter4.TabIndex = 20;
@@ -694,10 +694,10 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtParameterValue4
             // 
-            this.txtParameterValue4.Location = new System.Drawing.Point(160, 159);
+            this.txtParameterValue4.Location = new System.Drawing.Point(180, 159);
             this.txtParameterValue4.MaxLength = 256;
             this.txtParameterValue4.Name = "txtParameterValue4";
-            this.txtParameterValue4.Size = new System.Drawing.Size(100, 21);
+            this.txtParameterValue4.Size = new System.Drawing.Size(80, 21);
             this.txtParameterValue4.TabIndex = 19;
             this.txtParameterValue4.Visible = false;
             this.txtParameterValue4.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -707,9 +707,9 @@ namespace ThisCoder.CSA018WinExample
             // 
             this.cboxParameterType4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxParameterType4.FormattingEnabled = true;
-            this.cboxParameterType4.Location = new System.Drawing.Point(34, 160);
+            this.cboxParameterType4.Location = new System.Drawing.Point(30, 160);
             this.cboxParameterType4.Name = "cboxParameterType4";
-            this.cboxParameterType4.Size = new System.Drawing.Size(120, 20);
+            this.cboxParameterType4.Size = new System.Drawing.Size(144, 20);
             this.cboxParameterType4.TabIndex = 18;
             this.cboxParameterType4.Visible = false;
             this.cboxParameterType4.SelectedIndexChanged += new System.EventHandler(this.cboxParameterType_SelectedIndexChanged);
@@ -760,7 +760,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameter3
             // 
             this.ckbParameter3.AutoSize = true;
-            this.ckbParameter3.Location = new System.Drawing.Point(13, 128);
+            this.ckbParameter3.Location = new System.Drawing.Point(10, 128);
             this.ckbParameter3.Name = "ckbParameter3";
             this.ckbParameter3.Size = new System.Drawing.Size(15, 14);
             this.ckbParameter3.TabIndex = 12;
@@ -769,10 +769,10 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtParameterValue3
             // 
-            this.txtParameterValue3.Location = new System.Drawing.Point(160, 124);
+            this.txtParameterValue3.Location = new System.Drawing.Point(180, 124);
             this.txtParameterValue3.MaxLength = 256;
             this.txtParameterValue3.Name = "txtParameterValue3";
-            this.txtParameterValue3.Size = new System.Drawing.Size(100, 21);
+            this.txtParameterValue3.Size = new System.Drawing.Size(80, 21);
             this.txtParameterValue3.TabIndex = 11;
             this.txtParameterValue3.Visible = false;
             this.txtParameterValue3.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -782,9 +782,9 @@ namespace ThisCoder.CSA018WinExample
             // 
             this.cboxParameterType3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxParameterType3.FormattingEnabled = true;
-            this.cboxParameterType3.Location = new System.Drawing.Point(34, 125);
+            this.cboxParameterType3.Location = new System.Drawing.Point(30, 125);
             this.cboxParameterType3.Name = "cboxParameterType3";
-            this.cboxParameterType3.Size = new System.Drawing.Size(120, 20);
+            this.cboxParameterType3.Size = new System.Drawing.Size(144, 20);
             this.cboxParameterType3.TabIndex = 10;
             this.cboxParameterType3.Visible = false;
             this.cboxParameterType3.SelectedIndexChanged += new System.EventHandler(this.cboxParameterType_SelectedIndexChanged);
@@ -804,7 +804,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameter2
             // 
             this.ckbParameter2.AutoSize = true;
-            this.ckbParameter2.Location = new System.Drawing.Point(13, 93);
+            this.ckbParameter2.Location = new System.Drawing.Point(10, 93);
             this.ckbParameter2.Name = "ckbParameter2";
             this.ckbParameter2.Size = new System.Drawing.Size(15, 14);
             this.ckbParameter2.TabIndex = 8;
@@ -813,10 +813,10 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtParameterValue2
             // 
-            this.txtParameterValue2.Location = new System.Drawing.Point(160, 89);
+            this.txtParameterValue2.Location = new System.Drawing.Point(180, 89);
             this.txtParameterValue2.MaxLength = 256;
             this.txtParameterValue2.Name = "txtParameterValue2";
-            this.txtParameterValue2.Size = new System.Drawing.Size(100, 21);
+            this.txtParameterValue2.Size = new System.Drawing.Size(80, 21);
             this.txtParameterValue2.TabIndex = 7;
             this.txtParameterValue2.Visible = false;
             this.txtParameterValue2.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
@@ -826,9 +826,9 @@ namespace ThisCoder.CSA018WinExample
             // 
             this.cboxParameterType2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxParameterType2.FormattingEnabled = true;
-            this.cboxParameterType2.Location = new System.Drawing.Point(34, 90);
+            this.cboxParameterType2.Location = new System.Drawing.Point(30, 90);
             this.cboxParameterType2.Name = "cboxParameterType2";
-            this.cboxParameterType2.Size = new System.Drawing.Size(120, 20);
+            this.cboxParameterType2.Size = new System.Drawing.Size(144, 20);
             this.cboxParameterType2.TabIndex = 6;
             this.cboxParameterType2.Visible = false;
             this.cboxParameterType2.SelectedIndexChanged += new System.EventHandler(this.cboxParameterType_SelectedIndexChanged);
@@ -847,7 +847,7 @@ namespace ThisCoder.CSA018WinExample
             // ckbParameter1
             // 
             this.ckbParameter1.AutoSize = true;
-            this.ckbParameter1.Location = new System.Drawing.Point(13, 58);
+            this.ckbParameter1.Location = new System.Drawing.Point(10, 58);
             this.ckbParameter1.Name = "ckbParameter1";
             this.ckbParameter1.Size = new System.Drawing.Size(15, 14);
             this.ckbParameter1.TabIndex = 4;
@@ -855,10 +855,10 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtParameterValue1
             // 
-            this.txtParameterValue1.Location = new System.Drawing.Point(160, 54);
+            this.txtParameterValue1.Location = new System.Drawing.Point(180, 53);
             this.txtParameterValue1.MaxLength = 256;
             this.txtParameterValue1.Name = "txtParameterValue1";
-            this.txtParameterValue1.Size = new System.Drawing.Size(100, 21);
+            this.txtParameterValue1.Size = new System.Drawing.Size(80, 21);
             this.txtParameterValue1.TabIndex = 3;
             this.txtParameterValue1.TextChanged += new System.EventHandler(this.txtParameterValue_TextChanged);
             this.txtParameterValue1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.checkHexString_KeyPress);
@@ -876,9 +876,9 @@ namespace ThisCoder.CSA018WinExample
             // 
             this.cboxParameterType1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxParameterType1.FormattingEnabled = true;
-            this.cboxParameterType1.Location = new System.Drawing.Point(34, 55);
+            this.cboxParameterType1.Location = new System.Drawing.Point(30, 55);
             this.cboxParameterType1.Name = "cboxParameterType1";
-            this.cboxParameterType1.Size = new System.Drawing.Size(120, 20);
+            this.cboxParameterType1.Size = new System.Drawing.Size(144, 20);
             this.cboxParameterType1.TabIndex = 1;
             this.cboxParameterType1.SelectedIndexChanged += new System.EventHandler(this.cboxParameterType_SelectedIndexChanged);
             // 
@@ -897,7 +897,7 @@ namespace ThisCoder.CSA018WinExample
             this.cboxMessageId.FormattingEnabled = true;
             this.cboxMessageId.Location = new System.Drawing.Point(83, 49);
             this.cboxMessageId.Name = "cboxMessageId";
-            this.cboxMessageId.Size = new System.Drawing.Size(200, 20);
+            this.cboxMessageId.Size = new System.Drawing.Size(233, 20);
             this.cboxMessageId.TabIndex = 26;
             // 
             // label4
@@ -922,16 +922,16 @@ namespace ThisCoder.CSA018WinExample
             // 
             this.cboxMessageType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxMessageType.FormattingEnabled = true;
-            this.cboxMessageType.Location = new System.Drawing.Point(83, 11);
+            this.cboxMessageType.Location = new System.Drawing.Point(83, 10);
             this.cboxMessageType.Name = "cboxMessageType";
-            this.cboxMessageType.Size = new System.Drawing.Size(200, 20);
+            this.cboxMessageType.Size = new System.Drawing.Size(233, 20);
             this.cboxMessageType.TabIndex = 23;
             this.cboxMessageType.SelectedIndexChanged += new System.EventHandler(this.cboxMessageType_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(164, 91);
+            this.label2.Location = new System.Drawing.Point(177, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 22;
@@ -948,10 +948,10 @@ namespace ThisCoder.CSA018WinExample
             // 
             // txtLuminaireId
             // 
-            this.txtLuminaireId.Location = new System.Drawing.Point(223, 87);
+            this.txtLuminaireId.Location = new System.Drawing.Point(236, 88);
             this.txtLuminaireId.MaxLength = 8;
             this.txtLuminaireId.Name = "txtLuminaireId";
-            this.txtLuminaireId.Size = new System.Drawing.Size(60, 21);
+            this.txtLuminaireId.Size = new System.Drawing.Size(80, 21);
             this.txtLuminaireId.TabIndex = 20;
             this.txtLuminaireId.Text = "FFFFFFFF";
             this.txtLuminaireId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.checkHexString_KeyPress);
@@ -961,7 +961,7 @@ namespace ThisCoder.CSA018WinExample
             this.txtGatewayId.Location = new System.Drawing.Point(83, 87);
             this.txtGatewayId.MaxLength = 8;
             this.txtGatewayId.Name = "txtGatewayId";
-            this.txtGatewayId.Size = new System.Drawing.Size(60, 21);
+            this.txtGatewayId.Size = new System.Drawing.Size(80, 21);
             this.txtGatewayId.TabIndex = 19;
             this.txtGatewayId.Text = "00000001";
             this.txtGatewayId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.checkHexString_KeyPress);

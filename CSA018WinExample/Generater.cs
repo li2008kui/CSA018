@@ -251,7 +251,7 @@ namespace ThisCoder.CSA018WinExample
                     {
                         cmdRemarkString += "\r\n|                 起始符：" + datagram.Stx.ToString("X2") + "         |";
                         cmdRemarkString += "\r\n|------------------------------------|";
-                        cmdRemarkString += "\r\n|    |          消息类型：" + ((ushort)(datagram.Head.Type)).ToString("X2") + "         |";
+                        cmdRemarkString += "\r\n|    |          消息类型：" + ((ushort)(datagram.Head.Type)).ToString("X2") + "         |" + "<-" + GetEnumValueDescription(typeof(MessageType), datagram.Head.Type.ToString());
                         cmdRemarkString += "\r\n| 消 |          消息序号：" + datagram.Head.SeqNumber.ToString("X8") + "   |";
                         cmdRemarkString += "\r\n| 息 |        消息体长度：" + datagram.Head.Length.ToString("X4") + "       |";
                         cmdRemarkString += "\r\n| 头 |              预留：" + datagram.Head.Reserved.ToString("X10") + " |";
@@ -261,7 +261,7 @@ namespace ThisCoder.CSA018WinExample
                             && datagram.Head.Type != MessageType.EventACK)
                         {
                             cmdRemarkString += "\r\n|------------------------------------|";
-                            cmdRemarkString += "\r\n| 消 |            消息ID：" + ((ushort)(datagram.Body.MessageId)).ToString("X4") + "       |";
+                            cmdRemarkString += "\r\n| 消 |            消息ID：" + ((ushort)(datagram.Body.MessageId)).ToString("X4") + "       |" + "<-" + GetEnumValueDescription(typeof(MessageId), datagram.Body.MessageId.ToString());
                             cmdRemarkString += "\r\n| 息 |            网关ID：" + datagram.Body.GatewayId.ToString("X8") + "   |";
                             cmdRemarkString += "\r\n| 体 |            灯具ID：" + datagram.Body.LuminaireId.ToString("X8") + "   |";
 
@@ -272,7 +272,7 @@ namespace ThisCoder.CSA018WinExample
                                 for (int i = 0; i < datagram.Body.ParameterList.Count; i++)
                                 {
                                     cmdRemarkString += "\r\n|    |-------------------------------|";
-                                    cmdRemarkString += "\r\n|    | 参 ｜    参数类型：" + ((ushort)datagram.Body.ParameterList[i].Type).ToString("X4") + "       |";
+                                    cmdRemarkString += "\r\n|    | 参 ｜    参数类型：" + ((ushort)datagram.Body.ParameterList[i].Type).ToString("X4") + "       |" + "<-" + GetEnumValueDescription(typeof(ParameterType), datagram.Body.ParameterList[i].Type.ToString());
                                     cmdRemarkString += "\r\n|    | 数 ｜      参数值：\"" + datagram.Body.ParameterList[i].Value + "\"      |";
                                     cmdRemarkString += "\r\n|    | " + (i + 1).ToString().PadRight(2, ' ') + " | 参数值结束符：" + datagram.Body.ParameterList[i].End.ToString("X2") + "         |";
                                 }
@@ -308,6 +308,25 @@ namespace ThisCoder.CSA018WinExample
             {
                 MessageBox.Show("命令错误!");
             }
+        }
+
+        private string GetEnumValueDescription(Type type, string enumString)
+        {
+            foreach (var fieldInfo in type.GetFields())
+            {
+                if (fieldInfo.FieldType.IsEnum && fieldInfo.Name == enumString)
+                {
+                    foreach (var attr in fieldInfo.GetCustomAttributes(false))
+                    {
+                        if (attr is DescriptionAttribute)
+                        {
+                            return (attr as DescriptionAttribute)?.Description;
+                        }
+                    }
+                }
+            }
+
+            return enumString;
         }
 
         private void btnReset_Click(object sender, EventArgs e)
