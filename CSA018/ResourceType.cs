@@ -1,10 +1,15 @@
-﻿namespace ThisCoder.CSA018
+﻿using System.Text;
+
+namespace ThisCoder.CSA018
 {
     /// <summary>
     /// 资源类型枚举。
-    /// <para>该枚举使用时需要将值转换成2个字节的字符串形式。</para>
+    /// <para>使用时需要将枚举值转换成字符串形式。</para>
+    /// <para>转换方式如下：</para>
+    /// <para><see cref="StringHelper.ToByteArray(string, bool)"/></para>
+    /// <para><see cref="Encoding.UTF8"/></para>
     /// </summary>
-    public enum ResourceType : byte
+    public enum ResourceType : ushort
     {
         #region 系统保留
         /// <summary>
@@ -15,49 +20,49 @@
         /// <para>℃＝5/9 * (℉－32)</para>
         /// <para>℉＝℃ * 9/5 ＋ 32</para>
         /// </summary>
-        Temperature = 01,
+        Temperature = 0x3031,
 
         /// <summary>
         /// 湿度。
         /// <para>湿度传感器检测到的环境湿度。</para>
         /// <para>取值范围：[0,100]。</para>
         /// </summary>
-        Humidity = 02,
+        Humidity = 0x3032,
 
         /// <summary>
         /// 电流。
         /// <para>灯具控制器的输出电流。</para>
         /// <para>单位：A（非CSA标准委员会规范）。</para>
         /// </summary>
-        Current = 03,
+        Current = 0x3033,
 
         /// <summary>
         /// 电压。
         /// <para>灯具控制器的输出电压。</para>
         /// <para>单位：V（非CSA标准委员会规范）。</para>
         /// </summary>
-        Voltage = 04,
+        Voltage = 0x3034,
 
         /// <summary>
         /// 亮度
         /// <para>灯具的亮度，有时也称照度。</para>
         /// <para>取值范围：[0,100]。</para>
         /// </summary>
-        Luminance = 05,
+        Luminance = 0x3035,
 
         /// <summary>
         /// 环境亮度。
         /// <para>亮度传感器检测到的环境亮度。</para>
         /// <para>取值范围：[0,100]。</para>
         /// </summary>
-        Brightness = 06,
+        Brightness = 0x3036,
 
         /// <summary>
         /// 是否有人。
         /// <para>红外传感器检测到环境中是否有人或其他生物。</para>
         /// <para>01表示有人，02表示无人（非CSA标准委员会规范）。</para>
         /// </summary>
-        是否有人 = 07,
+        是否有人 = 0x3037,
         #endregion
 
         #region 厂商自定义
@@ -65,55 +70,55 @@
         /// 灯具好坏。
         /// <para>01表示正常，02表示损坏。</para>
         /// </summary>
-        灯具好坏 = 10,
+        灯具好坏 = 0x3130,
 
         /// <summary>
         /// 功率。
         /// <para>灯具的视在功率。</para>
         /// </summary>
-        Power = 11,
+        Power = 0x3131,
 
         /// <summary>
         /// 功率因素。
         /// </summary>
-        PowerFactor = 12,
+        PowerFactor = 0x3132,
 
         /// <summary>
         /// 电能。
         /// <para>灯具消耗的电量。</para>
         /// </summary>
-        Energy = 13,
+        Energy = 0x3133,
 
         /// <summary>
         /// 是否在线。
         /// <para>灯具可能产生通信故障。</para>
         /// </summary>
-        是否在线 = 14,
+        是否在线 = 0x3134,
 
         /// <summary>
         /// 经度。
         /// </summary>
-        Longitude = 15,
+        Longitude = 0x3135,
 
         /// <summary>
         /// 纬度。
         /// </summary>
-        Latitude = 16,
+        Latitude = 0x3136,
 
         /// <summary>
         /// 海拔。
         /// </summary>
-        Altitude = 17,
+        Altitude = 0x3137,
 
         /// <summary>
         /// 移动传感器是否存在。
         /// </summary>
-        移动传感器是否存在 = 18,
+        移动传感器是否存在 = 0x3138,
 
         /// <summary>
         /// 运行时间。
         /// </summary>
-        RunTime = 19,
+        RunTime = 0x3139,
         #endregion
     }
 }
