@@ -312,7 +312,6 @@ namespace ThisCoder.CSA018WinExample
             this.txtErrorInfo.Name = "txtErrorInfo";
             this.txtErrorInfo.Size = new System.Drawing.Size(176, 68);
             this.txtErrorInfo.TabIndex = 3;
-            this.txtErrorInfo.Text = "成功";
             // 
             // cboxErrorCode
             // 
@@ -322,6 +321,7 @@ namespace ThisCoder.CSA018WinExample
             this.cboxErrorCode.Name = "cboxErrorCode";
             this.cboxErrorCode.Size = new System.Drawing.Size(176, 20);
             this.cboxErrorCode.TabIndex = 2;
+            this.cboxErrorCode.SelectedIndexChanged += new System.EventHandler(this.cboxErrorCode_SelectedIndexChanged);
             // 
             // gbErrorCodeAndInfo
             // 

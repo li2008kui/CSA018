@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows.Forms;
 using ThisCoder.CSA018;
@@ -38,8 +39,19 @@ namespace ThisCoder.CSA018WinExample
             txtMessage2.Text = "";
             MessageType messageType;
             byte[] cmd;
+            KeyValuePair<string, string> msgTypeItem;
 
-            if (Enum.TryParse(cboxMessageType.Text, out messageType))
+            try
+            {
+                msgTypeItem = (KeyValuePair<string, string>)cboxMessageType.SelectedItem;
+            }
+            catch
+            {
+                MessageBox.Show("请选择消息类型！");
+                return;
+            }
+
+            if (Enum.TryParse(msgTypeItem.Key, out messageType))
             {
                 if (messageType == MessageType.HeartbeatData)
                 {
@@ -76,6 +88,17 @@ namespace ThisCoder.CSA018WinExample
                     uint gatewayId = 0;
                     uint luminaireId = 0;
                     MessageId messageId;
+                    KeyValuePair<string, string> msgIdItem;
+
+                    try
+                    {
+                        msgIdItem = (KeyValuePair<string, string>)cboxMessageId.SelectedItem;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("请选择消息ID！");
+                        return;
+                    }
 
                     for (int i = gatewayIdByteArray.Length - 1, j = 0; i >= 0 && j < 4; i--, j++)
                     {
@@ -87,15 +110,26 @@ namespace ThisCoder.CSA018WinExample
                         luminaireId += (uint)(luminaireIdByteArray[k] << (8 * l));
                     }
 
-                    if (Enum.TryParse(cboxMessageId.Text, out messageId))
+                    if (Enum.TryParse(msgIdItem.Key, out messageId))
                     {
                         CreateCommand cc = new CreateCommand(messageType, gatewayId, luminaireId);
 
                         if (messageType == MessageType.CommandResult)
                         {
                             ErrorCode errorCode;
+                            KeyValuePair<string, string> errorCodeItem;
 
-                            if (Enum.TryParse(cboxErrorCode.Text, out errorCode))
+                            try
+                            {
+                                errorCodeItem = (KeyValuePair<string, string>)cboxErrorCode.SelectedItem;
+                            }
+                            catch
+                            {
+                                MessageBox.Show("错误代码不能为空！");
+                                return;
+                            }
+
+                            if (Enum.TryParse(errorCodeItem.Key, out errorCode))
                             {
                                 cmd = cc.GetResultCommand(SeqNumber, messageId, errorCode, txtErrorInfo.Text.Trim());
                             }
@@ -168,8 +202,18 @@ namespace ThisCoder.CSA018WinExample
         {
             ParameterType parameterType;
             string parameterValue;
+            KeyValuePair<string, string> parTypeItme;
 
-            if (ckbParameter.Visible && ckbParameter.Checked && Enum.TryParse(cboxParameterType.Text, out parameterType))
+            try
+            {
+                parTypeItme = (KeyValuePair<string, string>)cboxParameterType.SelectedItem;
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
+            if (ckbParameter.Visible && ckbParameter.Checked && Enum.TryParse(parTypeItme.Key, out parameterType))
             {
                 parameterValue = txtParameterValue.Text.Trim();
 
@@ -401,15 +445,84 @@ namespace ThisCoder.CSA018WinExample
             }
         }
 
-        private void BindingCombox(ComboBox cbox, Type e)
+        private void BindingCombox(ComboBox cbox, Type type)
         {
             cbox.Items.Add("------请选择------");
 
-            foreach (var item in Enum.GetValues(e))
+            if (type.IsEnum)
             {
-                if (!cbox.Items.Contains(item))
+                if (type.Equals(typeof(MessageType))
+                    || type.Equals(typeof(MessageId))
+                    || type.Equals(typeof(ParameterType)))
                 {
-                    cbox.Items.Add(item);
+                    foreach (var fieldInfo in type.GetFields())
+                    {
+                        if (fieldInfo.FieldType.IsEnum)
+                        {
+                            string enumValueString = string.Empty;
+
+                            if (type.Equals(typeof(MessageType)))
+                            {
+                                enumValueString = ((byte)((MessageType)Enum.Parse(type, fieldInfo.Name))).ToString("X2");
+                            }
+                            else if (type.Equals(typeof(MessageId)))
+                            {
+                                enumValueString = ((ushort)((MessageId)Enum.Parse(type, fieldInfo.Name))).ToString("X4");
+                            }
+                            else
+                            {
+                                enumValueString = ((ushort)((ParameterType)Enum.Parse(type, fieldInfo.Name))).ToString("X4");
+                            }
+
+                            foreach (var attr in fieldInfo.GetCustomAttributes(false))
+                            {
+                                if (attr is DescriptionAttribute)
+                                {
+                                    KeyValuePair<string, string> item = new KeyValuePair<string, string>(
+                                        fieldInfo.Name,
+                                        enumValueString + "-" + (attr as DescriptionAttribute)?.Description
+                                        );
+
+                                    if (!cbox.Items.Contains(item))
+                                    {
+                                        cbox.Items.Add(item);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    cbox.DisplayMember = "Value";
+                }
+                else
+                {
+                    if (type.Equals(typeof(ErrorCode)))
+                    {
+                        foreach (var errorCode in Enum.GetValues(type))
+                        {
+                            KeyValuePair<string, string> item = new KeyValuePair<string, string>(
+                                errorCode.ToString(),
+                                "\"" + Encoding.UTF8.GetString(((uint)((ErrorCode)errorCode)).ToString("X8").ToByteArray(true)) + "\"-" + errorCode
+                                );
+
+                            if (!cbox.Items.Contains(item))
+                            {
+                                cbox.Items.Add(item);
+                            }
+                        }
+
+                        cbox.DisplayMember = "Value";
+                    }
+                    else
+                    {
+                        foreach (var item in Enum.GetValues(type))
+                        {
+                            if (!cbox.Items.Contains(item))
+                            {
+                                cbox.Items.Add(item);
+                            }
+                        }
+                    }
                 }
             }
 
@@ -756,8 +869,20 @@ namespace ThisCoder.CSA018WinExample
             txtGatewayId.Enabled = true;
             txtLuminaireId.Enabled = true;
             MessageType messageType;
+            KeyValuePair<string, string> msgTypeItem;
 
-            if (Enum.TryParse(cboxMessageType.Text, out messageType))
+            try
+            {
+                msgTypeItem = (KeyValuePair<string, string>)cboxMessageType.SelectedItem;
+            }
+            catch
+            {
+                gbErrorCodeAndInfo.Visible = false;
+                gbParameterList.Visible = true;
+                return;
+            }
+
+            if (Enum.TryParse(msgTypeItem.Key, out messageType))
             {
                 switch (messageType)
                 {
@@ -787,6 +912,36 @@ namespace ThisCoder.CSA018WinExample
             {
                 gbErrorCodeAndInfo.Visible = false;
                 gbParameterList.Visible = true;
+            }
+        }
+
+        private void cboxErrorCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            KeyValuePair<string, string> errorCodeItem;
+
+            try
+            {
+                errorCodeItem = (KeyValuePair<string, string>)cboxErrorCode.SelectedItem;
+            }
+            catch
+            {
+                txtErrorInfo.Clear();
+                return;
+            }
+
+            foreach (var fieldInfo in typeof(ErrorCode).GetFields())
+            {
+                if (fieldInfo.FieldType.IsEnum && fieldInfo.Name == errorCodeItem.Key)
+                {
+                    foreach (var attr in fieldInfo.GetCustomAttributes(false))
+                    {
+                        if (attr is DescriptionAttribute)
+                        {
+                            txtErrorInfo.Text = (attr as DescriptionAttribute)?.Description;
+                            return;
+                        }
+                    }
+                }
             }
         }
     }

@@ -6,7 +6,7 @@ namespace ThisCoder.CSA018
     /// 错误代码。
     /// <para>uint类型，长度为4个字节。</para>
     /// </summary>
-    [Description("")]
+    [Description("错误代码")]
     public enum ErrorCode : uint
     {
         #region 系统保留(0000~0099和9999)
