@@ -344,7 +344,7 @@
 
         /// <summary>
         /// 持续时间。
-        /// <para>单位：分钟。</para>
+        /// <para>单位：秒钟。</para>
         /// </summary>
         Duration = 0x0068,
 
