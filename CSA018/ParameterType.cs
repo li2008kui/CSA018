@@ -127,12 +127,12 @@ namespace ThisCoder.CSA018
         HeatBeatRetryTimes = 0x000E,
 
         /// <summary>
-        /// 网关所管理的灯具ID。
+        /// 灯具ID。
         /// <para>参数值最大字节数：10。</para>
         /// <para>网关所管理的灯具ID，用十进制的数字表示，由服务器分配，范围为0x00000001~0xffffff00。</para>
         /// <para>这个参数在命令中可以包含一个或者多个。</para>
         /// </summary>
-        [Description("网关所管理的灯具ID")]
+        [Description("灯具ID")]
         LuminaireId = 0x000F,
         #endregion
 
@@ -232,11 +232,11 @@ namespace ThisCoder.CSA018
         OperationMode = 0x0027,
 
         /// <summary>
-        /// 延时。
+        /// 延时时长。
         /// <para>参数值最大字节数：5。</para>
         /// <para>延迟的时间，单位：秒钟。</para>
         /// </summary>
-        [Description("延时")]
+        [Description("延时时长")]
         DelayTime = 0x0028,
 
         /// <summary>
@@ -390,10 +390,10 @@ namespace ThisCoder.CSA018
         Quantity = 0x0067,
 
         /// <summary>
-        /// 持续时间。
+        /// 持续时长。
         /// <para>单位：秒钟。</para>
         /// </summary>
-        [Description("持续时间")]
+        [Description("持续时长")]
         Duration = 0x0068,
 
         /// <summary>
@@ -448,45 +448,45 @@ namespace ThisCoder.CSA018
         Number = 0x006F,
 
         /// <summary>
-        /// 防盗。
+        /// 防盗开关。
         /// </summary>
-        [Description("防盗")]
+        [Description("防盗开关")]
         SwitchBurglarAlarm = 0x0070,
 
         /// <summary>
-        /// 移动传感器。
+        /// 移动传感器开关。
         /// </summary>
-        [Description("移动传感器")]
+        [Description("移动传感器开关")]
         SwitchMoveSensor = 0x0071,
 
         /// <summary>
-        /// 亮度传感器。
+        /// 亮度传感器开关。
         /// </summary>
-        [Description("亮度传感器")]
+        [Description("亮度传感器开关")]
         SwitchLightSensor = 0x0072,
 
         /// <summary>
-        /// 天气状况。
+        /// 天气状况开关。
         /// </summary>
-        [Description("天气状况")]
+        [Description("天气状况开关")]
         SwitchWeather = 0x0073,
 
         /// <summary>
-        /// 交通量。
+        /// 交通量开关。
         /// </summary>
-        [Description("交通量")]
+        [Description("交通量开关")]
         SwitchTrafficFlow = 0x0074,
 
         /// <summary>
-        /// 经纬度。
+        /// 经纬度开关。
         /// </summary>
-        [Description("经纬度")]
+        [Description("经纬度开关")]
         SwitchLongitudeLatitude = 0x0075,
 
         /// <summary>
-        /// 光衰补偿。
+        /// 光衰补偿开关。
         /// </summary>
-        [Description("光衰补偿")]
+        [Description("光衰补偿开关")]
         SwitchAttenuationCompensation = 0x0076,
 
         /// <summary>
@@ -512,7 +512,7 @@ namespace ThisCoder.CSA018
         IsTriggered = 0x0081,
 
         /// <summary>
-        /// 等待时间。
+        /// 等待时长。
         /// <para>单位：秒钟。</para>
         /// </summary>
         [Description("等待时间")]
