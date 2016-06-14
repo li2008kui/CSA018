@@ -20,6 +20,18 @@ namespace ThisCoder.CSA018WinExample
         {
             BindingCombox(cboxMessageType, typeof(MessageType));
             BindingCombox(cboxMessageId, typeof(MessageId));
+
+            cboxParameterType1.SelectedIndexChanged -= cboxParameterType_SelectedIndexChanged;
+            cboxParameterType2.SelectedIndexChanged -= cboxParameterType_SelectedIndexChanged;
+            cboxParameterType3.SelectedIndexChanged -= cboxParameterType_SelectedIndexChanged;
+            cboxParameterType4.SelectedIndexChanged -= cboxParameterType_SelectedIndexChanged;
+            cboxParameterType5.SelectedIndexChanged -= cboxParameterType_SelectedIndexChanged;
+            cboxParameterType6.SelectedIndexChanged -= cboxParameterType_SelectedIndexChanged;
+            cboxParameterType7.SelectedIndexChanged -= cboxParameterType_SelectedIndexChanged;
+            cboxParameterType8.SelectedIndexChanged -= cboxParameterType_SelectedIndexChanged;
+            cboxParameterType9.SelectedIndexChanged -= cboxParameterType_SelectedIndexChanged;
+            cboxParameterType10.SelectedIndexChanged -= cboxParameterType_SelectedIndexChanged;
+
             BindingCombox(cboxParameterType1, typeof(ParameterType));
             BindingCombox(cboxParameterType2, typeof(ParameterType));
             BindingCombox(cboxParameterType3, typeof(ParameterType));
@@ -30,6 +42,18 @@ namespace ThisCoder.CSA018WinExample
             BindingCombox(cboxParameterType8, typeof(ParameterType));
             BindingCombox(cboxParameterType9, typeof(ParameterType));
             BindingCombox(cboxParameterType10, typeof(ParameterType));
+
+            cboxParameterType1.SelectedIndexChanged += cboxParameterType_SelectedIndexChanged;
+            cboxParameterType2.SelectedIndexChanged += cboxParameterType_SelectedIndexChanged;
+            cboxParameterType3.SelectedIndexChanged += cboxParameterType_SelectedIndexChanged;
+            cboxParameterType4.SelectedIndexChanged += cboxParameterType_SelectedIndexChanged;
+            cboxParameterType5.SelectedIndexChanged += cboxParameterType_SelectedIndexChanged;
+            cboxParameterType6.SelectedIndexChanged += cboxParameterType_SelectedIndexChanged;
+            cboxParameterType7.SelectedIndexChanged += cboxParameterType_SelectedIndexChanged;
+            cboxParameterType8.SelectedIndexChanged += cboxParameterType_SelectedIndexChanged;
+            cboxParameterType9.SelectedIndexChanged += cboxParameterType_SelectedIndexChanged;
+            cboxParameterType10.SelectedIndexChanged += cboxParameterType_SelectedIndexChanged;
+
             BindingCombox(cboxErrorCode, typeof(ErrorCode));
         }
 
@@ -143,16 +167,16 @@ namespace ThisCoder.CSA018WinExample
                         {
                             List<Parameter> parameterList = new List<Parameter>();
 
-                            SetParameterList(ref parameterList, ckbParameter1, cboxParameterType1, txtParameterValue1, ckbParameterHex1);
-                            SetParameterList(ref parameterList, ckbParameter2, cboxParameterType2, txtParameterValue2, ckbParameterHex2);
-                            SetParameterList(ref parameterList, ckbParameter3, cboxParameterType3, txtParameterValue3, ckbParameterHex3);
-                            SetParameterList(ref parameterList, ckbParameter4, cboxParameterType4, txtParameterValue4, ckbParameterHex4);
-                            SetParameterList(ref parameterList, ckbParameter5, cboxParameterType5, txtParameterValue5, ckbParameterHex5);
-                            SetParameterList(ref parameterList, ckbParameter6, cboxParameterType6, txtParameterValue6, ckbParameterHex6);
-                            SetParameterList(ref parameterList, ckbParameter7, cboxParameterType7, txtParameterValue7, ckbParameterHex7);
-                            SetParameterList(ref parameterList, ckbParameter8, cboxParameterType8, txtParameterValue8, ckbParameterHex8);
-                            SetParameterList(ref parameterList, ckbParameter9, cboxParameterType9, txtParameterValue9, ckbParameterHex9);
-                            SetParameterList(ref parameterList, ckbParameter10, cboxParameterType10, txtParameterValue10, ckbParameterHex10);
+                            SetParameterList(ref parameterList, ckbParameter1, cboxParameterType1, txtParameterValue1, ckbParameterHex1, cboxParameterValue1);
+                            SetParameterList(ref parameterList, ckbParameter2, cboxParameterType2, txtParameterValue2, ckbParameterHex2, cboxParameterValue2);
+                            SetParameterList(ref parameterList, ckbParameter3, cboxParameterType3, txtParameterValue3, ckbParameterHex3, cboxParameterValue3);
+                            SetParameterList(ref parameterList, ckbParameter4, cboxParameterType4, txtParameterValue4, ckbParameterHex4, cboxParameterValue4);
+                            SetParameterList(ref parameterList, ckbParameter5, cboxParameterType5, txtParameterValue5, ckbParameterHex5, cboxParameterValue5);
+                            SetParameterList(ref parameterList, ckbParameter6, cboxParameterType6, txtParameterValue6, ckbParameterHex6, cboxParameterValue6);
+                            SetParameterList(ref parameterList, ckbParameter7, cboxParameterType7, txtParameterValue7, ckbParameterHex7, cboxParameterValue7);
+                            SetParameterList(ref parameterList, ckbParameter8, cboxParameterType8, txtParameterValue8, ckbParameterHex8, cboxParameterValue8);
+                            SetParameterList(ref parameterList, ckbParameter9, cboxParameterType9, txtParameterValue9, ckbParameterHex9, cboxParameterValue9);
+                            SetParameterList(ref parameterList, ckbParameter10, cboxParameterType10, txtParameterValue10, ckbParameterHex10, cboxParameterValue10);
 
                             if (parameterList.Count == 0)
                             {
@@ -198,7 +222,7 @@ namespace ThisCoder.CSA018WinExample
             }
         }
 
-        private void SetParameterList(ref List<Parameter> parameterList, CheckBox ckbParameter, ComboBox cboxParameterType, TextBox txtParameterValue, CheckBox ckbParameterHex)
+        private void SetParameterList(ref List<Parameter> parameterList, CheckBox ckbParameter, ComboBox cboxParameterType, TextBox txtParameterValue, CheckBox ckbParameterHex, ComboBox cboxParameterValue)
         {
             ParameterType parameterType;
             string parameterValue;
@@ -208,25 +232,58 @@ namespace ThisCoder.CSA018WinExample
             {
                 parTypeItme = (KeyValuePair<string, string>)cboxParameterType.SelectedItem;
             }
-            catch (Exception)
+            catch
             {
                 return;
             }
 
             if (ckbParameter.Visible && ckbParameter.Checked && Enum.TryParse(parTypeItme.Key, out parameterType))
             {
-                parameterValue = txtParameterValue.Text.Trim();
+                int resType = GetResourceType(cboxParameterType);
 
-                if (!parameterValue.IsNullOrEmpty())
+                if (resType == 0)
                 {
-                    if (ckbParameterHex.Checked)
+                    parameterValue = txtParameterValue.Text.Trim();
+
+                    if (!parameterValue.IsNullOrEmpty())
                     {
-                        parameterList.Add(new Parameter(parameterType, parameterValue.ToByteArray(true)));
+                        if (ckbParameterHex.Checked)
+                        {
+                            parameterList.Add(new Parameter(parameterType, parameterValue.ToByteArray(true)));
+                        }
+                        else
+                        {
+                            parameterList.Add(new Parameter(parameterType, parameterValue));
+                        }
+                    }
+                }
+                else
+                {
+                    KeyValuePair<string, string> parValueItme;
+
+                    try
+                    {
+                        parValueItme = (KeyValuePair<string, string>)cboxParameterValue.SelectedItem;
+                    }
+                    catch
+                    {
+                        return;
+                    }
+
+                    if (resType == 1)
+                    {
+                        parameterValue = Encoding.UTF8.GetString(((uint)((ResourceType)Enum.Parse(typeof(ResourceType), parValueItme.Key))).ToString("X4").ToByteArray(true));
+                    }
+                    else if (resType == 2)
+                    {
+                        parameterValue = Encoding.UTF8.GetString(((uint)((ResourceType2)Enum.Parse(typeof(ResourceType2), parValueItme.Key))).ToString("X4").ToByteArray(true));
                     }
                     else
                     {
-                        parameterList.Add(new Parameter(parameterType, parameterValue));
+                        return;
                     }
+
+                    parameterList.Add(new Parameter(parameterType, parameterValue));
                 }
             }
         }
@@ -273,7 +330,7 @@ namespace ThisCoder.CSA018WinExample
                                 {
                                     cmdRemarkString += "\r\n|    |-------------------------------|";
                                     cmdRemarkString += "\r\n|    | 参 ｜    参数类型：" + ((ushort)datagram.Body.ParameterList[i].Type).ToString("X4") + "       |" + "<-" + GetEnumValueDescription(typeof(ParameterType), datagram.Body.ParameterList[i].Type.ToString());
-                                    cmdRemarkString += "\r\n|    | 数 ｜      参数值：\"" + datagram.Body.ParameterList[i].Value + "\"      |";
+                                    cmdRemarkString += "\r\n|    | 数 ｜      参数值：\"" + DisplayParameterValue(datagram.Body.ParameterList[i].Value) + "|" + GetParameterValueDescription(datagram.Body.ParameterList[i].Type, datagram.Body.ParameterList[i].Value);
                                     cmdRemarkString += "\r\n|    | " + (i + 1).ToString().PadRight(2, ' ') + " | 参数值结束符：" + datagram.Body.ParameterList[i].End.ToString("X2") + "         |";
                                 }
                             }
@@ -310,6 +367,63 @@ namespace ThisCoder.CSA018WinExample
             }
         }
 
+        private string DisplayParameterValue(string value)
+        {
+            string blankString = string.Empty;
+
+            if (value.Length < 9)
+            {
+                for (int i = 0; i < 9 - value.Length; i++)
+                {
+                    blankString += " ";
+                }
+            }
+
+            return value + "\"" + blankString;
+        }
+
+        private string GetParameterValueDescription(ParameterType parType, string parValue)
+        {
+            if (parType == ParameterType.ResourceType)
+            {
+                foreach (var fieldInfo in typeof(ResourceType).GetFields())
+                {
+                    if (fieldInfo.FieldType.IsEnum && Encoding.UTF8.GetString(((ushort)((ResourceType)(Enum.Parse(typeof(ResourceType), fieldInfo.Name)))).ToString("X4").ToByteArray(true)) == parValue)
+                    {
+                        foreach (var attr in fieldInfo.GetCustomAttributes(false))
+                        {
+                            if (attr is DescriptionAttribute)
+                            {
+                                return "<-" + (attr as DescriptionAttribute)?.Description;
+                            }
+                        }
+                    }
+                }
+            }
+            else if (parType == ParameterType.ResourceType2)
+            {
+                foreach (var fieldInfo in typeof(ResourceType2).GetFields())
+                {
+                    if (fieldInfo.FieldType.IsEnum && Encoding.UTF8.GetString(((ushort)((ResourceType2)(Enum.Parse(typeof(ResourceType2), fieldInfo.Name)))).ToString("X4").ToByteArray(true)) == parValue)
+                    {
+                        foreach (var attr in fieldInfo.GetCustomAttributes(false))
+                        {
+                            if (attr is DescriptionAttribute)
+                            {
+                                return "<-" + (attr as DescriptionAttribute)?.Description;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                return string.Empty;
+            }
+
+            return string.Empty;
+        }
+
         private string GetEnumValueDescription(Type type, string enumString)
         {
             foreach (var fieldInfo in type.GetFields())
@@ -334,7 +448,7 @@ namespace ThisCoder.CSA018WinExample
             cboxMessageType.SelectedIndex = 0;
             cboxMessageId.SelectedIndex = 0;
             txtGatewayId.Text = "00000001";
-            txtLuminaireId.Text = "00000000";
+            txtLuminaireId.Text = "FFFFFFFF";
             ckbParameter1.Checked = false;
             ckbParameter1.Visible = true;
             ckbParameter2.Checked = false;
@@ -415,6 +529,16 @@ namespace ThisCoder.CSA018WinExample
             ckbParameterHex9.Visible = false;
             ckbParameterHex10.Checked = false;
             ckbParameterHex10.Visible = false;
+            cboxParameterValue1.Visible = false;
+            cboxParameterValue2.Visible = false;
+            cboxParameterValue3.Visible = false;
+            cboxParameterValue4.Visible = false;
+            cboxParameterValue5.Visible = false;
+            cboxParameterValue6.Visible = false;
+            cboxParameterValue7.Visible = false;
+            cboxParameterValue8.Visible = false;
+            cboxParameterValue9.Visible = false;
+            cboxParameterValue10.Visible = false;
             btnAddOrMoveParameter1.Text = "-";
             btnAddOrMoveParameter1.Visible = true;
             btnAddOrMoveParameter2.Text = "+";
@@ -446,11 +570,10 @@ namespace ThisCoder.CSA018WinExample
 
             if (!cmdString.IsNullOrEmpty())
             {
-                ParseCommand oa = new ParseCommand(cmdString.ToByteArray(true));
-                oa.DatagramProcess += Oa_DatagramProcess;
-
                 try
                 {
+                    ParseCommand oa = new ParseCommand(cmdString.ToByteArray(true));
+                    oa.DatagramProcess += Oa_DatagramProcess;
                     oa.OnDatagramProcess();
                 }
                 catch (Exception ex)
@@ -467,30 +590,43 @@ namespace ThisCoder.CSA018WinExample
         private void BindingCombox(ComboBox cbox, Type type)
         {
             cbox.Items.Add("------请选择------");
+            string tempString = string.Empty;
 
             if (type.IsEnum)
             {
                 if (type.Equals(typeof(MessageType))
                     || type.Equals(typeof(MessageId))
-                    || type.Equals(typeof(ParameterType)))
+                    || type.Equals(typeof(ParameterType))
+                    || type.Equals(typeof(ResourceType))
+                    || type.Equals(typeof(ResourceType2)))
                 {
                     foreach (var fieldInfo in type.GetFields())
                     {
                         if (fieldInfo.FieldType.IsEnum)
                         {
-                            string enumValueString = string.Empty;
-
                             if (type.Equals(typeof(MessageType)))
                             {
-                                enumValueString = ((byte)((MessageType)Enum.Parse(type, fieldInfo.Name))).ToString("X2");
+                                tempString = ((byte)((MessageType)Enum.Parse(type, fieldInfo.Name))).ToString("X2");
                             }
                             else if (type.Equals(typeof(MessageId)))
                             {
-                                enumValueString = ((ushort)((MessageId)Enum.Parse(type, fieldInfo.Name))).ToString("X4");
+                                tempString = ((ushort)((MessageId)Enum.Parse(type, fieldInfo.Name))).ToString("X4");
+                            }
+                            else if (type.Equals(typeof(ParameterType)))
+                            {
+                                tempString = ((ushort)((ParameterType)Enum.Parse(type, fieldInfo.Name))).ToString("X4");
+                            }
+                            else if (type.Equals(typeof(ResourceType)))
+                            {
+                                tempString = "\"" + Encoding.UTF8.GetString(((uint)((ResourceType)Enum.Parse(type, fieldInfo.Name))).ToString("X4").ToByteArray(true)) + "\"";
+                            }
+                            else if (type.Equals(typeof(ResourceType2)))
+                            {
+                                tempString = "\"" + Encoding.UTF8.GetString(((uint)((ResourceType2)Enum.Parse(type, fieldInfo.Name))).ToString("X4").ToByteArray(true)) + "\"";
                             }
                             else
                             {
-                                enumValueString = ((ushort)((ParameterType)Enum.Parse(type, fieldInfo.Name))).ToString("X4");
+                                tempString = string.Empty;
                             }
 
                             foreach (var attr in fieldInfo.GetCustomAttributes(false))
@@ -499,7 +635,7 @@ namespace ThisCoder.CSA018WinExample
                                 {
                                     KeyValuePair<string, string> item = new KeyValuePair<string, string>(
                                         fieldInfo.Name,
-                                        enumValueString + "-" + (attr as DescriptionAttribute)?.Description
+                                        tempString + "-" + (attr as DescriptionAttribute)?.Description
                                         );
 
                                     if (!cbox.Items.Contains(item))
@@ -517,11 +653,11 @@ namespace ThisCoder.CSA018WinExample
                 {
                     if (type.Equals(typeof(ErrorCode)))
                     {
-                        foreach (var errorCode in Enum.GetValues(type))
+                        foreach (var value in Enum.GetValues(type))
                         {
                             KeyValuePair<string, string> item = new KeyValuePair<string, string>(
-                                errorCode.ToString(),
-                                "\"" + Encoding.UTF8.GetString(((uint)((ErrorCode)errorCode)).ToString("X8").ToByteArray(true)) + "\"-" + errorCode
+                                value.ToString(),
+                                "\"" + Encoding.UTF8.GetString(((uint)((ErrorCode)value)).ToString("X8").ToByteArray(true)) + "\"-" + value
                                 );
 
                             if (!cbox.Items.Contains(item))
@@ -552,47 +688,348 @@ namespace ThisCoder.CSA018WinExample
         {
             ComboBox cbox = sender as ComboBox;
             bool check = cbox.SelectedIndex > 0;
+            int resType = GetResourceType(cbox);
 
             if (cbox.Name.EndsWith("1"))
             {
-                ckbParameter1.Checked = check && txtParameterValue1.Text.Trim().Length > 0;
+                cboxParameterValue1.Items.Clear();
+
+                if (resType == 0)
+                {
+                    txtParameterValue1.Visible = true;
+                    ckbParameterHex1.Visible = true;
+                    cboxParameterValue1.Visible = false;
+                    ckbParameter1.Checked = check && txtParameterValue1.Text.Trim().Length > 0;
+                }
+                else
+                {
+                    txtParameterValue1.Visible = false;
+                    ckbParameterHex1.Visible = false;
+                    cboxParameterValue1.Visible = true;
+                    ckbParameter1.Checked = check && cboxParameterValue1.SelectedIndex > 0;
+
+                    if (resType == 1)
+                    {
+                        BindingCombox(cboxParameterValue1, typeof(ResourceType));
+                    }
+                    else if (resType == 2)
+                    {
+                        BindingCombox(cboxParameterValue1, typeof(ResourceType2));
+                    }
+                    else
+                    {
+                    }
+                }
             }
             else if (cbox.Name.EndsWith("2"))
             {
-                ckbParameter2.Checked = check && txtParameterValue2.Text.Trim().Length > 0;
+                cboxParameterValue2.Items.Clear();
+
+                if (resType == 0)
+                {
+                    txtParameterValue2.Visible = true;
+                    ckbParameterHex2.Visible = true;
+                    cboxParameterValue2.Visible = false;
+                    ckbParameter2.Checked = check && txtParameterValue2.Text.Trim().Length > 0;
+                }
+                else
+                {
+                    txtParameterValue2.Visible = false;
+                    ckbParameterHex2.Visible = false;
+                    cboxParameterValue2.Visible = true;
+                    ckbParameter2.Checked = check && cboxParameterValue2.SelectedIndex > 0;
+
+                    if (resType == 1)
+                    {
+                        BindingCombox(cboxParameterValue2, typeof(ResourceType));
+                    }
+                    else if (resType == 2)
+                    {
+                        BindingCombox(cboxParameterValue2, typeof(ResourceType2));
+                    }
+                    else
+                    {
+                    }
+                }
             }
             else if (cbox.Name.EndsWith("3"))
             {
-                ckbParameter3.Checked = check && txtParameterValue3.Text.Trim().Length > 0;
+                cboxParameterValue3.Items.Clear();
+
+                if (resType == 0)
+                {
+                    txtParameterValue3.Visible = true;
+                    ckbParameterHex3.Visible = true;
+                    cboxParameterValue3.Visible = false;
+                    ckbParameter3.Checked = check && txtParameterValue3.Text.Trim().Length > 0;
+                }
+                else
+                {
+                    txtParameterValue3.Visible = false;
+                    ckbParameterHex3.Visible = false;
+                    cboxParameterValue3.Visible = true;
+                    ckbParameter3.Checked = check && cboxParameterValue3.SelectedIndex > 0;
+
+                    if (resType == 1)
+                    {
+                        BindingCombox(cboxParameterValue3, typeof(ResourceType));
+                    }
+                    else if (resType == 2)
+                    {
+                        BindingCombox(cboxParameterValue3, typeof(ResourceType2));
+                    }
+                    else
+                    {
+                    }
+                }
             }
             else if (cbox.Name.EndsWith("4"))
             {
-                ckbParameter4.Checked = check && txtParameterValue4.Text.Trim().Length > 0;
+                cboxParameterValue4.Items.Clear();
+
+                if (resType == 0)
+                {
+                    txtParameterValue4.Visible = true;
+                    ckbParameterHex4.Visible = true;
+                    cboxParameterValue4.Visible = false;
+                    ckbParameter4.Checked = check && txtParameterValue4.Text.Trim().Length > 0;
+                }
+                else
+                {
+                    txtParameterValue4.Visible = false;
+                    ckbParameterHex4.Visible = false;
+                    cboxParameterValue4.Visible = true;
+                    ckbParameter4.Checked = check && cboxParameterValue4.SelectedIndex > 0;
+
+                    if (resType == 1)
+                    {
+                        BindingCombox(cboxParameterValue4, typeof(ResourceType));
+                    }
+                    else if (resType == 2)
+                    {
+                        BindingCombox(cboxParameterValue4, typeof(ResourceType2));
+                    }
+                    else
+                    {
+                    }
+                }
             }
             else if (cbox.Name.EndsWith("5"))
             {
-                ckbParameter5.Checked = check && txtParameterValue5.Text.Trim().Length > 0;
+                cboxParameterValue5.Items.Clear();
+
+                if (resType == 0)
+                {
+                    txtParameterValue5.Visible = true;
+                    ckbParameterHex5.Visible = true;
+                    cboxParameterValue5.Visible = false;
+                    ckbParameter5.Checked = check && txtParameterValue5.Text.Trim().Length > 0;
+                }
+                else
+                {
+                    txtParameterValue5.Visible = false;
+                    ckbParameterHex5.Visible = false;
+                    cboxParameterValue5.Visible = true;
+                    ckbParameter5.Checked = check && cboxParameterValue5.SelectedIndex > 0;
+
+                    if (resType == 1)
+                    {
+                        BindingCombox(cboxParameterValue5, typeof(ResourceType));
+                    }
+                    else if (resType == 2)
+                    {
+                        BindingCombox(cboxParameterValue5, typeof(ResourceType2));
+                    }
+                    else
+                    {
+                    }
+                }
             }
             else if (cbox.Name.EndsWith("6"))
             {
-                ckbParameter6.Checked = check && txtParameterValue6.Text.Trim().Length > 0;
+                cboxParameterValue6.Items.Clear();
+
+                if (resType == 0)
+                {
+                    txtParameterValue6.Visible = true;
+                    ckbParameterHex6.Visible = true;
+                    cboxParameterValue6.Visible = false;
+                    ckbParameter6.Checked = check && txtParameterValue6.Text.Trim().Length > 0;
+                }
+                else
+                {
+                    txtParameterValue6.Visible = false;
+                    ckbParameterHex6.Visible = false;
+                    cboxParameterValue6.Visible = true;
+                    ckbParameter6.Checked = check && cboxParameterValue6.SelectedIndex > 0;
+
+                    if (resType == 1)
+                    {
+                        BindingCombox(cboxParameterValue6, typeof(ResourceType));
+                    }
+                    else if (resType == 2)
+                    {
+                        BindingCombox(cboxParameterValue6, typeof(ResourceType2));
+                    }
+                    else
+                    {
+                    }
+                }
             }
             else if (cbox.Name.EndsWith("7"))
             {
-                ckbParameter7.Checked = check && txtParameterValue7.Text.Trim().Length > 0;
+                cboxParameterValue7.Items.Clear();
+
+                if (resType == 0)
+                {
+                    txtParameterValue7.Visible = true;
+                    ckbParameterHex7.Visible = true;
+                    cboxParameterValue7.Visible = false;
+                    ckbParameter7.Checked = check && txtParameterValue7.Text.Trim().Length > 0;
+                }
+                else
+                {
+                    txtParameterValue7.Visible = false;
+                    ckbParameterHex7.Visible = false;
+                    cboxParameterValue7.Visible = true;
+                    ckbParameter7.Checked = check && cboxParameterValue7.SelectedIndex > 0;
+
+                    if (resType == 1)
+                    {
+                        BindingCombox(cboxParameterValue7, typeof(ResourceType));
+                    }
+                    else if (resType == 2)
+                    {
+                        BindingCombox(cboxParameterValue7, typeof(ResourceType2));
+                    }
+                    else
+                    {
+                    }
+                }
             }
             else if (cbox.Name.EndsWith("8"))
             {
-                ckbParameter8.Checked = check && txtParameterValue8.Text.Trim().Length > 0;
+                cboxParameterValue8.Items.Clear();
+
+                if (resType == 0)
+                {
+                    txtParameterValue8.Visible = true;
+                    ckbParameterHex8.Visible = true;
+                    cboxParameterValue8.Visible = false;
+                    ckbParameter8.Checked = check && txtParameterValue8.Text.Trim().Length > 0;
+                }
+                else
+                {
+                    txtParameterValue8.Visible = false;
+                    ckbParameterHex8.Visible = false;
+                    cboxParameterValue8.Visible = true;
+                    ckbParameter8.Checked = check && cboxParameterValue8.SelectedIndex > 0;
+
+                    if (resType == 1)
+                    {
+                        BindingCombox(cboxParameterValue8, typeof(ResourceType));
+                    }
+                    else if (resType == 2)
+                    {
+                        BindingCombox(cboxParameterValue8, typeof(ResourceType2));
+                    }
+                    else
+                    {
+                    }
+                }
             }
             else if (cbox.Name.EndsWith("9"))
             {
-                ckbParameter9.Checked = check && txtParameterValue9.Text.Trim().Length > 0;
+                cboxParameterValue9.Items.Clear();
+
+                if (resType == 0)
+                {
+                    txtParameterValue9.Visible = true;
+                    ckbParameterHex9.Visible = true;
+                    cboxParameterValue9.Visible = false;
+                    ckbParameter9.Checked = check && txtParameterValue9.Text.Trim().Length > 0;
+                }
+                else
+                {
+                    txtParameterValue9.Visible = false;
+                    ckbParameterHex9.Visible = false;
+                    cboxParameterValue9.Visible = true;
+                    ckbParameter9.Checked = check && cboxParameterValue9.SelectedIndex > 0;
+
+                    if (resType == 1)
+                    {
+                        BindingCombox(cboxParameterValue9, typeof(ResourceType));
+                    }
+                    else if (resType == 2)
+                    {
+                        BindingCombox(cboxParameterValue9, typeof(ResourceType2));
+                    }
+                    else
+                    {
+                    }
+                }
             }
             else
             {
-                ckbParameter10.Checked = check && txtParameterValue10.Text.Trim().Length > 0;
+                cboxParameterValue10.Items.Clear();
+
+                if (resType == 0)
+                {
+                    txtParameterValue10.Visible = true;
+                    ckbParameterHex10.Visible = true;
+                    cboxParameterValue10.Visible = false;
+                    ckbParameter10.Checked = check && txtParameterValue10.Text.Trim().Length > 0;
+                }
+                else
+                {
+                    txtParameterValue10.Visible = false;
+                    ckbParameterHex10.Visible = false;
+                    cboxParameterValue10.Visible = true;
+                    ckbParameter10.Checked = check && cboxParameterValue10.SelectedIndex > 0;
+
+                    if (resType == 1)
+                    {
+                        BindingCombox(cboxParameterValue10, typeof(ResourceType));
+                    }
+                    else if (resType == 2)
+                    {
+                        BindingCombox(cboxParameterValue10, typeof(ResourceType2));
+                    }
+                    else
+                    {
+                    }
+                }
             }
+        }
+
+        private static int GetResourceType(ComboBox cbox)
+        {
+            KeyValuePair<string, string> parTypeItem;
+            int resType = 0;
+
+            try
+            {
+                parTypeItem = (KeyValuePair<string, string>)cbox.SelectedItem;
+
+                if (parTypeItem.Key == ParameterType.ResourceType.ToString())
+                {
+                    resType = 1;
+                }
+                else if (parTypeItem.Key == ParameterType.ResourceType2.ToString())
+                {
+                    resType = 2;
+                }
+                else
+                {
+                    resType = 0;
+                }
+            }
+            catch
+            {
+                resType = 0;
+            }
+
+            return resType;
         }
 
         private void txtParameterValue_TextChanged(object sender, EventArgs e)
@@ -789,90 +1226,170 @@ namespace ThisCoder.CSA018WinExample
 
             if (btn.Name.EndsWith("1"))
             {
+                if (GetResourceType(cboxParameterType1) == 0)
+                {
+                    txtParameterValue1.Visible = visible;
+                    ckbParameterHex1.Visible = visible;
+                }
+                else
+                {
+                    cboxParameterValue1.Visible = visible;
+                }
+
                 ckbParameter1.Visible = visible;
                 cboxParameterType1.Visible = visible;
-                txtParameterValue1.Visible = visible;
-                ckbParameterHex1.Visible = visible;
                 btnAddOrMoveParameter2.Visible = visible;
             }
             else if (btn.Name.EndsWith("2"))
             {
+                if (GetResourceType(cboxParameterType2) == 0)
+                {
+                    txtParameterValue2.Visible = visible;
+                    ckbParameterHex2.Visible = visible;
+                }
+                else
+                {
+                    cboxParameterValue2.Visible = visible;
+                }
+
                 ckbParameter2.Visible = visible;
                 cboxParameterType2.Visible = visible;
-                txtParameterValue2.Visible = visible;
-                ckbParameterHex2.Visible = visible;
                 btnAddOrMoveParameter1.Visible = !visible;
                 btnAddOrMoveParameter3.Visible = visible;
             }
             else if (btn.Name.EndsWith("3"))
             {
+                if (GetResourceType(cboxParameterType3) == 0)
+                {
+                    txtParameterValue3.Visible = visible;
+                    ckbParameterHex3.Visible = visible;
+                }
+                else
+                {
+                    cboxParameterValue3.Visible = visible;
+                }
+
                 ckbParameter3.Visible = visible;
                 cboxParameterType3.Visible = visible;
-                txtParameterValue3.Visible = visible;
-                ckbParameterHex3.Visible = visible;
                 btnAddOrMoveParameter2.Visible = !visible;
                 btnAddOrMoveParameter4.Visible = visible;
             }
             else if (btn.Name.EndsWith("4"))
             {
+                if (GetResourceType(cboxParameterType4) == 0)
+                {
+                    txtParameterValue4.Visible = visible;
+                    ckbParameterHex4.Visible = visible;
+                }
+                else
+                {
+                    cboxParameterValue4.Visible = visible;
+                }
+
                 ckbParameter4.Visible = visible;
                 cboxParameterType4.Visible = visible;
-                txtParameterValue4.Visible = visible;
-                ckbParameterHex4.Visible = visible;
                 btnAddOrMoveParameter3.Visible = !visible;
                 btnAddOrMoveParameter5.Visible = visible;
             }
             else if (btn.Name.EndsWith("5"))
             {
+                if (GetResourceType(cboxParameterType5) == 0)
+                {
+                    txtParameterValue5.Visible = visible;
+                    ckbParameterHex5.Visible = visible;
+                }
+                else
+                {
+                    cboxParameterValue5.Visible = visible;
+                }
+
                 ckbParameter5.Visible = visible;
                 cboxParameterType5.Visible = visible;
-                txtParameterValue5.Visible = visible;
-                ckbParameterHex5.Visible = visible;
                 btnAddOrMoveParameter4.Visible = !visible;
                 btnAddOrMoveParameter6.Visible = visible;
             }
             else if (btn.Name.EndsWith("6"))
             {
+                if (GetResourceType(cboxParameterType6) == 0)
+                {
+                    txtParameterValue6.Visible = visible;
+                    ckbParameterHex6.Visible = visible;
+                }
+                else
+                {
+                    cboxParameterValue6.Visible = visible;
+                }
+
                 ckbParameter6.Visible = visible;
                 cboxParameterType6.Visible = visible;
-                txtParameterValue6.Visible = visible;
-                ckbParameterHex6.Visible = visible;
                 btnAddOrMoveParameter5.Visible = !visible;
                 btnAddOrMoveParameter7.Visible = visible;
             }
             else if (btn.Name.EndsWith("7"))
             {
+                if (GetResourceType(cboxParameterType7) == 0)
+                {
+                    txtParameterValue7.Visible = visible;
+                    ckbParameterHex7.Visible = visible;
+                }
+                else
+                {
+                    cboxParameterValue7.Visible = visible;
+                }
+
                 ckbParameter7.Visible = visible;
                 cboxParameterType7.Visible = visible;
-                txtParameterValue7.Visible = visible;
-                ckbParameterHex7.Visible = visible;
                 btnAddOrMoveParameter6.Visible = !visible;
                 btnAddOrMoveParameter8.Visible = visible;
             }
             else if (btn.Name.EndsWith("8"))
             {
+                if (GetResourceType(cboxParameterType8) == 0)
+                {
+                    txtParameterValue8.Visible = visible;
+                    ckbParameterHex8.Visible = visible;
+                }
+                else
+                {
+                    cboxParameterValue8.Visible = visible;
+                }
+
                 ckbParameter8.Visible = visible;
                 cboxParameterType8.Visible = visible;
-                txtParameterValue8.Visible = visible;
-                ckbParameterHex8.Visible = visible;
                 btnAddOrMoveParameter7.Visible = !visible;
                 btnAddOrMoveParameter9.Visible = visible;
             }
             else if (btn.Name.EndsWith("9"))
             {
+                if (GetResourceType(cboxParameterType9) == 0)
+                {
+                    txtParameterValue9.Visible = visible;
+                    ckbParameterHex9.Visible = visible;
+                }
+                else
+                {
+                    cboxParameterValue9.Visible = visible;
+                }
+
                 ckbParameter9.Visible = visible;
                 cboxParameterType9.Visible = visible;
-                txtParameterValue9.Visible = visible;
-                ckbParameterHex9.Visible = visible;
                 btnAddOrMoveParameter8.Visible = !visible;
                 btnAddOrMoveParameter10.Visible = visible;
             }
             else
             {
+                if (GetResourceType(cboxParameterType10) == 0)
+                {
+                    txtParameterValue10.Visible = visible;
+                    ckbParameterHex10.Visible = visible;
+                }
+                else
+                {
+                    cboxParameterValue10.Visible = visible;
+                }
+
                 ckbParameter10.Visible = visible;
                 cboxParameterType10.Visible = visible;
-                txtParameterValue10.Visible = visible;
-                ckbParameterHex10.Visible = visible;
                 btnAddOrMoveParameter9.Visible = !visible;
             }
         }
@@ -961,6 +1478,53 @@ namespace ThisCoder.CSA018WinExample
                         }
                     }
                 }
+            }
+        }
+
+        private void cboxParameterValue_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cbox = sender as ComboBox;
+            bool check = cbox.SelectedIndex > 0;
+
+            if (cbox.Name.EndsWith("1"))
+            {
+                ckbParameter1.Checked = check && cboxParameterType1.SelectedIndex > 0;
+            }
+            else if (cbox.Name.EndsWith("2"))
+            {
+                ckbParameter2.Checked = check && cboxParameterType2.SelectedIndex > 0;
+            }
+            else if (cbox.Name.EndsWith("3"))
+            {
+                ckbParameter3.Checked = check && cboxParameterType3.SelectedIndex > 0;
+            }
+            else if (cbox.Name.EndsWith("4"))
+            {
+                ckbParameter4.Checked = check && cboxParameterType4.SelectedIndex > 0;
+            }
+            else if (cbox.Name.EndsWith("5"))
+            {
+                ckbParameter5.Checked = check && cboxParameterType5.SelectedIndex > 0;
+            }
+            else if (cbox.Name.EndsWith("6"))
+            {
+                ckbParameter6.Checked = check && cboxParameterType6.SelectedIndex > 0;
+            }
+            else if (cbox.Name.EndsWith("7"))
+            {
+                ckbParameter7.Checked = check && cboxParameterType7.SelectedIndex > 0;
+            }
+            else if (cbox.Name.EndsWith("8"))
+            {
+                ckbParameter8.Checked = check && cboxParameterType8.SelectedIndex > 0;
+            }
+            else if (cbox.Name.EndsWith("9"))
+            {
+                ckbParameter9.Checked = check && cboxParameterType9.SelectedIndex > 0;
+            }
+            else
+            {
+                ckbParameter10.Checked = check && cboxParameterType10.SelectedIndex > 0;
             }
         }
     }

@@ -161,7 +161,7 @@ namespace ThisCoder.CSA018
         /// <para>参数值最大字节数：3。</para>
         /// <para>亮度值，使用十进制表示，00-100。</para>
         /// </summary>
-        [Description("亮度")]
+        [Description("灯具亮度")]
         Luminance = 0x0021,
 
         /// <summary>
