@@ -509,32 +509,38 @@ namespace ThisCoder.CSA018
         /// 是否被触发。
         /// </summary>
         [Description("是否被触发")]
-        IsTriggered = 0x0081,
+        IsTriggered = 0x0082,
 
         /// <summary>
         /// 等待时长。
         /// <para>单位：秒钟。</para>
         /// </summary>
         [Description("等待时间")]
-        WaitingTime = 0x0082,
+        WaitingTime = 0x0083,
 
         /// <summary>
         /// 环境亮度。
         /// </summary>
         [Description("环境亮度")]
-        Brightness = 0x0083,
+        Brightness = 0x0084,
+
+        /// <summary>
+        /// 持续亮度。
+        /// </summary>
+        [Description("持续亮度")]
+        KeepLuminance = 0x0085,
 
         /// <summary>
         /// 等待亮度。
         /// </summary>
         [Description("等待亮度")]
-        WaitingLuminance = 0x0084,
+        WaitingLuminance = 0x0086,
 
         /// <summary>
         /// 设备好坏。
         /// </summary>
         [Description("设备好坏")]
-        设备好坏 = 0x0085,
+        设备好坏 = 0x0087,
 
         /// <summary>
         /// GPS是否有效。
