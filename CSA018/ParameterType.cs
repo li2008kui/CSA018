@@ -552,19 +552,19 @@ namespace ThisCoder.CSA018
         /// 经度。
         /// </summary>
         [Description("经度")]
-        经度 = 0x0090,
+        经度 = 0x0091,
 
         /// <summary>
         /// 纬度。
         /// </summary>
         [Description("纬度")]
-        纬度 = 0x0091,
+        纬度 = 0x0092,
 
         /// <summary>
         /// 海拔。
         /// </summary>
         [Description("海拔")]
-        海拔 = 0x0092,
+        海拔 = 0x0093,
 
         /// <summary>
         /// 温度。
