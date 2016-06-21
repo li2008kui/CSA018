@@ -342,11 +342,11 @@ namespace ThisCoder.CSA018WinExample
                                     if (datagram.Body.ParameterList[i].Type == ParameterType.GatewayId
                                         || datagram.Body.ParameterList[i].Type == ParameterType.LuminaireId)
                                     {
-                                        cmdRemarkString += "\r\n|    | 数 ｜      参数值：" + Encoding.UTF8.GetBytes(datagram.Body.ParameterList[i].Value).ToHexString("") + "   |";
+                                        cmdRemarkString += "\r\n|    | 数 ｜      参数值：" + datagram.Body.ParameterList[i].Value.ToHexString("") + "   |";
                                     }
                                     else
                                     {
-                                        cmdRemarkString += "\r\n|    | 数 ｜      参数值：\"" + DisplayParameterValue(datagram.Body.ParameterList[i].Value) + "|" + GetParameterValueDescription(datagram.Body.ParameterList[i].Type, datagram.Body.ParameterList[i].Value);
+                                        cmdRemarkString += "\r\n|    | 数 ｜      参数值：\"" + DisplayParameterValue(datagram.Body.ParameterList[i].Value.ToString2()) + "|" + GetParameterValueDescription(datagram.Body.ParameterList[i].Type, datagram.Body.ParameterList[i].Value.ToString2());
                                     }
 
                                     cmdRemarkString += "\r\n|    | " + (i + 1).ToString().PadRight(2, ' ') + " | 参数值结束符：" + datagram.Body.ParameterList[i].End.ToString("X2") + "         |";

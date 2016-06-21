@@ -17,9 +17,9 @@ namespace ThisCoder.CSA018
 
         /// <summary>
         /// 参数值。
-        /// <para>string类型，长度可变。</para>
+        /// <para><see cref="byte"/>类型的数组，长度可变。</para>
         /// </summary>
-        public string Value { get; set; }
+        public byte[] Value { get; set; }
 
         /// <summary>
         /// 参数值结束符。
@@ -36,43 +36,6 @@ namespace ThisCoder.CSA018
         }
 
         /// <summary>
-        /// 通过“参数类型”和字符串类型的“参数值”初始化参数对象实例。
-        /// </summary>
-        /// <param name="type">
-        /// 参数类型。
-        /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
-        /// </param>
-        /// <param name="value">字符串类型的参数值。</param>
-        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
-        public Parameter(ParameterType type, string value)
-            : this()
-        {
-            if (type == ParameterType.GatewayId || type == ParameterType.LuminaireId)
-            {
-                if (value.Length != 4)
-                {
-                    throw new CsaException("参数长度错误。", ErrorCode.ParameterLengthError);
-                }
-            }
-
-            Type = type;
-            Value = value;
-        }
-
-        /// <summary>
-        /// 通过“参数类型”和字节数组类型的“参数值”初始化参数对象实例。
-        /// </summary>
-        /// <param name="type">
-        /// 参数类型。
-        /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
-        /// </param>
-        /// <param name="value">字节数组类型的参数值。</param>
-        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
-        public Parameter(ParameterType type, byte[] value)
-            : this(type, Encoding.UTF8.GetString(value))
-        { }
-
-        /// <summary>
         /// 通过“参数类型”和字节类型的“参数值”初始化参数对象实例。
         /// </summary>
         /// <param name="type">
@@ -86,6 +49,37 @@ namespace ThisCoder.CSA018
         { }
 
         /// <summary>
+        /// 通过“参数类型”和字符串类型的“参数值”初始化参数对象实例。
+        /// </summary>
+        /// <param name="type">
+        /// 参数类型。
+        /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
+        /// </param>
+        /// <param name="value">字符串类型的参数值。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
+        public Parameter(ParameterType type, string value)
+            : this(type, Encoding.UTF8.GetBytes(value))
+        { }
+
+        /// <summary>
+        /// 通过“参数类型”和字节数组类型的“参数值”初始化参数对象实例。
+        /// </summary>
+        /// <param name="type">
+        /// 参数类型。
+        /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
+        /// </param>
+        /// <param name="value">字节数组类型的参数值。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
+        public Parameter(ParameterType type, byte[] value)
+            : this()
+        {
+            CheckParameterValue(type, value);
+
+            Type = type;
+            Value = value;
+        }
+
+        /// <summary>
         /// 获取参数字节数组。
         /// </summary>
         /// <returns></returns>
@@ -96,13 +90,45 @@ namespace ThisCoder.CSA018
                 (byte)(Type)
             };
 
-            if (!Value.IsNullOrEmpty())
-            {
-                pmt.AddRange(Value.ToByteArray());
-            }
-
+            pmt.AddRange(Value);
             pmt.Add(0x00);
             return pmt.ToArray();
+        }
+
+        private static void CheckParameterValue(ParameterType type, byte[] value)
+        {
+            if (type == ParameterType.GatewayId)
+            {
+                if (value.Length != 4)
+                {
+                    throw new CsaException("参数长度错误。", ErrorCode.ParameterLengthError);
+                }
+
+                uint gatewayId = (uint)(value[0] << 24) + (uint)(value[1] << 16) + (uint)(value[2] << 8) + value[3];
+
+                if (gatewayId < 1 || gatewayId > 0xFFFFFFFF)
+                {
+                    throw new CsaException("参数范围错误。", ErrorCode.ParameterScopeError);
+                }
+            }
+            else if (type == ParameterType.LuminaireId)
+            {
+                if (value.Length != 4)
+                {
+                    throw new CsaException("参数长度错误。", ErrorCode.ParameterLengthError);
+                }
+
+                uint luminaireId = (uint)(value[0] << 24) + (uint)(value[1] << 16) + (uint)(value[2] << 8) + value[3];
+
+                if (luminaireId < 1 || luminaireId > 0xFFFFFF00)
+                {
+                    throw new CsaException("参数范围错误。", ErrorCode.ParameterScopeError);
+                }
+            }
+            else
+            {
+
+            }
         }
 
         /// <summary>
@@ -147,7 +173,7 @@ namespace ThisCoder.CSA018
                     }
                 }
 
-                parameter.Value = byteList.ToArray().ToString2();
+                parameter.Value = byteList.ToArray();
                 pmtList.Add(parameter);
 
                 GetParameterList(byteArray, index + 3, ref pmtList);
