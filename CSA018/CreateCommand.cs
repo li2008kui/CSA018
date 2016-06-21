@@ -179,6 +179,7 @@ namespace ThisCoder.CSA018
         /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="value">字符串类型的参数值。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         /// <returns></returns>
         public byte[] GetRequestCommand(MessageId messageId, ParameterType type, string value)
         {
@@ -199,6 +200,7 @@ namespace ThisCoder.CSA018
         /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="value">字节数组类型的参数值。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         /// <returns></returns>
         public byte[] GetRequestCommand(MessageId messageId, ParameterType type, byte[] value)
         {
@@ -219,6 +221,7 @@ namespace ThisCoder.CSA018
         /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="value">字节类型的参数值。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         /// <returns></returns>
         public byte[] GetRequestCommand(MessageId messageId, ParameterType type, byte value)
         {
@@ -238,6 +241,7 @@ namespace ThisCoder.CSA018
         /// 参数结构体对象。
         /// <para><see cref="Parameter"/>类型，长度可变。</para>
         /// </param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         /// <returns></returns>
         public byte[] GetRequestCommand(MessageId messageId, Parameter parameter)
         {
@@ -256,6 +260,7 @@ namespace ThisCoder.CSA018
         /// <para><see cref="MessageId"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="parameterList">参数结构体对象列表。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         /// <returns></returns>
         public byte[] GetRequestCommand(MessageId messageId, List<Parameter> parameterList)
         {
@@ -274,6 +279,7 @@ namespace ThisCoder.CSA018
         /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="value">字符串类型的参数值。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         /// <returns></returns>
         public byte[] GetEventCommand(MessageId messageId, ParameterType type, string value)
         {
@@ -294,6 +300,7 @@ namespace ThisCoder.CSA018
         /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="value">字节数组类型的参数值。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         /// <returns></returns>
         public byte[] GetEventCommand(MessageId messageId, ParameterType type, byte[] value)
         {
@@ -314,6 +321,7 @@ namespace ThisCoder.CSA018
         /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="value">字节类型的参数值。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         /// <returns></returns>
         public byte[] GetEventCommand(MessageId messageId, ParameterType type, byte value)
         {
@@ -333,6 +341,7 @@ namespace ThisCoder.CSA018
         /// 参数结构体对象。
         /// <para><see cref="Parameter"/>类型，长度可变。</para>
         /// </param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         /// <returns></returns>
         public byte[] GetEventCommand(MessageId messageId, Parameter parameter)
         {
@@ -351,6 +360,7 @@ namespace ThisCoder.CSA018
         /// <para><see cref="MessageId"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="parameterList">参数结构体对象列表。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         /// <returns></returns>
         public byte[] GetEventCommand(MessageId messageId, List<Parameter> parameterList)
         {
@@ -413,6 +423,7 @@ namespace ThisCoder.CSA018
         /// <para><see cref="MessageId"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="parameterList">参数结构体对象列表。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         /// <returns></returns>
         private byte[] GetOperateCommand(MessageId messageId, List<Parameter> parameterList)
         {
@@ -449,6 +460,7 @@ namespace ThisCoder.CSA018
         /// <para><see cref="MessageId"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="parameterList">参数结构体对象列表。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         /// <returns></returns>
         private byte[] GetOperateCommand(uint seqNumber, MessageId messageId, List<Parameter> parameterList)
         {

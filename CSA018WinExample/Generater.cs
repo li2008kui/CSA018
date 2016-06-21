@@ -167,16 +167,24 @@ namespace ThisCoder.CSA018WinExample
                         {
                             List<Parameter> parameterList = new List<Parameter>();
 
-                            SetParameterList(ref parameterList, ckbParameter1, cboxParameterType1, txtParameterValue1, ckbParameterHex1, cboxParameterValue1);
-                            SetParameterList(ref parameterList, ckbParameter2, cboxParameterType2, txtParameterValue2, ckbParameterHex2, cboxParameterValue2);
-                            SetParameterList(ref parameterList, ckbParameter3, cboxParameterType3, txtParameterValue3, ckbParameterHex3, cboxParameterValue3);
-                            SetParameterList(ref parameterList, ckbParameter4, cboxParameterType4, txtParameterValue4, ckbParameterHex4, cboxParameterValue4);
-                            SetParameterList(ref parameterList, ckbParameter5, cboxParameterType5, txtParameterValue5, ckbParameterHex5, cboxParameterValue5);
-                            SetParameterList(ref parameterList, ckbParameter6, cboxParameterType6, txtParameterValue6, ckbParameterHex6, cboxParameterValue6);
-                            SetParameterList(ref parameterList, ckbParameter7, cboxParameterType7, txtParameterValue7, ckbParameterHex7, cboxParameterValue7);
-                            SetParameterList(ref parameterList, ckbParameter8, cboxParameterType8, txtParameterValue8, ckbParameterHex8, cboxParameterValue8);
-                            SetParameterList(ref parameterList, ckbParameter9, cboxParameterType9, txtParameterValue9, ckbParameterHex9, cboxParameterValue9);
-                            SetParameterList(ref parameterList, ckbParameter10, cboxParameterType10, txtParameterValue10, ckbParameterHex10, cboxParameterValue10);
+                            try
+                            {
+                                SetParameterList(ref parameterList, ckbParameter1, cboxParameterType1, txtParameterValue1, ckbParameterHex1, cboxParameterValue1);
+                                SetParameterList(ref parameterList, ckbParameter2, cboxParameterType2, txtParameterValue2, ckbParameterHex2, cboxParameterValue2);
+                                SetParameterList(ref parameterList, ckbParameter3, cboxParameterType3, txtParameterValue3, ckbParameterHex3, cboxParameterValue3);
+                                SetParameterList(ref parameterList, ckbParameter4, cboxParameterType4, txtParameterValue4, ckbParameterHex4, cboxParameterValue4);
+                                SetParameterList(ref parameterList, ckbParameter5, cboxParameterType5, txtParameterValue5, ckbParameterHex5, cboxParameterValue5);
+                                SetParameterList(ref parameterList, ckbParameter6, cboxParameterType6, txtParameterValue6, ckbParameterHex6, cboxParameterValue6);
+                                SetParameterList(ref parameterList, ckbParameter7, cboxParameterType7, txtParameterValue7, ckbParameterHex7, cboxParameterValue7);
+                                SetParameterList(ref parameterList, ckbParameter8, cboxParameterType8, txtParameterValue8, ckbParameterHex8, cboxParameterValue8);
+                                SetParameterList(ref parameterList, ckbParameter9, cboxParameterType9, txtParameterValue9, ckbParameterHex9, cboxParameterValue9);
+                                SetParameterList(ref parameterList, ckbParameter10, cboxParameterType10, txtParameterValue10, ckbParameterHex10, cboxParameterValue10);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                return;
+                            }
 
                             if (parameterList.Count == 0)
                             {
@@ -330,7 +338,17 @@ namespace ThisCoder.CSA018WinExample
                                 {
                                     cmdRemarkString += "\r\n|    |-------------------------------|";
                                     cmdRemarkString += "\r\n|    | 参 ｜    参数类型：" + ((ushort)datagram.Body.ParameterList[i].Type).ToString("X4") + "       |" + "<-" + GetEnumValueDescription(typeof(ParameterType), datagram.Body.ParameterList[i].Type.ToString());
-                                    cmdRemarkString += "\r\n|    | 数 ｜      参数值：\"" + DisplayParameterValue(datagram.Body.ParameterList[i].Value) + "|" + GetParameterValueDescription(datagram.Body.ParameterList[i].Type, datagram.Body.ParameterList[i].Value);
+
+                                    if (datagram.Body.ParameterList[i].Type == ParameterType.GatewayId
+                                        || datagram.Body.ParameterList[i].Type == ParameterType.LuminaireId)
+                                    {
+                                        cmdRemarkString += "\r\n|    | 数 ｜      参数值：" + Encoding.UTF8.GetBytes(datagram.Body.ParameterList[i].Value).ToHexString("") + "   |";
+                                    }
+                                    else
+                                    {
+                                        cmdRemarkString += "\r\n|    | 数 ｜      参数值：\"" + DisplayParameterValue(datagram.Body.ParameterList[i].Value) + "|" + GetParameterValueDescription(datagram.Body.ParameterList[i].Type, datagram.Body.ParameterList[i].Value);
+                                    }
+
                                     cmdRemarkString += "\r\n|    | " + (i + 1).ToString().PadRight(2, ' ') + " | 参数值结束符：" + datagram.Body.ParameterList[i].End.ToString("X2") + "         |";
                                 }
                             }

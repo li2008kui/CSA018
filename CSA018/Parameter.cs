@@ -43,9 +43,18 @@ namespace ThisCoder.CSA018
         /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="value">字符串类型的参数值。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         public Parameter(ParameterType type, string value)
             : this()
         {
+            if (type == ParameterType.GatewayId || type == ParameterType.LuminaireId)
+            {
+                if (value.Length != 4)
+                {
+                    throw new CsaException("参数长度错误。", ErrorCode.ParameterLengthError);
+                }
+            }
+
             Type = type;
             Value = value;
         }
@@ -58,6 +67,7 @@ namespace ThisCoder.CSA018
         /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="value">字节数组类型的参数值。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         public Parameter(ParameterType type, byte[] value)
             : this(type, Encoding.UTF8.GetString(value))
         { }
@@ -70,6 +80,7 @@ namespace ThisCoder.CSA018
         /// <para><see cref="ParameterType"/>类型，长度为2个字节。</para>
         /// </param>
         /// <param name="value">字节类型的参数值。</param>
+        /// <exception cref="CsaException">表示发生错误时引发的 CSA018 异常。</exception>
         public Parameter(ParameterType type, byte value)
             : this(type, new byte[] { value })
         { }
@@ -114,13 +125,26 @@ namespace ThisCoder.CSA018
                 }
 
                 parameter.Type = (ParameterType)(pmtType);
-                byte indexByte = byteArray[index + 2];
 
-                while (indexByte != 0x00)
+                // 由于网关ID和灯具ID可能包含参数结束符，故需要特殊处理
+                if (parameter.Type == ParameterType.GatewayId || parameter.Type == ParameterType.LuminaireId)
                 {
-                    byteList.Add(indexByte);
-                    index++;
-                    indexByte = byteArray[index + 2];
+                    byteList.Add(byteArray[index + 2]);
+                    byteList.Add(byteArray[index + 3]);
+                    byteList.Add(byteArray[index + 4]);
+                    byteList.Add(byteArray[index + 5]);
+                    index += 4;
+                }
+                else
+                {
+                    byte indexByte = byteArray[index + 2];
+
+                    while (indexByte != 0x00)
+                    {
+                        byteList.Add(indexByte);
+                        index++;
+                        indexByte = byteArray[index + 2];
+                    }
                 }
 
                 parameter.Value = byteList.ToArray().ToString2();
