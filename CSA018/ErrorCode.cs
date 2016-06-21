@@ -126,6 +126,12 @@ namespace ThisCoder.CSA018
         /// </summary>
         [Description("命令超时")]
         CommandTimeout = 0x30313038,
+
+        /// <summary>
+        /// 参数长度错误。
+        /// </summary>
+        [Description("参数长度错误")]
+        ParameterLengthError = 0x30313039,
         #endregion
     }
 }
