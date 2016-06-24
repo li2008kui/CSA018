@@ -192,96 +192,100 @@ namespace ThisCoder.CSA018
 
             foreach (var tempByteArray in newByteArrayList)
             {
-                if (!Enum.IsDefined(typeof(MessageType), tempByteArray[0]))
+                if (tempByteArray.Length > 15)
                 {
-                    throw new CsaException("参数类型未定义。", ErrorCode.ParameterTypeUndefined);
-                }
 
-                Datagram d = new Datagram();
-                MessageHead mh = new MessageHead();
-                mh.Type = (MessageType)tempByteArray[0];
-                mh.SeqNumber = (uint)((tempByteArray[1] << 24) + (tempByteArray[2] << 16) + (tempByteArray[3] << 8) + tempByteArray[4]);
-                mh.Length = (ushort)((tempByteArray[5] << 8) + tempByteArray[6]);
-                mh.Reserved = (ulong)((tempByteArray[7] << 32) + (tempByteArray[8] << 24) + (tempByteArray[9] << 16) + (tempByteArray[10] << 8) + tempByteArray[11]);
-                mh.Crc32 = (uint)((tempByteArray[12] << 24) + (tempByteArray[13] << 16) + (tempByteArray[14] << 8) + tempByteArray[15]);
-
-                if (mh.Type == MessageType.Command
-                    || mh.Type == MessageType.Event
-                    || mh.Type == MessageType.CommandResult)
-                {
-                    byte[] newByteArray = tempByteArray.Where((b, index) => index >= 16 && index < 16 + mh.Length).ToArray();
-                    byte[] msgBody;
-
-                    if (desKey?.Length == 8)
+                    if (!Enum.IsDefined(typeof(MessageType), tempByteArray[0]))
                     {
-                        DESHelper des = new DESHelper();
-                        msgBody = des.Decrypt(desKey, newByteArray);
-
-                        // 设置一个值指示采用 DES 密钥加密。
-                        IsCryptographic = true;
-                    }
-                    else
-                    {
-                        msgBody = newByteArray;
+                        throw new CsaException("参数类型未定义。", ErrorCode.ParameterTypeUndefined);
                     }
 
-                    if (msgBody.Length > 13)
+                    Datagram d = new Datagram();
+                    MessageHead mh = new MessageHead();
+                    mh.Type = (MessageType)tempByteArray[0];
+                    mh.SeqNumber = (uint)((tempByteArray[1] << 24) + (tempByteArray[2] << 16) + (tempByteArray[3] << 8) + tempByteArray[4]);
+                    mh.Length = (ushort)((tempByteArray[5] << 8) + tempByteArray[6]);
+                    mh.Reserved = (ulong)((tempByteArray[7] << 32) + (tempByteArray[8] << 24) + (tempByteArray[9] << 16) + (tempByteArray[10] << 8) + tempByteArray[11]);
+                    mh.Crc32 = (uint)((tempByteArray[12] << 24) + (tempByteArray[13] << 16) + (tempByteArray[14] << 8) + tempByteArray[15]);
+
+                    if (mh.Type == MessageType.Command
+                        || mh.Type == MessageType.Event
+                        || mh.Type == MessageType.CommandResult)
                     {
-                        if (!Enum.IsDefined(typeof(MessageId), (ushort)((msgBody[0] << 8) + msgBody[1])))
+                        byte[] newByteArray = tempByteArray.Where((b, index) => index >= 16 && index < 16 + mh.Length).ToArray();
+                        byte[] msgBody;
+
+                        if (desKey?.Length == 8)
                         {
-                            throw new CsaException("消息ID未定义。", ErrorCode.MessageIdUndefined);
-                        }
+                            DESHelper des = new DESHelper();
+                            msgBody = des.Decrypt(desKey, newByteArray);
 
-                        MessageBody mb = new MessageBody();
-                        mb.MessageId = (MessageId)((msgBody[0] << 8) + msgBody[1]);
-                        mb.GatewayId = ((uint)msgBody[2] << 24) + ((uint)msgBody[3] << 16) + ((uint)msgBody[4] << 8) + msgBody[5];
-                        mb.LuminaireId = ((uint)msgBody[6] << 24) + ((uint)msgBody[7] << 16) + ((uint)msgBody[8] << 8) + msgBody[9];
-
-                        if (mh.Type == MessageType.CommandResult)
-                        {
-                            mb.ErrorCode = (ErrorCode)((msgBody[10] << 24) + (msgBody[11] << 16) + (msgBody[12] << 8) + msgBody[13]);
-                            List<byte> errorInfoArrayList = new List<byte>();
-
-                            for (int i = 14; i < msgBody.Length; i++)
-                            {
-                                errorInfoArrayList.Add(msgBody[i]);
-                            }
-
-                            if (errorInfoArrayList.Count > 0)
-                            {
-                                mb.ErrorInfo = errorInfoArrayList.ToArray().ToString2();
-                            }
+                            // 设置一个值指示采用 DES 密钥加密。
+                            IsCryptographic = true;
                         }
                         else
                         {
-                            List<Parameter> pmtList = new List<Parameter>();
-                            Parameter.GetParameterList(msgBody, 10, ref pmtList);
+                            msgBody = newByteArray;
+                        }
 
-                            if (pmtList.Count > 0)
+                        if (msgBody.Length > 13)
+                        {
+                            if (!Enum.IsDefined(typeof(MessageId), (ushort)((msgBody[0] << 8) + msgBody[1])))
                             {
-                                mb.ParameterList = pmtList;
+                                throw new CsaException("消息ID未定义。", ErrorCode.MessageIdUndefined);
+                            }
+
+                            MessageBody mb = new MessageBody();
+                            mb.MessageId = (MessageId)((msgBody[0] << 8) + msgBody[1]);
+                            mb.GatewayId = ((uint)msgBody[2] << 24) + ((uint)msgBody[3] << 16) + ((uint)msgBody[4] << 8) + msgBody[5];
+                            mb.LuminaireId = ((uint)msgBody[6] << 24) + ((uint)msgBody[7] << 16) + ((uint)msgBody[8] << 8) + msgBody[9];
+
+                            if (mh.Type == MessageType.CommandResult)
+                            {
+                                mb.ErrorCode = (ErrorCode)((msgBody[10] << 24) + (msgBody[11] << 16) + (msgBody[12] << 8) + msgBody[13]);
+                                List<byte> errorInfoArrayList = new List<byte>();
+
+                                for (int i = 14; i < msgBody.Length; i++)
+                                {
+                                    errorInfoArrayList.Add(msgBody[i]);
+                                }
+
+                                if (errorInfoArrayList.Count > 0)
+                                {
+                                    mb.ErrorInfo = errorInfoArrayList.ToArray().ToString2();
+                                }
                             }
                             else
                             {
-                                throw new CsaException("参数格式错误。", ErrorCode.ParameterFormatError);
+                                List<Parameter> pmtList = new List<Parameter>();
+                                Parameter.GetParameterList(msgBody, 10, ref pmtList);
+
+                                if (pmtList.Count > 0)
+                                {
+                                    mb.ParameterList = pmtList;
+                                }
+                                else
+                                {
+                                    throw new CsaException("参数格式错误。", ErrorCode.ParameterFormatError);
+                                }
                             }
-                        }
 
-                        if (isCheckCrc && Crc32.GetCrc32(newByteArray) != mh.Crc32)
+                            if (isCheckCrc && Crc32.GetCrc32(newByteArray) != mh.Crc32)
+                            {
+                                throw new CsaException("消息体CRC校验错误。", ErrorCode.ChecksumError);
+                            }
+
+                            d.Body = mb;
+                        }
+                        else
                         {
-                            throw new CsaException("消息体CRC校验错误。", ErrorCode.ChecksumError);
+                            throw new CsaException("消息解析错误。", ErrorCode.MessageParseError);
                         }
+                    }
 
-                        d.Body = mb;
-                    }
-                    else
-                    {
-                        throw new CsaException("消息解析错误。", ErrorCode.MessageParseError);
-                    }
+                    d.Head = mh;
+                    datagramList.Add(d);
                 }
-
-                d.Head = mh;
-                datagramList.Add(d);
             }
 
             return datagramList;
