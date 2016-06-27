@@ -194,7 +194,6 @@ namespace ThisCoder.CSA018
             {
                 if (tempByteArray.Length > 15)
                 {
-
                     if (!Enum.IsDefined(typeof(MessageType), tempByteArray[0]))
                     {
                         throw new CsaException("参数类型未定义。", ErrorCode.ParameterTypeUndefined);

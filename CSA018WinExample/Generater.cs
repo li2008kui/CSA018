@@ -365,7 +365,7 @@ namespace ThisCoder.CSA018WinExample
 
                                 if (datagram.Body.ErrorInfo != null)
                                 {
-                                    cmdRemarkString += "\r\n|    |          错误信息：\"" + datagram.Body.ErrorInfo + "\"     |";
+                                    cmdRemarkString += "\r\n|    |          错误信息：\"" + datagram.Body.ErrorInfo.TrimEnd('\0') + "\"     |";
                                 }
                             }
                         }
