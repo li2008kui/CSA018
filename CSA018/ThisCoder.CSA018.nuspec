@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/li2008kui/CSA018</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>1、修复网关ID和灯具ID参数值包含参数结束符0x00的解析问题；2、将参数值修改为byte[]类型，以此解决编码转换问题。</releaseNotes>
+    <releaseNotes>添加时区参数类型。</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>LiKui CSA</tags>
   </metadata>
