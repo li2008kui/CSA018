@@ -567,6 +567,13 @@ namespace ThisCoder.CSA018
         海拔 = 0x0093,
 
         /// <summary>
+        /// 时区。
+        /// <para>例如：UTC+08:00</para>
+        /// </summary>
+        [Description("时区")]
+        TimeZone = 0x0094,
+
+        /// <summary>
         /// 温度。
         /// </summary>
         [Description("温度")]
