@@ -9,6 +9,11 @@ namespace ThisCoder.CSA018
     public class DatagramEventArgs : EventArgs
     {
         /// <summary>
+        /// 数据数组。
+        /// </summary>
+        public byte[] DataArray { get; private set; }
+
+        /// <summary>
         /// 消息报文对象列表。
         /// </summary>
         public List<Datagram> DatagramList { get; private set; }
@@ -31,6 +36,7 @@ namespace ThisCoder.CSA018
         public DatagramEventArgs(byte[] dataArray, byte[] desKey = null, bool isTcpOrUdp = false, bool isCheckCrc = true)
             : base()
         {
+            DataArray = dataArray;
             DatagramList = new Datagram().GetDatagramList(dataArray, desKey, isTcpOrUdp, isCheckCrc);
         }
     }
