@@ -239,6 +239,18 @@ namespace ThisCoder.CSA018
         QueryResource2Status = 0x1408,
 
         /// <summary>
+        /// 设置移动传感器参数。
+        /// </summary>
+        [Description("设置移动传感器参数")]
+        设置移动传感器参数 = 0x1409,
+
+        /// <summary>
+        /// 设置亮度传感器参数。
+        /// </summary>
+        [Description("设置亮度传感器参数")]
+        设置亮度传感器参数 = 0x140A,
+
+        /// <summary>
         /// 设置经纬度参数。
         /// </summary>
         [Description("设置经纬度参数")]
