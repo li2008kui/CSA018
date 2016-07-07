@@ -37,7 +37,7 @@ namespace ThisCoder.CSA018
             : base()
         {
             DataArray = dataArray;
-            DatagramList = new Datagram().GetDatagramList(dataArray, desKey, isTcpOrUdp, isCheckCrc);
+            DatagramList = Datagram.GetDatagramList(dataArray, desKey, isTcpOrUdp, isCheckCrc);
         }
     }
 }

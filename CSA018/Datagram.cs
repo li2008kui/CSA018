@@ -132,7 +132,7 @@ namespace ThisCoder.CSA018
         /// <param name="isTcpOrUdp">报文承载方式是否是TCP或UDP，默认为false。</param>
         /// <param name="isCheckCrc">是否校验CRC。</param>
         /// <returns>消息报文对象列表。</returns>
-        public List<Datagram> GetDatagramList(byte[] dataArray, byte[] desKey = null, bool isTcpOrUdp = false, bool isCheckCrc = true)
+        internal static List<Datagram> GetDatagramList(byte[] dataArray, byte[] desKey = null, bool isTcpOrUdp = false, bool isCheckCrc = true)
         {
             List<byte> dataList = new List<byte>(dataArray);
 
@@ -220,7 +220,7 @@ namespace ThisCoder.CSA018
                             msgBody = des.Decrypt(desKey, newByteArray);
 
                             // 设置一个值指示采用 DES 密钥加密。
-                            IsCryptographic = true;
+                            d.IsCryptographic = true;
                         }
                         else
                         {
@@ -333,7 +333,7 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="byteArray">原消息报文字节数组。</param>
         /// <returns>去除转义字符的字节数组。</returns>
-        private byte[] Descaping(byte[] byteArray)
+        private static byte[] Descaping(byte[] byteArray)
         {
             List<byte> byteList = new List<byte>();
 
@@ -380,7 +380,7 @@ namespace ThisCoder.CSA018
         /// </summary>
         /// <param name="byteArrayList">原消息报文字节数组列表。</param>
         /// <returns>去除转义字符的字节数组列表。</returns>
-        private List<byte[]> Descaping(List<byte[]> byteArrayList)
+        private static List<byte[]> Descaping(List<byte[]> byteArrayList)
         {
             List<byte[]> newByteArrayList = new List<byte[]>();
             byte[] byteArray;
@@ -401,7 +401,7 @@ namespace ThisCoder.CSA018
         /// <param name="dataArray">消息报文字节数组。</param>
         /// <param name="index">数组索引。</param>
         /// <param name="byteArrayList">消息报文字节数组列表。</param>
-        private void GetByteArrayList(byte[] dataArray, int index, ref List<byte[]> byteArrayList)
+        private static void GetByteArrayList(byte[] dataArray, int index, ref List<byte[]> byteArrayList)
         {
             bool isStx = false;
             List<byte> byteList = new List<byte>();
