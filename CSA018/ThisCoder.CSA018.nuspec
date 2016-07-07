@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/li2008kui/CSA018</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>修复误删除设置传感器参数消息ID的问题。</releaseNotes>
+    <releaseNotes>为报文事件参数增加数据数组属性。</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>LiKui CSA</tags>
   </metadata>
