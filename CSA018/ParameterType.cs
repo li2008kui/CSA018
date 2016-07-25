@@ -512,10 +512,10 @@ namespace ThisCoder.CSA018
 
         /// <summary>
         /// 表示 <see cref="CSA018.ResourceType2"/> 资源类型2。
-        /// <para>移动传感器 <see cref="ResourceType2.移动传感器"/> 为：“01”</para>
-        /// <para>移动传感器 <see cref="ResourceType2.亮度传感器"/> 为：“02”</para>
-        /// <para>移动传感器 <see cref="ResourceType2.经纬度"/> 为：“03”</para>
-        /// <para>移动传感器 <see cref="ResourceType2.电参数"/> 为：“04”</para>
+        /// <para><see cref="ResourceType2.移动传感器"/> 为：“01”</para>
+        /// <para><see cref="ResourceType2.亮度传感器"/> 为：“02”</para>
+        /// <para><see cref="ResourceType2.经纬度"/> 为：“03”</para>
+        /// <para><see cref="ResourceType2.电参数"/> 为：“04”</para>
         /// </summary>
         [Description("资源类型2")]
         ResourceType2 = 0x0080,
