@@ -271,11 +271,11 @@ namespace ThisCoder.CSA018
         AccessCode = 0x0030,
 
         /// <summary>
-        /// 序列码。
+        /// 序列号。
         /// <para>参数值最大字节数：32。</para>
         /// <para>灯具的序列号。</para>
         /// </summary>
-        [Description("序列码")]
+        [Description("序列号")]
         SerialNumber = 0x0031,
 
         /// <summary>
@@ -455,6 +455,11 @@ namespace ThisCoder.CSA018
 
         /// <summary>
         /// 移动传感器开关。
+        /// <para>“00”表示禁用。</para>
+        /// <para>“01”表示全天启用，灯具未打开时也可触发。</para>
+        /// <para>“02”表示全天启用，灯具未打开时不能触发。</para>
+        /// <para>“03”表示只在晚上开启，灯具未打开时也可触发。</para>
+        /// <para>“04”表示只在晚上开启，灯具未打开时不能触发。</para>
         /// </summary>
         [Description("移动传感器开关")]
         SwitchMoveSensor = 0x0071,
@@ -488,6 +493,22 @@ namespace ThisCoder.CSA018
         /// </summary>
         [Description("光衰补偿开关")]
         SwitchAttenuationCompensation = 0x0076,
+
+        /// <summary>
+        /// 经纬度开灯偏移时间。
+        /// <para>正数表示延迟，负数表示提前，0表示立即。</para>
+        /// <para>单位：秒钟。</para>
+        /// </summary>
+        [Description("经纬度开灯偏移时间")]
+        LonLatTurnOnOffset = 0x0077,
+
+        /// <summary>
+        /// 经纬度关灯偏移时间。
+        /// <para>正数表示延迟，负数表示提前，0表示立即。</para>
+        /// <para>单位：秒钟。</para>
+        /// </summary>
+        [Description("经纬度关灯偏移时间")]
+        LonLatTurnOffOffset = 0x0078,
 
         /// <summary>
         /// 表示 <see cref="CSA018.ResourceType2"/> 资源类型2。
