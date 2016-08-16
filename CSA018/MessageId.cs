@@ -299,6 +299,18 @@ namespace ThisCoder.CSA018
         /// </summary>
         [Description("上报电参数阈值")]
         上报电参数阈值 = 0x2116,
+
+        /// <summary>
+        /// 上报灯具运行模式。
+        /// </summary>
+        [Description("上报灯具运行模式")]
+        ReportRunningMode = 0x2117,
+
+        /// <summary>
+        /// 上报灯具开关调光次数。
+        /// </summary>
+        [Description("上报灯具开关调光次数")]
+        上报灯具开关调光次数 = 0x2118,
         #endregion
         #endregion
 

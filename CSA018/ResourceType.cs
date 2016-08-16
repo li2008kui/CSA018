@@ -138,6 +138,18 @@ namespace ThisCoder.CSA018
         /// </summary>
         [Description("运行时间")]
         RunTime = 0x3139,
+
+        /// <summary>
+        /// 运行模式。
+        /// </summary>
+        [Description("运行模式")]
+        RunModel = 0x3230,
+
+        /// <summary>
+        /// 灯具开关调光次数。
+        /// </summary>
+        [Description("灯具开关调光次数")]
+        灯具开关调光次数 = 0x3231,
         #endregion
     }
 }

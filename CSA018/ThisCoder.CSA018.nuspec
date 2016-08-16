@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/li2008kui/CSA018</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>修复设置亮度传感器和移动传感器参数消息ID重复的问题。</releaseNotes>
+    <releaseNotes>1、增加查询和上报运行模式的功能；2、增加查询和上报灯具开关调光次数的功能。</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>LiKui CSA</tags>
   </metadata>

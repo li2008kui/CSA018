@@ -635,6 +635,24 @@ namespace ThisCoder.CSA018
         /// </summary>
         [Description("电能")]
         电能 = 0x00A6,
+
+        /// <summary>
+        /// 开灯次数。
+        /// </summary>
+        [Description("开灯次数")]
+        OpenCount = 0x00C0,
+
+        /// <summary>
+        /// 关灯次数。
+        /// </summary>
+        [Description("关灯次数")]
+        CloseCount = 0x00C1,
+
+        /// <summary>
+        /// 调光次数。
+        /// </summary>
+        [Description("调光次数")]
+        DimmingCount = 0x00C2,
         #endregion
     }
 }
