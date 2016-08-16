@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/li2008kui/CSA018</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>添加经纬度开灯和关灯偏移时间的参数类型。</releaseNotes>
+    <releaseNotes>修复设置亮度传感器和移动传感器参数消息ID重复的问题。</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>LiKui CSA</tags>
   </metadata>

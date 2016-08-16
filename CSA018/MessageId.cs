@@ -180,27 +180,6 @@ namespace ThisCoder.CSA018
         SettingEnableFunction = 0x1400,
 
         /// <summary>
-        /// 设置移动传感器参数。
-        /// <para>启动后所影响灯具的GPS联动半径，单位：米。</para>
-        /// <para>启动所需要的感应数目，单位：个。</para>
-        /// <para>启动后灯具的亮度。</para>
-        /// <para>启动后灯具变化的保持时间，单位：分钟。</para>
-        /// <para>灵敏度。</para>
-        /// <para>数字滤波参数。</para>
-        /// </summary>
-        [Description("设置移动传感器参数")]
-        SettingMoveSensorParameter = 0x1401,
-
-        /// <summary>
-        /// 设置亮度传感器参数。
-        /// <para>启动后所影响灯具的GPS联动半径，单位：米。</para>
-        /// <para>启动所需要的感应数目，单位：个。</para>
-        /// <para>白天黑夜临界值。</para>
-        /// </summary>
-        [Description("设置亮度传感器参数")]
-        SettingLightSensorParameter = 0x1402,
-
-        /// <summary>
         /// 设置ZigBee无线网络参数。
         /// <para>无线频点，即ZigBee无线通信的信道，取值范围：[01,16]。</para>
         /// <para>其他参数待定。</para>
