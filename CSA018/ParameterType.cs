@@ -376,6 +376,12 @@ namespace ThisCoder.CSA018
         信号强度 = 0x0064,
 
         /// <summary>
+        /// 次数。
+        /// </summary>
+        [Description("次数")]
+        次数 = 0x0065,
+
+        /// <summary>
         /// 半径。
         /// <para>单位：米。</para>
         /// </summary>
