@@ -517,6 +517,27 @@ namespace ThisCoder.CSA018
         LonLatTurnOffOffset = 0x0078,
 
         /// <summary>
+        /// 段的文件内容。
+        /// </summary>
+        [Description("段的文件内容")]
+        SegmentContent = 0x0079,
+
+        /// <summary>
+        /// CRC校验。
+        /// <para>即循环冗余码校验。</para>
+        /// </summary>
+        [Description("CRC校验")]
+        Crc = 0x007A,
+
+        /// <summary>
+        /// 版本号。
+        /// <para>设备的软件（固件）或硬件版本号。</para>
+        /// <para>可能由“主版本”、“次版本”、“生成号”和“修订号”四部分组成。</para>
+        /// </summary>
+        [Description("版本号")]
+        VersionNumber = 0x007B,
+
+        /// <summary>
         /// 表示 <see cref="CSA018.ResourceType2"/> 资源类型2。
         /// <para><see cref="ResourceType2.移动传感器"/> 为：“01”</para>
         /// <para><see cref="ResourceType2.亮度传感器"/> 为：“02”</para>

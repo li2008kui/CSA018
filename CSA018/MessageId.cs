@@ -376,7 +376,21 @@ namespace ThisCoder.CSA018
         /// 请求第N段文件。
         /// </summary>
         [Description("请求第N段文件")]
-        RequestNthSegmentFile = 0x1101
+        RequestNthSegmentFile = 0x1101,
+
+        #region 厂商自定义
+        /// <summary>
+        /// 获取设备版本。
+        /// </summary>
+        [Description("获取设备版本")]
+        获取设备版本 = 0x1110,
+
+        /// <summary>
+        /// 上报设备版本。
+        /// </summary>
+        [Description("上报设备版本")]
+        上报设备版本 = 0x1111,
+        #endregion
         #endregion
     }
 }
