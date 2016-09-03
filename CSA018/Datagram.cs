@@ -227,7 +227,7 @@ namespace ThisCoder.CSA018
                             msgBody = newByteArray;
                         }
 
-                        if (msgBody.Length > 13)
+                        if (msgBody.Length >= 10)
                         {
                             if (!Enum.IsDefined(typeof(MessageId), (ushort)((msgBody[0] << 8) + msgBody[1])))
                             {
@@ -258,15 +258,7 @@ namespace ThisCoder.CSA018
                             {
                                 List<Parameter> pmtList = new List<Parameter>();
                                 Parameter.GetParameterList(msgBody, 10, ref pmtList);
-
-                                if (pmtList.Count > 0)
-                                {
-                                    mb.ParameterList = pmtList;
-                                }
-                                else
-                                {
-                                    throw new CsaException("参数格式错误。", ErrorCode.ParameterFormatError);
-                                }
+                                mb.ParameterList = pmtList;
                             }
 
                             if (isCheckCrc && Crc32.GetCrc32(newByteArray) != mh.Crc32)

@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/li2008kui/CSA018</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>增加“次数”参数类型。</releaseNotes>
+    <releaseNotes>1、添加远程升级缺少的相关消息ID和参数类型；2、修复不能生成和解析无参数命令的问题。</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>LiKui CSA</tags>
   </metadata>

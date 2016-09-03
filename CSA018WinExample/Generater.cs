@@ -186,12 +186,6 @@ namespace ThisCoder.CSA018WinExample
                                 return;
                             }
 
-                            if (parameterList.Count == 0)
-                            {
-                                MessageBox.Show("请至少填写完整一个参数！");
-                                return;
-                            }
-
                             if (messageType == MessageType.Command)
                             {
                                 cmd = cc.GetRequestCommand(messageId, parameterList);
@@ -334,7 +328,7 @@ namespace ThisCoder.CSA018WinExample
                             {
                                 SeqNumber = datagram.Head.SeqNumber;
 
-                                for (int i = 0; i < datagram.Body.ParameterList.Count; i++)
+                                for (int i = 0; i < datagram.Body.ParameterList?.Count; i++)
                                 {
                                     cmdRemarkString += "\r\n|    |-------------------------------|";
                                     cmdRemarkString += "\r\n|    | 参 ｜    参数类型：" + ((ushort)datagram.Body.ParameterList[i].Type).ToString("X4") + "       |" + "<-" + GetEnumValueDescription(typeof(ParameterType), datagram.Body.ParameterList[i].Type.ToString());
