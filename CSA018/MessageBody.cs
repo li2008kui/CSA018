@@ -49,7 +49,7 @@ namespace ThisCoder.CSA018
         public ErrorCode ErrorCode { get; set; }
 
         /// <summary> 
-        /// 错误信息 。
+        /// 错误信息。
         /// <para>string类型，长度可变。</para> 
         /// <para>可选字段，对“命令结果”类型的消息有效。</para> 
         /// </summary> 
