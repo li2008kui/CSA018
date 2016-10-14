@@ -132,6 +132,12 @@ namespace ThisCoder.CSA018
         /// </summary>
         [Description("参数长度错误")]
         ParameterLengthError = 0x30313039,
+
+        /// <summary>
+        /// 设备正在升级。
+        /// </summary>
+        [Description("设备正在升级")]
+        DeviceUpgrading = 0x30313130,
         #endregion
     }
 }
