@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/li2008kui/CSA018</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>1、添加远程升级缺少的相关消息ID和参数类型；2、修复不能生成和解析无参数命令的问题。</releaseNotes>
+    <releaseNotes>增加获取通信网络参数和发送短信的功能。</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>LiKui CSA</tags>
   </metadata>

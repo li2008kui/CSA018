@@ -242,10 +242,29 @@ namespace ThisCoder.CSA018
         校准电参数 = 0x140C,
 
         /// <summary>
-        /// 设置电参数阈值
+        /// 设置电参数阈值。
         /// </summary>
         [Description("设置电参数阈值")]
         设置电参数阈值 = 0x140D,
+
+        /// <summary>
+        /// 查询通信网络参数。
+        /// <para>如GPRS/3G/4G等网络参数。</para>
+        /// </summary>
+        [Description("查询通信网络参数")]
+        查询通信网络参数 = 0x1410,
+
+        /// <summary>
+        /// 发送短信息。
+        /// </summary>
+        [Description("发送短信息")]
+        发送短信息 = 0x1411,
+
+        /// <summary>
+        /// 读取短信息。
+        /// </summary>
+        [Description("读取短信息")]
+        读取短信息 = 0x1412,
         #endregion
         #endregion
 
@@ -311,6 +330,18 @@ namespace ThisCoder.CSA018
         /// </summary>
         [Description("上报灯具开关调光次数")]
         上报灯具开关调光次数 = 0x2118,
+
+        /// <summary>
+        /// 上报通信网络参数。
+        /// </summary>
+        [Description("上报通信网络参数")]
+        上报通信网络参数 = 0x2119,
+
+        /// <summary>
+        /// 上报短信内容。
+        /// </summary>
+        [Description("上报短信内容")]
+        上报短信内容 = 0x211A,
         #endregion
         #endregion
 

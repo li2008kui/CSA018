@@ -370,12 +370,6 @@ namespace ThisCoder.CSA018
         Description = 0x0063,
 
         /// <summary>
-        /// 信号强度。
-        /// </summary>
-        [Description("信号强度")]
-        信号强度 = 0x0064,
-
-        /// <summary>
         /// 次数。
         /// </summary>
         [Description("次数")]
@@ -680,6 +674,48 @@ namespace ThisCoder.CSA018
         /// </summary>
         [Description("调光次数")]
         DimmingCount = 0x00C2,
+
+        /// <summary>
+        /// 国际移动设备身份码。
+        /// </summary>
+        [Description("国际移动设备身份码")]
+        IMEI = 0x00D0,
+
+        /// <summary>
+        /// 国际移动用户识别码。
+        /// </summary>
+        [Description("国际移动用户识别码")]
+        IMSI = 0x00D1,
+
+        /// <summary>
+        /// 信号强度。
+        /// </summary>
+        [Description("信号强度")]
+        信号强度 = 0x00D2,
+
+        /// <summary>
+        /// 运营商名称。
+        /// </summary>
+        [Description("运营商名称")]
+        运营商名称 = 0x00D3,
+
+        /// <summary>
+        /// 短信中心号码。
+        /// </summary>
+        [Description("短信中心号码")]
+        短信中心号码 = 0x00D4,
+
+        /// <summary>
+        /// 手机号码。
+        /// </summary>
+        [Description("手机号码")]
+        手机号码 = 0x00D5,
+
+        /// <summary>
+        /// 短信内容。
+        /// </summary>
+        [Description("短信内容")]
+        短信内容 = 0x00D6,
         #endregion
     }
 }
