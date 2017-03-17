@@ -248,6 +248,12 @@ namespace ThisCoder.CSA018
         设置电参数阈值 = 0x140D,
 
         /// <summary>
+        /// 准备下发调光策略。
+        /// </summary>
+        [Description("准备下发调光策略")]
+        准备下发调光策略 = 0x140E,
+
+        /// <summary>
         /// 查询通信网络参数。
         /// <para>如GPRS/3G/4G等网络参数。</para>
         /// </summary>
@@ -342,6 +348,12 @@ namespace ThisCoder.CSA018
         /// </summary>
         [Description("上报短信内容")]
         上报短信内容 = 0x211A,
+
+        /// <summary>
+        /// 请求下发调光策略。
+        /// </summary>
+        [Description("请求下发调光策略")]
+        请求下发调光策略 = 0x211B,
         #endregion
         #endregion
 

@@ -280,6 +280,10 @@ namespace ThisCoder.CSA018WinExample
                     {
                         parameterValue = Encoding.UTF8.GetString(((uint)((ResourceType2)Enum.Parse(typeof(ResourceType2), parValueItme.Key))).ToString("X4").ToByteArray(true));
                     }
+                    else if (resType == 3)
+                    {
+                        parameterValue = Encoding.UTF8.GetString(((uint)((StrategyType)Enum.Parse(typeof(StrategyType), parValueItme.Key))).ToString("X4").ToByteArray(true));
+                    }
                     else
                     {
                         return;
@@ -417,6 +421,22 @@ namespace ThisCoder.CSA018WinExample
                 foreach (var fieldInfo in typeof(ResourceType2).GetFields())
                 {
                     if (fieldInfo.FieldType.IsEnum && Encoding.UTF8.GetString(((ushort)((ResourceType2)(Enum.Parse(typeof(ResourceType2), fieldInfo.Name)))).ToString("X4").ToByteArray(true)) == parValue)
+                    {
+                        foreach (var attr in fieldInfo.GetCustomAttributes(false))
+                        {
+                            if (attr is DescriptionAttribute)
+                            {
+                                return "<-" + (attr as DescriptionAttribute)?.Description;
+                            }
+                        }
+                    }
+                }
+            }
+            else if (parType == ParameterType.StrategyType)
+            {
+                foreach (var fieldInfo in typeof(StrategyType).GetFields())
+                {
+                    if (fieldInfo.FieldType.IsEnum && Encoding.UTF8.GetString(((ushort)((StrategyType)(Enum.Parse(typeof(StrategyType), fieldInfo.Name)))).ToString("X4").ToByteArray(true)) == parValue)
                     {
                         foreach (var attr in fieldInfo.GetCustomAttributes(false))
                         {
@@ -610,7 +630,8 @@ namespace ThisCoder.CSA018WinExample
                     || type.Equals(typeof(MessageId))
                     || type.Equals(typeof(ParameterType))
                     || type.Equals(typeof(ResourceType))
-                    || type.Equals(typeof(ResourceType2)))
+                    || type.Equals(typeof(ResourceType2))
+                    || type.Equals(typeof(StrategyType)))
                 {
                     foreach (var fieldInfo in type.GetFields())
                     {
@@ -635,6 +656,10 @@ namespace ThisCoder.CSA018WinExample
                             else if (type.Equals(typeof(ResourceType2)))
                             {
                                 tempString = "\"" + Encoding.UTF8.GetString(((uint)((ResourceType2)Enum.Parse(type, fieldInfo.Name))).ToString("X4").ToByteArray(true)) + "\"";
+                            }
+                            else if (type.Equals(typeof(StrategyType)))
+                            {
+                                tempString = "\"" + Encoding.UTF8.GetString(((uint)((StrategyType)Enum.Parse(type, fieldInfo.Name))).ToString("X4").ToByteArray(true)) + "\"";
                             }
                             else
                             {
@@ -728,6 +753,10 @@ namespace ThisCoder.CSA018WinExample
                     {
                         BindingCombox(cboxParameterValue1, typeof(ResourceType2));
                     }
+                    else if (resType == 3)
+                    {
+                        BindingCombox(cboxParameterValue1, typeof(StrategyType));
+                    }
                     else
                     {
                     }
@@ -758,6 +787,10 @@ namespace ThisCoder.CSA018WinExample
                     else if (resType == 2)
                     {
                         BindingCombox(cboxParameterValue2, typeof(ResourceType2));
+                    }
+                    else if (resType == 3)
+                    {
+                        BindingCombox(cboxParameterValue2, typeof(StrategyType));
                     }
                     else
                     {
@@ -790,6 +823,10 @@ namespace ThisCoder.CSA018WinExample
                     {
                         BindingCombox(cboxParameterValue3, typeof(ResourceType2));
                     }
+                    else if (resType == 3)
+                    {
+                        BindingCombox(cboxParameterValue3, typeof(StrategyType));
+                    }
                     else
                     {
                     }
@@ -820,6 +857,10 @@ namespace ThisCoder.CSA018WinExample
                     else if (resType == 2)
                     {
                         BindingCombox(cboxParameterValue4, typeof(ResourceType2));
+                    }
+                    else if (resType == 3)
+                    {
+                        BindingCombox(cboxParameterValue4, typeof(StrategyType));
                     }
                     else
                     {
@@ -852,6 +893,10 @@ namespace ThisCoder.CSA018WinExample
                     {
                         BindingCombox(cboxParameterValue5, typeof(ResourceType2));
                     }
+                    else if (resType == 3)
+                    {
+                        BindingCombox(cboxParameterValue5, typeof(StrategyType));
+                    }
                     else
                     {
                     }
@@ -882,6 +927,10 @@ namespace ThisCoder.CSA018WinExample
                     else if (resType == 2)
                     {
                         BindingCombox(cboxParameterValue6, typeof(ResourceType2));
+                    }
+                    else if (resType == 3)
+                    {
+                        BindingCombox(cboxParameterValue6, typeof(StrategyType));
                     }
                     else
                     {
@@ -914,6 +963,10 @@ namespace ThisCoder.CSA018WinExample
                     {
                         BindingCombox(cboxParameterValue7, typeof(ResourceType2));
                     }
+                    else if (resType == 3)
+                    {
+                        BindingCombox(cboxParameterValue7, typeof(StrategyType));
+                    }
                     else
                     {
                     }
@@ -944,6 +997,10 @@ namespace ThisCoder.CSA018WinExample
                     else if (resType == 2)
                     {
                         BindingCombox(cboxParameterValue8, typeof(ResourceType2));
+                    }
+                    else if (resType == 3)
+                    {
+                        BindingCombox(cboxParameterValue8, typeof(StrategyType));
                     }
                     else
                     {
@@ -976,6 +1033,10 @@ namespace ThisCoder.CSA018WinExample
                     {
                         BindingCombox(cboxParameterValue9, typeof(ResourceType2));
                     }
+                    else if (resType == 3)
+                    {
+                        BindingCombox(cboxParameterValue9, typeof(StrategyType));
+                    }
                     else
                     {
                     }
@@ -1007,6 +1068,10 @@ namespace ThisCoder.CSA018WinExample
                     {
                         BindingCombox(cboxParameterValue10, typeof(ResourceType2));
                     }
+                    else if (resType == 3)
+                    {
+                        BindingCombox(cboxParameterValue10, typeof(StrategyType));
+                    }
                     else
                     {
                     }
@@ -1030,6 +1095,10 @@ namespace ThisCoder.CSA018WinExample
                 else if (parTypeItem.Key == ParameterType.ResourceType2.ToString())
                 {
                     resType = 2;
+                }
+                else if (parTypeItem.Key == ParameterType.StrategyType.ToString())
+                {
+                    resType = 3;
                 }
                 else
                 {

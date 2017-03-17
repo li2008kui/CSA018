@@ -532,6 +532,16 @@ namespace ThisCoder.CSA018
         VersionNumber = 0x007B,
 
         /// <summary>
+        /// 表示 <see cref="CSA018.StrategyType"/> 策略类型。
+        /// <para><see cref="StrategyType.TimedTask"/>为：“01”</para>
+        /// <para><see cref="StrategyType.BrightnessSensor"/>为：“02”</para>
+        /// <para><see cref="StrategyType.MoveSensor"/>为：“03”</para>
+        /// <para><see cref="StrategyType.LonLat"/>为：“04”</para>
+        /// </summary>
+        [Description("策略类型")]
+        StrategyType = 0x007C,
+
+        /// <summary>
         /// 表示 <see cref="CSA018.ResourceType2"/> 资源类型2。
         /// <para><see cref="ResourceType2.移动传感器"/> 为：“01”</para>
         /// <para><see cref="ResourceType2.亮度传感器"/> 为：“02”</para>

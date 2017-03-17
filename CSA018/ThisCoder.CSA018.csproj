@@ -62,6 +62,7 @@
     <Compile Include="ResourceType2.cs" />
     <Compile Include="RSAHelper.cs" />
     <Compile Include="Sequencer.cs" />
+    <Compile Include="StrategyType.cs" />
     <Compile Include="StringHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

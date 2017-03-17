@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/li2008kui/CSA018</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>增加获取通信网络参数和发送短信的功能。</releaseNotes>
+    <releaseNotes>完善调光策略下发问题。</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>LiKui CSA</tags>
   </metadata>
