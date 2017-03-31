@@ -271,6 +271,12 @@ namespace ThisCoder.CSA018
         /// </summary>
         [Description("读取短信息")]
         读取短信息 = 0x1412,
+
+        /// <summary>
+        /// 查询灯具分组。
+        /// </summary>
+        [Description("查询灯具分组")]
+        查询灯具分组 = 0x1420,
         #endregion
         #endregion
 
@@ -354,6 +360,12 @@ namespace ThisCoder.CSA018
         /// </summary>
         [Description("请求下发调光策略")]
         请求下发调光策略 = 0x211B,
+
+        /// <summary>
+        /// 上报灯具分组。
+        /// </summary>
+        [Description("上报灯具分组")]
+        上报灯具分组 = 0x2120,
         #endregion
         #endregion
 

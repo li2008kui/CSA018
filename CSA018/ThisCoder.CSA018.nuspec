@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/li2008kui/CSA018</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>完善调光策略下发问题。</releaseNotes>
-    <copyright>Copyright 2016</copyright>
+    <releaseNotes>添加查询灯具分组和上报灯具分组的消息ID。</releaseNotes>
+    <copyright>Copyright 2017</copyright>
     <tags>LiKui CSA</tags>
   </metadata>
 </package>
