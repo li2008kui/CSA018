@@ -370,6 +370,12 @@ namespace ThisCoder.CSA018
         Description = 0x0063,
 
         /// <summary>
+        /// 多组组号。
+        /// </summary>
+        [Description("多组组号")]
+        MultiGroup = 0x0064,
+
+        /// <summary>
         /// 次数。
         /// </summary>
         [Description("次数")]

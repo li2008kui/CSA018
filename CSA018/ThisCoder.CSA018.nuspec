@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/li2008kui/CSA018</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>添加查询灯具分组和上报灯具分组的消息ID。</releaseNotes>
+    <releaseNotes>添加多组组号参数类型，用于同时操作灯具的多个分组。</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>LiKui CSA</tags>
   </metadata>
