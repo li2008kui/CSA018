@@ -137,7 +137,7 @@ namespace ThisCoder.CSA018
         /// 灯具尚未绑定到网关。
         /// </summary>
         [Description("灯具尚未绑定到网关")]
-        NotBinding = 0x3031303A,
+        NotBinding = 0x30313041,
 
         /// <summary>
         /// 设备正在升级。
