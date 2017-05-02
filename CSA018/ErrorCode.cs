@@ -134,6 +134,12 @@ namespace ThisCoder.CSA018
         ParameterLengthError = 0x30313039,
 
         /// <summary>
+        /// 灯具尚未绑定到网关。
+        /// </summary>
+        [Description("灯具尚未绑定到网关")]
+        NotBinding = 0x3031303A,
+
+        /// <summary>
         /// 设备正在升级。
         /// </summary>
         [Description("设备正在升级")]
