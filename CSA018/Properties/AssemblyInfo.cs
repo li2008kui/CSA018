@@ -9,9 +9,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ThisCoder.com")]
 [assembly: AssemblyProduct("ThisCoder.CSA018")]
-[assembly: AssemblyCopyright("Copyright © 2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyCopyright("Copyright © 2017")]
+[assembly: AssemblyTrademark("CSA018")]
+[assembly: AssemblyCulture("zh-CN")]
 
 //将 ComVisible 设置为 false 将使此程序集中的类型
 //对 COM 组件不可见。  如果需要从 COM 访问此程序集中的类型，
