@@ -180,6 +180,18 @@ namespace ThisCoder.CSA018
         SettingEnableFunction = 0x1400,
 
         /// <summary>
+        /// 灯具绑定到网关。
+        /// </summary>
+        [Description("灯具绑定到网关")]
+        BindingGateway = 0x1401,
+
+        /// <summary>
+        /// 灯具从网关解除绑定。
+        /// </summary>
+        [Description("灯具从网关解除绑定")]
+        UnbindingGateway = 0x1402,
+
+        /// <summary>
         /// 设置ZigBee无线网络参数。
         /// <para>无线频点，即ZigBee无线通信的信道，取值范围：[01,16]。</para>
         /// <para>其他参数待定。</para>
@@ -290,9 +302,9 @@ namespace ThisCoder.CSA018
 
         #region 厂商自定义
         /// <summary>
-        /// 搜索到设备。
+        /// 上报搜索到的设备。
         /// </summary>
-        [Description("搜索到设备")]
+        [Description("上报搜索到的设备")]
         DeviceDiscovered = 0x2110,
 
         /// <summary>

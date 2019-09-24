@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/li2008kui/CSA018</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>添加多组组号参数类型，用于同时操作灯具的多个分组。</releaseNotes>
+    <releaseNotes>添加灯具绑定到网关或从网关解除绑定的功能。</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>LiKui CSA</tags>
   </metadata>
